@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Python | leminhnguyen&#39;s blog</title>
+    <link>https://leminhnguyen.github.io/tag/python/</link>
+      <atom:link href="https://leminhnguyen.github.io/tag/python/index.xml" rel="self" type="application/rss+xml" />
+    <description>Python</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>© {2022} leminhnguyen</copyright><lastBuildDate>Wed, 09 Mar 2022 11:01:17 +0000</lastBuildDate>
+    <image>
+      <url>https://leminhnguyen.github.io/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_3.png</url>
+      <title>Python</title>
+      <link>https://leminhnguyen.github.io/tag/python/</link>
+    </image>
+    
+    <item>
+      <title>How did I learn Python ?</title>
+      <link>https://leminhnguyen.github.io/post/how-did-i-learn-python/</link>
+      <pubDate>Wed, 09 Mar 2022 11:01:17 +0000</pubDate>
+      <guid>https://leminhnguyen.github.io/post/how-did-i-learn-python/</guid>
+      <description>&lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
+&lt;!-- ![Python](images/python.svg) --&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  id=&#34;figure-image-created-by-me&#34;&gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;*image created by me*&#34;
+           src=&#34;https://leminhnguyen.github.io/post/how-did-i-learn-python/images/python.svg&#34;
+           loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;figcaption&gt;
+      &lt;em&gt;image created by me&lt;/em&gt;
+    &lt;/figcaption&gt;&lt;/figure&gt;
+&lt;h2 id=&#34;get-started&#34;&gt;Get Started&lt;/h2&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  id=&#34;figure-image-created-by-me&#34;&gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;images/How%20did%20I%20learn%20Python%20_.svg&#34; alt=&#34;*image created by me*&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;figcaption&gt;
+      &lt;em&gt;image created by me&lt;/em&gt;
+    &lt;/figcaption&gt;&lt;/figure&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
