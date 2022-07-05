@@ -60,7 +60,7 @@
   
     
   
-  <meta name="description" content="This post contains the errors, commands that impressed me a lot when using Linux 😃." />
+  <meta name="description" content="The trick for killing zombie processes using GPU in Linux 😃." />
 
   
   <link rel="alternate" hreflang="en-us" href="https://leminhnguyen.github.io/post/linux-learns/kill-zombie-processes/" />
@@ -301,7 +301,7 @@
   <meta property="og:site_name" content="leminhnguyen&#39;s blog" />
   <meta property="og:url" content="https://leminhnguyen.github.io/post/linux-learns/kill-zombie-processes/" />
   <meta property="og:title" content="How to kill zombie processes using GPU ? | leminhnguyen&#39;s blog" />
-  <meta property="og:description" content="This post contains the errors, commands that impressed me a lot when using Linux 😃." /><meta property="og:image" content="https://leminhnguyen.github.io/post/linux-learns/kill-zombie-processes/featured.webp" />
+  <meta property="og:description" content="The trick for killing zombie processes using GPU in Linux 😃." /><meta property="og:image" content="https://leminhnguyen.github.io/post/linux-learns/kill-zombie-processes/featured.webp" />
     <meta property="twitter:image" content="https://leminhnguyen.github.io/post/linux-learns/kill-zombie-processes/featured.webp" /><meta property="og:locale" content="en-us" />
   
     
@@ -310,7 +310,7 @@
         content="2022-03-09T11:01:17&#43;00:00"
       />
     
-    <meta property="article:modified_time" content="2022-06-28T14:26:05&#43;00:00">
+    <meta property="article:modified_time" content="2022-06-30T10:55:41&#43;00:00">
   
 
   
@@ -343,7 +343,7 @@
   ],
   
   "datePublished": "2022-03-09T11:01:17Z",
-  "dateModified": "2022-06-28T14:26:05Z",
+  "dateModified": "2022-06-30T10:55:41Z",
   
   "author": {
     "@type": "Person",
@@ -358,7 +358,7 @@
       "url": "https://leminhnguyen.github.io/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_192x192_fill_lanczos_center_3.png"
     }
   },
-  "description": "This post contains the errors, commands that impressed me a lot when using Linux 😃."
+  "description": "The trick for killing zombie processes using GPU in Linux 😃."
 }
 </script>
 
@@ -718,7 +718,7 @@
           Last updated on
       
     
-    Jun 28, 2022
+    Jun 30, 2022
   </span>
   
 
@@ -790,7 +790,7 @@
   </div></figure>
 <div style="text-align: justify; font-size: 15px;">
 <h3 id="what-is-a-zombie-process">What is a zombie process?</h3>
-<p>As you know, in Linux OS when we start an application the OS will create a process and this process can start other processes. The process starts other processes is refered as the parent and the new processes are refered as the children. The Linux OS keeps the information of processes in a table called the process table. The parent and the children run almost dependently, but sometimes they share some resources (input, output) or contexts. when a child finished its job, it will send a <code>SIGCHLD</code> signal to the parent. The parent then reads the exit code of the child and removes its entry from the process table, this also cleans the resources used by the child. But there are sometimes the children cannot send the <code>SIGCHLD</code> signal to the parent or the parent was died by incident, in such cases the children outlive from their parent and the Linux OS will refers them as <code>orphaned</code> or <code>zombie</code> processes.</p>
+<p>As you know, in Linux OS when we start an application the OS will create a process and this process can start other processes. The process starts other processes is refered as the parent and the new processes are refered as the children. The Linux OS keeps the information of processes in a table called the process table. The parent and the children run almost independently, but sometimes they share some resources (input, output) or contexts. When a child finished its job, it will send a <code>SIGCHLD</code> signal to the parent. The parent then reads the exit code of the child and removes its entry from the process table, this also cleans the resources used by the child. But there are sometimes the children cannot send the <code>SIGCHLD</code> signal to the parent or the parent was died by incident, in such cases the children outlive from their parent and the Linux OS refers them as <code>orphaned</code> or <code>zombie</code> processes.</p>
 <h3 id="the-problem-of-zombie-processes">The problem of zombie processes</h3>
 <p>Because of outliving the parent, the resources used by the children (<code>zombie</code>) cannot be released, and hence, other processes cannot use these resources. To overcome this problem, we need to kill the children manually based on their ids. But, the main question is how we can find the the ids of the children? To answer that question, let&rsquo;s continue to the next sections.</p>
 <h3 id="killing-zombie-processes-using-gpu">Killing zombie processes using GPU</h3>
@@ -820,7 +820,7 @@
                height="515"
                loading="lazy" data-zoomable /></div>
   </div></figure>
-To kill a process using <code>GPU</code> we simply use the command <code>kill PID</code> or <code>kill -9 PID</code>, but there are some cases we cannot kill the process by that way, for example, the process has <code>PID=18309</code> in the <a href="#figure-nvtop_snapshot">figure1</a>. This because the process (<code>parent</code>) is already dead (indicated by <code>N/A</code> USER column) but the children (<code>orphaned</code>) are still alive and hold the resouces (in this case, the zombie proceses are holding about 85% GPU MEM). In order to access the child processes you have to excute <code>sudo fuser -v /dev/nvidia*</code> and all processes using GPUs will be listed with each <code>GPU</code> id. For example, when running the <code>sudo fuser -v /dev/nvidia*</code> command on my training server we will see the ouput looks like:</p>
+To kill a process using <code>GPU</code> we simply use the command <code>kill PID</code> or <code>kill -9 PID</code>, but there are some cases we cannot kill the process by that way, for example, the process has <code>PID=18309</code> in the <a href="#figure-nvtop_snapshot">figure1</a>. This because the process (<code>parent</code>) is already dead (indicated by <code>N/A</code> USER column) but the children (<code>orphaned</code>) are still alive and hold the resouces (in this case, the zombie proceses are holding about 85% GPU MEM). In order to access the child processes you have to excute <code>sudo fuser -v /dev/nvidia*</code> and all processes using GPUs will be listed with each <code>GPU</code> id. For example, when running the <code>sudo fuser -v /dev/nvidia*</code> command on my training server we will see the output looks like:</p>
 <pre><code class="language-bash">$ sudo fuser -v /dev/nvidia*
                      USER        PID ACCESS COMMAND
 /dev/nvidia0:        nguyenlm  15909 F.... nvtop
@@ -836,7 +836,7 @@ To kill a process using <code>GPU</code> we simply use the command <code>kill PI
                      nguyenlm  25085 F...m python
                      nguyenlm  32199 F...m python
 </code></pre>
-<p>From the ouput, we have a dozen of processes using <code>GPU=0</code> (<em>python, nvtop, tensorboard</em>). Simply, we can kill them all with their <code>PIDs</code> by the <code>kill</code> command as mentioned to release the resources. However, we can do that easier by an observation, the zombie processes are usually have consecutive ids, so if we look the output carefully we will see a group of processes has the id ranged from <code>25078</code> to <code>25082</code> and those actually are zombie <code>PIDs</code>.</p>
+<p>From the output, we have a dozen of processes using <code>GPU=0</code> (<em>python, nvtop, tensorboard</em>). Simply, we can kill them all with their <code>PIDs</code> by the <code>kill</code> command as mentioned to release the resources. However, we can do that easier by an observation, the zombie processes are usually have consecutive ids, so if we look the output carefully we will see a group of processes has the id ranged from <code>25078</code> to <code>25082</code> and those actually are zombie <code>PIDs</code>.</p>
 </div>
 <h2 id="references">References:</h2>
 <ol>
@@ -979,7 +979,7 @@ To kill a process using <code>GPU</code> we simply use the command <code>kill PI
     <div class="media-body">
       <h5 class="card-title"><a href="https://leminhnguyen.github.io/">Le Minh Nguyen (nguyenlm)</a></h5>
       <h6 class="card-subtitle">Research Engineer</h6>
-      <p class="card-text">My research interests include NLP, Software Engineering and programmable matter.</p>
+      <p class="card-text">A Software Engineer loves NLP &amp; Speech Technology.</p>
       <ul class="network-icon" aria-hidden="true">
   
     

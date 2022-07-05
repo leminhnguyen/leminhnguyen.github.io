@@ -60,7 +60,7 @@
   
     
   
-  <meta name="description" content="This post contains the errors, commands that impressed me a lot when using Linux 😃." />
+  <meta name="description" content="One day, I’ve tried to run a python script using the multiprocessing technique and for a while the program crashed and raised the [Errno 32] Broken pipe error..." />
 
   
   <link rel="alternate" hreflang="en-us" href="https://leminhnguyen.github.io/post/linux-learns/broken-pipe-error/" />
@@ -301,7 +301,7 @@
   <meta property="og:site_name" content="leminhnguyen&#39;s blog" />
   <meta property="og:url" content="https://leminhnguyen.github.io/post/linux-learns/broken-pipe-error/" />
   <meta property="og:title" content="Fix &#34;[Errno 32] Broken pipe&#34; in Python | leminhnguyen&#39;s blog" />
-  <meta property="og:description" content="This post contains the errors, commands that impressed me a lot when using Linux 😃." /><meta property="og:image" content="https://leminhnguyen.github.io/post/linux-learns/broken-pipe-error/featured.webp" />
+  <meta property="og:description" content="One day, I’ve tried to run a python script using the multiprocessing technique and for a while the program crashed and raised the [Errno 32] Broken pipe error..." /><meta property="og:image" content="https://leminhnguyen.github.io/post/linux-learns/broken-pipe-error/featured.webp" />
     <meta property="twitter:image" content="https://leminhnguyen.github.io/post/linux-learns/broken-pipe-error/featured.webp" /><meta property="og:locale" content="en-us" />
   
     
@@ -310,7 +310,7 @@
         content="2022-03-09T11:01:17&#43;00:00"
       />
     
-    <meta property="article:modified_time" content="2022-06-08T11:23:10&#43;00:00">
+    <meta property="article:modified_time" content="2022-06-30T11:01:18&#43;00:00">
   
 
   
@@ -343,7 +343,7 @@
   ],
   
   "datePublished": "2022-03-09T11:01:17Z",
-  "dateModified": "2022-06-08T11:23:10Z",
+  "dateModified": "2022-06-30T11:01:18Z",
   
   "author": {
     "@type": "Person",
@@ -358,7 +358,7 @@
       "url": "https://leminhnguyen.github.io/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_192x192_fill_lanczos_center_3.png"
     }
   },
-  "description": "This post contains the errors, commands that impressed me a lot when using Linux 😃."
+  "description": "One day, I’ve tried to run a python script using the multiprocessing technique and for a while the program crashed and raised the [Errno 32] Broken pipe error..."
 }
 </script>
 
@@ -690,7 +690,7 @@
   <h1>Fix &#34;[Errno 32] Broken pipe&#34; in Python</h1>
 
   
-  <p class="page-subtitle">This post contains the errors, commands that impressed me a lot when using Linux 😃.</p>
+  <p class="page-subtitle">One day, I’ve tried to run a python script using the multiprocessing technique and for a while the program crashed and raised the [Errno 32] Broken pipe error&hellip;</p>
   
 
   
@@ -720,7 +720,7 @@
           Last updated on
       
     
-    Jun 8, 2022
+    Jun 30, 2022
   </span>
   
 
@@ -765,15 +765,15 @@
     <div class="article-style">
       <h2 id="overview">Overview</h2>
 <div style="text-align: justify; font-size: 15px;">
-One day, I've tried to run a python script using multiprocessing technique (<mark>n_jobs=10</mark>) and for a while the program crashed and raised the <span style="font-weight: bold">[Errno 32] Broken pipe</span> error.
-With some google searches I founded the problem as well the solution for it.
+<p>One day, I&rsquo;ve tried to run a python script using multiprocessing technique <code>n_jobs=10</code> and for a while the program crashed and raised the <strong>[Errno 32] Broken pipe</strong> error.
+With some google searches I founded the problem as well the solution for it.</p>
 <blockquote>
 <p>&ldquo;Broken pipe&rdquo; is essentially an IOError error (short for input/output error), which happened at the Linux system level. It usually occurs when reading and writing files, or in other words, doing file input/output or network input/output (via sockets) <sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>.</p>
 </blockquote>
 <blockquote>
 <p>In programs that uses worker processes to speed up processing and make use of multi-core CPUs, you can try reducing the number of the worker processes to see whether the error disappear or not <sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>.</p>
 </blockquote>
-<p>From that suggestion, I reduced the <mark>n_jobs from 10 to 5</mark> and boom, the error got disappeared.</p>
+<p>From that suggestion, I reduced <code>n_jobs=10</code> to <code>n_jobs=5</code> and boom, the error got disappeared.</p>
 </div>
 <section class="footnotes" role="doc-endnotes">
 <hr>
@@ -919,7 +919,7 @@ With some google searches I founded the problem as well the solution for it.
     <div class="media-body">
       <h5 class="card-title"><a href="https://leminhnguyen.github.io/">Le Minh Nguyen (nguyenlm)</a></h5>
       <h6 class="card-subtitle">Research Engineer</h6>
-      <p class="card-text">My research interests include NLP, Software Engineering and programmable matter.</p>
+      <p class="card-text">A Software Engineer loves NLP &amp; Speech Technology.</p>
       <ul class="network-icon" aria-hidden="true">
   
     
