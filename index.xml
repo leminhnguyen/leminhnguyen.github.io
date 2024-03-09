@@ -1,0 +1,459 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>leminhnguyen&#39;s blog</title>
+    <link>https://leminhnguyen.github.io/</link>
+      <atom:link href="https://leminhnguyen.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <description>leminhnguyen&#39;s blog</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>© {2022} leminhnguyen</copyright><lastBuildDate>Thu, 30 Jun 2022 10:51:25 +0000</lastBuildDate>
+    <image>
+      <url>https://leminhnguyen.github.io/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_3.png</url>
+      <title>leminhnguyen&#39;s blog</title>
+      <link>https://leminhnguyen.github.io/</link>
+    </image>
+    
+    <item>
+      <title>Comparing batch vs layer normalization</title>
+      <link>https://leminhnguyen.github.io/post/tts-learns/tts-learns/</link>
+      <pubDate>Wed, 09 Mar 2022 11:01:17 +0000</pubDate>
+      <guid>https://leminhnguyen.github.io/post/tts-learns/tts-learns/</guid>
+      <description>&lt;h2 id=&#34;-batch-vs-layer-normalization&#34;&gt;💣 Batch vs Layer Normalization&lt;/h2&gt;
+&lt;div style=&#34;text-align: justify; font-size: 15px;&#34;&gt;
+The purpose of normalization is to provide &lt;span style=&#39;font-weight:bold&#39;&gt; an uniform scale for the input data &lt;/span&gt; to avoid varing in huge range. The normalization method ensures there is no loss of information and even the range of values isn&#39;t affected. In spite of normalizing the input data, &lt;span style=&#39;font-weight:bold&#39;&gt; the value of activations of certain neurons in the hidden layers can start varying across a wide scale during the training process. &lt;/span&gt; This means the input to the neurons to the next hidden layer will also range across the wide range, bringing instability.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;&#34; srcset=&#34;
+               /post/tts-learns/tts-learns/images/batch-vs-layer-normalization_hubc5419aa4d7ca81a5c5c39fc33adf9bc_24068_26e8274f2bf3d60894ddf4d1cdbfe1ca.webp 400w,
+               /post/tts-learns/tts-learns/images/batch-vs-layer-normalization_hubc5419aa4d7ca81a5c5c39fc33adf9bc_24068_caee8622773b04039cc2c664010e6c40.webp 760w,
+               /post/tts-learns/tts-learns/images/batch-vs-layer-normalization_hubc5419aa4d7ca81a5c5c39fc33adf9bc_24068_1200x1200_fit_q75_h2_lanczos_2.webp 1200w&#34;
+               src=&#34;https://leminhnguyen.github.io/post/tts-learns/tts-learns/images/batch-vs-layer-normalization_hubc5419aa4d7ca81a5c5c39fc33adf9bc_24068_26e8274f2bf3d60894ddf4d1cdbfe1ca.webp&#34;
+               width=&#34;760&#34;
+               height=&#34;444&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Batch Normalization Layer is applied for neural networks where the training is done in mini-batches. We divide the data into batches with a certain batch size and then pass it through the network. Batch normalization is applied on the neuron activation for all the samples in the mini-batch such that the mean of output lies close to 0 and the standard deviation lies close to 1. It also introduces two learning parameters gama and beta in its calculation which are all optimized during training. &lt;sup id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Layer Normalization which addresses the drawbacks of batch normalization. This technique is not dependent on batches and the normalization is applied on the neuron for a single instance across all features. Here also mean activation remains close to 0 and mean standard deviation remains close to 1. &lt;sup id=&#34;fnref1:1&#34;&gt;&lt;a href=&#34;#fn:1&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;span style=&#39;font-weight:bold; font-size: 18px;&#39;&gt; The key difference &lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Batch Normalization depends on mini-batch size and may not work properly for smaller batch sizes. On the other hand, Layer normalization does not depend on mini-batch size.&lt;/li&gt;
+&lt;li&gt;In batch normalization, input values of the same neuron for all the data in the mini-batch are normalized. Whereas in layer normalization, input values for all neurons in the same layer are normalized for each data sample.&lt;/li&gt;
+&lt;li&gt;Batch normalization works better with fully connected layers and convolutional neural network (CNN) but it shows poor results with recurrent neural network (RNN). On the other hand, the main advantage of Layer normalization is that it works really well with RNN.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;footnotes&#34; role=&#34;doc-endnotes&#34;&gt;
+&lt;hr&gt;
+&lt;ol&gt;
+&lt;li id=&#34;fn:1&#34;&gt;
+&lt;p&gt;&lt;a href=&#34;https://machinelearningknowledge.ai/keras-normalization-layers-explained-for-beginners-batch-normalization-vs-layer-normalization/#:~:text=Batch%20Normalization%20vs%20Layer%20Normalization,-Before%20wrapping%20up&amp;text=In%20batch%20normalization%2C%20input%20values,normalized%20for%20each%20data%20sample.&#34; style=&#34;text-align: justify; font-size: 15px;&#34;&gt;Batch-vs-Layer-Normalization&lt;/a&gt;&amp;#160;&lt;a href=&#34;#fnref:1&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&amp;#160;&lt;a href=&#34;#fnref1:1&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Fix &#34;[Errno 32] Broken pipe&#34; in Python</title>
+      <link>https://leminhnguyen.github.io/post/linux-learns/broken-pipe-error/</link>
+      <pubDate>Wed, 09 Mar 2022 11:01:17 +0000</pubDate>
+      <guid>https://leminhnguyen.github.io/post/linux-learns/broken-pipe-error/</guid>
+      <description>&lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
+&lt;div style=&#34;text-align: justify; font-size: 15px;&#34;&gt;
+&lt;p&gt;One day, I&amp;rsquo;ve tried to run a python script using multiprocessing technique &lt;code&gt;n_jobs=10&lt;/code&gt; and for a while the program crashed and raised the &lt;strong&gt;[Errno 32] Broken pipe&lt;/strong&gt; error.
+With some google searches I founded the problem as well the solution for it.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&amp;ldquo;Broken pipe&amp;rdquo; is essentially an IOError error (short for input/output error), which happened at the Linux system level. It usually occurs when reading and writing files, or in other words, doing file input/output or network input/output (via sockets) &lt;sup id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;In programs that uses worker processes to speed up processing and make use of multi-core CPUs, you can try reducing the number of the worker processes to see whether the error disappear or not &lt;sup id=&#34;fnref1:1&#34;&gt;&lt;a href=&#34;#fn:1&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;From that suggestion, I reduced &lt;code&gt;n_jobs=10&lt;/code&gt; to &lt;code&gt;n_jobs=5&lt;/code&gt; and boom, the error got disappeared.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;footnotes&#34; role=&#34;doc-endnotes&#34;&gt;
+&lt;hr&gt;
+&lt;ol&gt;
+&lt;li id=&#34;fn:1&#34;&gt;
+&lt;p&gt;&lt;a href=&#34;https://linuxpip.org/broken-pipe-python-error&#34; style=&#34;text-align: justify; font-size: 15px;&#34;&gt;[Errno 32] Broken pipe in Python&lt;/a&gt;&amp;#160;&lt;a href=&#34;#fnref:1&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&amp;#160;&lt;a href=&#34;#fnref1:1&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>How did I learn Python ?</title>
+      <link>https://leminhnguyen.github.io/post/how-did-i-learn-python/</link>
+      <pubDate>Wed, 09 Mar 2022 11:01:17 +0000</pubDate>
+      <guid>https://leminhnguyen.github.io/post/how-did-i-learn-python/</guid>
+      <description>&lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
+&lt;!-- ![Python](images/python.svg) --&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  id=&#34;figure-image-created-by-me&#34;&gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;*image created by me*&#34;
+           src=&#34;https://leminhnguyen.github.io/post/how-did-i-learn-python/images/python.svg&#34;
+           loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;figcaption&gt;
+      &lt;em&gt;image created by me&lt;/em&gt;
+    &lt;/figcaption&gt;&lt;/figure&gt;
+&lt;h2 id=&#34;get-started&#34;&gt;Get Started&lt;/h2&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  id=&#34;figure-image-created-by-me&#34;&gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;images/How%20did%20I%20learn%20Python%20_.svg&#34; alt=&#34;*image created by me*&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;figcaption&gt;
+      &lt;em&gt;image created by me&lt;/em&gt;
+    &lt;/figcaption&gt;&lt;/figure&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>How to kill zombie processes using GPU ?</title>
+      <link>https://leminhnguyen.github.io/post/linux-learns/kill-zombie-processes/</link>
+      <pubDate>Wed, 09 Mar 2022 11:01:17 +0000</pubDate>
+      <guid>https://leminhnguyen.github.io/post/linux-learns/kill-zombie-processes/</guid>
+      <description>&lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
+&lt;!-- ![Python](images/python.svg) --&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;&#34; srcset=&#34;
+               /post/linux-learns/kill-zombie-processes/images/zombie_hu6d97b3e824db4a9840663df6fd482ef2_449021_e550662dba03fb1e0cbb4c95ac466ad0.png 400w,
+               /post/linux-learns/kill-zombie-processes/images/zombie_hu6d97b3e824db4a9840663df6fd482ef2_449021_21b82c453c043986e8d659acaa888025.png 760w,
+               /post/linux-learns/kill-zombie-processes/images/zombie_hu6d97b3e824db4a9840663df6fd482ef2_449021_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://leminhnguyen.github.io/post/linux-learns/kill-zombie-processes/images/zombie_hu6d97b3e824db4a9840663df6fd482ef2_449021_e550662dba03fb1e0cbb4c95ac466ad0.png&#34;
+               width=&#34;760&#34;
+               height=&#34;393&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;div style=&#34;text-align: justify; font-size: 15px;&#34;&gt;
+&lt;h3 id=&#34;what-is-a-zombie-process&#34;&gt;What is a zombie process?&lt;/h3&gt;
+&lt;p&gt;As you know, in Linux OS when we start an application the OS will create a process and this process can start other processes. The process starts other processes is refered as the parent and the new processes are refered as the children. The Linux OS keeps the information of processes in a table called the process table. The parent and the children run almost independently, but sometimes they share some resources (input, output) or contexts. When a child finished its job, it will send a &lt;code&gt;SIGCHLD&lt;/code&gt; signal to the parent. The parent then reads the exit code of the child and removes its entry from the process table, this also cleans the resources used by the child. But there are sometimes the children cannot send the &lt;code&gt;SIGCHLD&lt;/code&gt; signal to the parent or the parent was died by incident, in such cases the children outlive from their parent and the Linux OS refers them as &lt;code&gt;orphaned&lt;/code&gt; or &lt;code&gt;zombie&lt;/code&gt; processes.&lt;/p&gt;
+&lt;h3 id=&#34;the-problem-of-zombie-processes&#34;&gt;The problem of zombie processes&lt;/h3&gt;
+&lt;p&gt;Because of outliving the parent, the resources used by the children (&lt;code&gt;zombie&lt;/code&gt;) cannot be released, and hence, other processes cannot use these resources. To overcome this problem, we need to kill the children manually based on their ids. But, the main question is how we can find the the ids of the children? To answer that question, let&amp;rsquo;s continue to the next sections.&lt;/p&gt;
+&lt;h3 id=&#34;killing-zombie-processes-using-gpu&#34;&gt;Killing zombie processes using GPU&lt;/h3&gt;
+&lt;p&gt;Working as a research engineer, I&amp;rsquo;m usually using &lt;code&gt;GPUs&lt;/code&gt; to train the deep learning models and checking the used resources with &lt;code&gt;nvtop&lt;/code&gt; command. Usually each process using &lt;code&gt;GPU&lt;/code&gt; will has an entry in the &lt;code&gt;nvtop&lt;/code&gt; table and the Linux kernel refers that process as the parent process, the entry consists of some information about that process, for example, &lt;code&gt;PID&lt;/code&gt; - the parent id, &lt;code&gt;USER&lt;/code&gt; - the user that the parent belongs to, &lt;code&gt;GPU&lt;/code&gt; - the GPU id used by the parent&amp;hellip;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  id=&#34;figure-nvtop_snapshot&#34;&gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;&#34; srcset=&#34;
+               /post/linux-learns/kill-zombie-processes/images/nvtop_snapshot_hu80f2f16fbe58c54e81357197183d5f64_349386_fa9a822110acef161bbdfe1115f146bc.png 400w,
+               /post/linux-learns/kill-zombie-processes/images/nvtop_snapshot_hu80f2f16fbe58c54e81357197183d5f64_349386_8f85c6b05b4cf30cd4b59c2d3da45a42.png 760w,
+               /post/linux-learns/kill-zombie-processes/images/nvtop_snapshot_hu80f2f16fbe58c54e81357197183d5f64_349386_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://leminhnguyen.github.io/post/linux-learns/kill-zombie-processes/images/nvtop_snapshot_hu80f2f16fbe58c54e81357197183d5f64_349386_fa9a822110acef161bbdfe1115f146bc.png&#34;
+               width=&#34;760&#34;
+               height=&#34;515&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+To kill a process using &lt;code&gt;GPU&lt;/code&gt; we simply use the command &lt;code&gt;kill PID&lt;/code&gt; or &lt;code&gt;kill -9 PID&lt;/code&gt;, but there are some cases we cannot kill the process by that way, for example, the process has &lt;code&gt;PID=18309&lt;/code&gt; in the &lt;a href=&#34;#figure-nvtop_snapshot&#34;&gt;figure1&lt;/a&gt;. This because the process (&lt;code&gt;parent&lt;/code&gt;) is already dead (indicated by &lt;code&gt;N/A&lt;/code&gt; USER column) but the children (&lt;code&gt;orphaned&lt;/code&gt;) are still alive and hold the resouces (in this case, the zombie proceses are holding about 85% GPU MEM). In order to access the child processes you have to excute &lt;code&gt;sudo fuser -v /dev/nvidia*&lt;/code&gt; and all processes using GPUs will be listed with each &lt;code&gt;GPU&lt;/code&gt; id. For example, when running the &lt;code&gt;sudo fuser -v /dev/nvidia*&lt;/code&gt; command on my training server we will see the output looks like:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ sudo fuser -v /dev/nvidia*
+                     USER        PID ACCESS COMMAND
+/dev/nvidia0:        nguyenlm  15909 F.... nvtop
+                     nguyenlm  20717 F.... nvtop
+                     nguyenlm  21042 F.... nvtop
+                     root      24536 F.... nvtop
+                     nguyenlm  24787 F...m tensorboard
+                     nguyenlm  25078 F...m python
+                     nguyenlm  25079 F...m python
+                     nguyenlm  25080 F...m python
+                     nguyenlm  25081 F...m python
+                     nguyenlm  25082 F...m python
+                     nguyenlm  25085 F...m python
+                     nguyenlm  32199 F...m python
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;From the output, we have a dozen of processes using &lt;code&gt;GPU=0&lt;/code&gt; (&lt;em&gt;python, nvtop, tensorboard&lt;/em&gt;). Simply, we can kill them all with their &lt;code&gt;PIDs&lt;/code&gt; by the &lt;code&gt;kill&lt;/code&gt; command as mentioned to release the resources. However, we can do that easier by an observation, the zombie processes are usually have consecutive ids, so if we look the output carefully we will see a group of processes has the id ranged from &lt;code&gt;25078&lt;/code&gt; to &lt;code&gt;25082&lt;/code&gt; and those actually are zombie &lt;code&gt;PIDs&lt;/code&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;h2 id=&#34;references&#34;&gt;References:&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;https://theblackcat102.github.io/fixing-nvidia-gpu-zombie-process/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Kill zombie process using GPU memory&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://realpython.com/python-subprocess/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;The subprocess Module: Wrapping Programs With Python&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>KNN-VC vs Phoneme Hallucinator ?</title>
+      <link>https://leminhnguyen.github.io/post/tts-learns/voice-conversion/</link>
+      <pubDate>Wed, 09 Mar 2022 11:01:17 +0000</pubDate>
+      <guid>https://leminhnguyen.github.io/post/tts-learns/voice-conversion/</guid>
+      <description>&lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
+&lt;div id=&#39;section-1&#39; class=&#39;section&#39; style=&#34;width: 100%&#34;&gt;
+        &lt;h2&gt;Comparing different methods&lt;/h2&gt;
+        &lt;p&gt;This section compares Phoneme Hallucinator kNN-VC and FreeVC.&lt;/p&gt;
+&lt;table style=&#34;width: 100%&#34;&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&#34;min-width: 175px&#34;&gt;Source&lt;/th&gt;
+      &lt;th style=&#34;min-width: 175px&#34;&gt;Target&lt;/th&gt;
+      &lt;th style=&#34;min-width: 175px&#34;&gt;kNN-VC&lt;/th&gt;
+      &lt;th style=&#34;min-width: 175px&#34;&gt;Phoneme Hallucinator&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;
+        &lt;div class=&#39;labeled-audio&#39;&gt;&lt;audio preload=&#39;metadata&#39; controls&gt;&lt;source src=&#39;samples/source_01.wav&#39; type=&#39;audio/mpeg&#39;&gt;&lt;/audio&gt;&lt;/div&gt;
+      &lt;/td&gt;
+      &lt;td&gt;
+        &lt;div class=&#39;labeled-audio&#39;&gt;&lt;audio preload=&#39;metadata&#39; controls&gt;&lt;source src=&#39;samples/target_01.wav&#39; type=&#39;audio/mpeg&#39;&gt;&lt;/audio&gt;&lt;/div&gt;
+      &lt;/td&gt;
+      &lt;td&gt;
+        &lt;div class=&#39;labeled-audio&#39;&gt;&lt;audio preload=&#39;metadata&#39; controls&gt;&lt;source src=&#39;samples/result_knn-vc_01.wav&#39; type=&#39;audio/mpeg&#39;&gt;&lt;/audio&gt;&lt;/div&gt;
+      &lt;/td&gt;
+      &lt;td&gt;
+        &lt;div class=&#39;labeled-audio&#39;&gt;&lt;audio preload=&#39;metadata&#39; controls&gt;&lt;source src=&#39;samples/result_phone-hallucinator_01.wav&#39; type=&#39;audio/mpeg&#39;&gt;&lt;/audio&gt;&lt;/div&gt;
+      &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;
+        &lt;div class=&#39;labeled-audio&#39;&gt;&lt;audio preload=&#39;metadata&#39; controls&gt;&lt;source src=&#39;samples/source_02.wav&#39; type=&#39;audio/mpeg&#39;&gt;&lt;/audio&gt;&lt;/div&gt;
+      &lt;/td&gt;
+      &lt;td&gt;
+        &lt;div class=&#39;labeled-audio&#39;&gt;&lt;audio preload=&#39;metadata&#39; controls&gt;&lt;source src=&#39;samples/target_02.wav&#39; type=&#39;audio/mpeg&#39;&gt;&lt;/audio&gt;&lt;/div&gt;
+      &lt;/td&gt;
+      &lt;td&gt;
+        &lt;div class=&#39;labeled-audio&#39;&gt;&lt;audio preload=&#39;metadata&#39; controls&gt;&lt;source src=&#39;samples/result_knn-vc_02.wav&#39; type=&#39;audio/mpeg&#39;&gt;&lt;/audio&gt;&lt;/div&gt;
+      &lt;/td&gt;
+      &lt;td&gt;
+        &lt;div class=&#39;labeled-audio&#39;&gt;&lt;audio preload=&#39;metadata&#39; controls&gt;&lt;source src=&#39;samples/result_phone-hallucinator_02.wav&#39; type=&#39;audio/mpeg&#39;&gt;&lt;/audio&gt;&lt;/div&gt;
+      &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;
+        &lt;div class=&#39;labeled-audio&#39;&gt;&lt;audio preload=&#39;metadata&#39; controls&gt;&lt;source src=&#39;samples/source_03.wav&#39; type=&#39;audio/mpeg&#39;&gt;&lt;/audio&gt;&lt;/div&gt;
+      &lt;/td&gt;
+      &lt;td&gt;
+        &lt;div class=&#39;labeled-audio&#39;&gt;&lt;audio preload=&#39;metadata&#39; controls&gt;&lt;source src=&#39;samples/target_03.wav&#39; type=&#39;audio/mpeg&#39;&gt;&lt;/audio&gt;&lt;/div&gt;
+      &lt;/td&gt;
+      &lt;td&gt;
+        &lt;div class=&#39;labeled-audio&#39;&gt;&lt;audio preload=&#39;metadata&#39; controls&gt;&lt;source src=&#39;samples/result_knn-vc_03.wav&#39; type=&#39;audio/mpeg&#39;&gt;&lt;/audio&gt;&lt;/div&gt;
+      &lt;/td&gt;
+      &lt;td&gt;
+        &lt;div class=&#39;labeled-audio&#39;&gt;&lt;audio preload=&#39;metadata&#39; controls&gt;&lt;source src=&#39;samples/result_phone-hallucinator_03.wav&#39; type=&#39;audio/mpeg&#39;&gt;&lt;/audio&gt;&lt;/div&gt;
+      &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;
+        &lt;div class=&#39;labeled-audio&#39;&gt;&lt;audio preload=&#39;metadata&#39; controls&gt;&lt;source src=&#39;samples/source_04.wav&#39; type=&#39;audio/mpeg&#39;&gt;&lt;/audio&gt;&lt;/div&gt;
+      &lt;/td&gt;
+      &lt;td&gt;
+        &lt;div class=&#39;labeled-audio&#39;&gt;&lt;audio preload=&#39;metadata&#39; controls&gt;&lt;source src=&#39;samples/target_04.wav&#39; type=&#39;audio/mpeg&#39;&gt;&lt;/audio&gt;&lt;/div&gt;
+      &lt;/td&gt;
+      &lt;td&gt;
+        &lt;div class=&#39;labeled-audio&#39;&gt;&lt;audio preload=&#39;metadata&#39; controls&gt;&lt;source src=&#39;samples/result_knn-vc_04.wav&#39; type=&#39;audio/mpeg&#39;&gt;&lt;/audio&gt;&lt;/div&gt;
+      &lt;/td&gt;
+      &lt;td&gt;
+        &lt;div class=&#39;labeled-audio&#39;&gt;&lt;audio preload=&#39;metadata&#39; controls&gt;&lt;source src=&#39;samples/result_phone-hallucinator_04.wav&#39; type=&#39;audio/mpeg&#39;&gt;&lt;/audio&gt;&lt;/div&gt;
+      &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;
+        &lt;div class=&#39;labeled-audio&#39;&gt;&lt;audio preload=&#39;metadata&#39; controls&gt;&lt;source src=&#39;samples/source_05.wav&#39; type=&#39;audio/mpeg&#39;&gt;&lt;/audio&gt;&lt;/div&gt;
+      &lt;/td&gt;
+      &lt;td&gt;
+        &lt;div class=&#39;labeled-audio&#39;&gt;&lt;audio preload=&#39;metadata&#39; controls&gt;&lt;source src=&#39;samples/target_05.wav&#39; type=&#39;audio/mpeg&#39;&gt;&lt;/audio&gt;&lt;/div&gt;
+      &lt;/td&gt;
+      &lt;td&gt;
+        &lt;div class=&#39;labeled-audio&#39;&gt;&lt;audio preload=&#39;metadata&#39; controls&gt;&lt;source src=&#39;samples/result_knn-vc_05.wav&#39; type=&#39;audio/mpeg&#39;&gt;&lt;/audio&gt;&lt;/div&gt;
+      &lt;/td&gt;
+      &lt;td&gt;
+        &lt;div class=&#39;labeled-audio&#39;&gt;&lt;audio preload=&#39;metadata&#39; controls&gt;&lt;source src=&#39;samples/result_phone-hallucinator_05.wav&#39; type=&#39;audio/mpeg&#39;&gt;&lt;/audio&gt;&lt;/div&gt;
+      &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;
+        &lt;div class=&#39;labeled-audio&#39;&gt;&lt;audio preload=&#39;metadata&#39; controls&gt;&lt;source src=&#39;samples/source_06.wav&#39; type=&#39;audio/mpeg&#39;&gt;&lt;/audio&gt;&lt;/div&gt;
+      &lt;/td&gt;
+      &lt;td&gt;
+        &lt;div class=&#39;labeled-audio&#39;&gt;&lt;audio preload=&#39;metadata&#39; controls&gt;&lt;source src=&#39;samples/target_06.wav&#39; type=&#39;audio/mpeg&#39;&gt;&lt;/audio&gt;&lt;/div&gt;
+      &lt;/td&gt;
+      &lt;td&gt;
+        &lt;div class=&#39;labeled-audio&#39;&gt;&lt;audio preload=&#39;metadata&#39; controls&gt;&lt;source src=&#39;samples/result_knn-vc_06.wav&#39; type=&#39;audio/mpeg&#39;&gt;&lt;/audio&gt;&lt;/div&gt;
+      &lt;/td&gt;
+      &lt;td&gt;
+        &lt;div class=&#39;labeled-audio&#39;&gt;&lt;audio preload=&#39;metadata&#39; controls&gt;&lt;source src=&#39;samples/result_phone-hallucinator_06.wav&#39; type=&#39;audio/mpeg&#39;&gt;&lt;/audio&gt;&lt;/div&gt;
+      &lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;div class=&#34;table&#34; style=&#34;width: 100%&#34;&gt;
+&lt;/div&gt;
+&lt;!-- ![Python](images/python.svg) --&gt;
+&lt;!-- 
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;&#34; srcset=&#34;
+               /post/tts-learns/voice-conversion/images/main_huec624690a5e35421dcb4a187a8905990_505572_3102e5b3320686e4bfd436129d57b956.png 400w,
+               /post/tts-learns/voice-conversion/images/main_huec624690a5e35421dcb4a187a8905990_505572_ba247c54d0c340584a86934861cb6f46.png 760w,
+               /post/tts-learns/voice-conversion/images/main_huec624690a5e35421dcb4a187a8905990_505572_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://leminhnguyen.github.io/post/tts-learns/voice-conversion/images/main_huec624690a5e35421dcb4a187a8905990_505572_3102e5b3320686e4bfd436129d57b956.png&#34;
+               width=&#34;720&#34;
+               height=&#34;760&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt; --&gt;</description>
+    </item>
+    
+    <item>
+      <title>Postnet Layer</title>
+      <link>https://leminhnguyen.github.io/post/tts-learns/postnet-layer/</link>
+      <pubDate>Wed, 09 Mar 2022 11:01:17 +0000</pubDate>
+      <guid>https://leminhnguyen.github.io/post/tts-learns/postnet-layer/</guid>
+      <description>&lt;h2 id=&#34;-postnet-layer&#34;&gt;💣 Postnet Layer&lt;/h2&gt;
+&lt;div style=&#34;text-align: justify; font-size: 15px;&#34;&gt;
+In some end-to-end TTS models today, after the hidden representations are passed through the decoder we got the mel-spectrogram which contains the predictions of the acoustic features. Finally, the decoder predictions are passed over &lt;span style=&#39;font-weight:bold&#39;&gt; the Postnet layer which predicts residual information to improve the construction performance of the model &lt;/span&gt;. The section below notes some insights about &lt;span style=&#39;font-weight:bold&#39;&gt; the Postnet layer &lt;/span&gt; by me when learning TTS.
+&lt;/div&gt;
+&lt;div style=&#34;text-align: justify; font-size: 15px;&#34;&gt;
+&lt;a href=&#34;https://arxiv.org/pdf/1908.11535.pdf&#34; style=&#34;text-align: justify; font-size: 20px;&#34;&gt; 
+1. https://arxiv.org/pdf/1908.11535.pdf - 30 Aug 2019
+&lt;/a&gt;
+&lt;blockquote&gt;
+&lt;p&gt;In addition to the decoder, some systems have a post-net,
+an additional network that predicts acoustic features. A post-net was originally introduced to convert acoustic features to different acoustic features that were suitable for an adopted waveform synthesis method, for example, from mel spectrograms to linear spectrograms [2] or mel spectrograms to vocoder parameters [4]. In recent studies the role of the post-net was to improve the acoustic features predicted by the decoder to improve quality further [5, 6]. The post-net introduces an additional loss term in the objective function.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/div&gt;
+&lt;div style=&#34;text-align: justify; font-size: 15px;&#34;&gt;
+&lt;a href=&#34;https://arxiv.org/pdf/2008.03388.pdf&#34; style=&#34;text-align: justify; font-size: 20px;&#34;&gt; 2. https://arxiv.org/pdf/2008.03388.pdf - 11 Aug 2020&lt;/a&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Relative to DAR, C-DAR has three additional changes that
+do not significantly impact naturalness or controllability, but
+provide additional insights into F0 generation. First, a 5-layer
+postnet [3] follows the autoregressive RNN. We find that this
+postnet has the effect of reducing autoregressive sampling errors and tightening the posterior distribution around the argmax
+(Figure 2)&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/div&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;&#34; srcset=&#34;
+               /post/tts-learns/postnet-layer/images/postnet_hu55b7b326dc86b48b5eb6c9cddaea2438_98725_3d454b8539ed4f3c7668c209efbf7722.png 400w,
+               /post/tts-learns/postnet-layer/images/postnet_hu55b7b326dc86b48b5eb6c9cddaea2438_98725_59f0b4c02707bb74d1a3fa8996c51df0.png 760w,
+               /post/tts-learns/postnet-layer/images/postnet_hu55b7b326dc86b48b5eb6c9cddaea2438_98725_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://leminhnguyen.github.io/post/tts-learns/postnet-layer/images/postnet_hu55b7b326dc86b48b5eb6c9cddaea2438_98725_3d454b8539ed4f3c7668c209efbf7722.png&#34;
+               width=&#34;760&#34;
+               height=&#34;432&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;</description>
+    </item>
+    
+    <item>
+      <title>Talk: Unittesting for Data Science</title>
+      <link>https://leminhnguyen.github.io/publication/talk-unittesting-for-data-science/</link>
+      <pubDate>Tue, 18 Jan 2022 10:09:35 +0000</pubDate>
+      <guid>https://leminhnguyen.github.io/publication/talk-unittesting-for-data-science/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://leminhnguyen.github.io/about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://leminhnguyen.github.io/about/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://leminhnguyen.github.io/admin/config.yml</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://leminhnguyen.github.io/admin/config.yml</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,1308 @@
+<!DOCTYPE html><html lang="en-us" >
+
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  
+  
+    <meta name="generator" content="Wowchemy 5.3.0 for Hugo" />
+  
+
+  
+  
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  
+
+  
+  
+  
+    
+      
+      <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap" media="print" onload="this.media='all'">
+    
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="Le Minh Nguyen (nguyenlm)" />
+
+  
+  
+  
+    
+  
+  <meta name="description" content="The trick for killing zombie processes using GPU in Linux 😃." />
+
+  
+  <link rel="alternate" hreflang="en-us" href="https://leminhnguyen.github.io/post/linux-learns/kill-zombie-processes/" />
+
+  
+  
+  
+    <meta name="theme-color" content="#2962ff" />
+  
+
+  
+  
+
+  
+
+  <link rel="stylesheet" href="/css/vendor-bundle.min.f1ecf783c14edc00c9320c205831ad8e.css" media="print" onload="this.media='all'">
+
+  
+  
+  
+    
+    
+
+    
+    
+    
+    
+      
+      
+    
+    
+    
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/github.min.css" crossorigin="anonymous" title="hl-light" media="print" onload="this.media='all'">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" media="print" onload="this.media='all'" disabled>
+        
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+        
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+  
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/wowchemy.9a7d0e5b1cdb83230acf109aa1a9a4ef.css" />
+
+  
+
+
+
+  
+
+  
+
+  
+
+
+
+
+  
+  
+  
+
+  
+
+  
+    <link rel="manifest" href="/manifest.webmanifest" />
+  
+
+  <link rel="icon" type="image/png" href="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_32x32_fill_lanczos_center_3.png" />
+  <link rel="apple-touch-icon" type="image/png" href="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_180x180_fill_lanczos_center_3.png" />
+
+  <link rel="canonical" href="https://leminhnguyen.github.io/post/linux-learns/kill-zombie-processes/" />
+
+  
+  
+  
+  
+  
+  
+  
+  
+    
+  
+  
+
+  
+  
+    
+    
+  
+  <meta property="twitter:card" content="summary_large_image" />
+  
+    <meta property="twitter:site" content="@wowchemy" />
+    <meta property="twitter:creator" content="@wowchemy" />
+  
+  <meta property="og:site_name" content="leminhnguyen&#39;s blog" />
+  <meta property="og:url" content="https://leminhnguyen.github.io/post/linux-learns/kill-zombie-processes/" />
+  <meta property="og:title" content="How to kill zombie processes using GPU ? | leminhnguyen&#39;s blog" />
+  <meta property="og:description" content="The trick for killing zombie processes using GPU in Linux 😃." /><meta property="og:image" content="https://leminhnguyen.github.io/post/linux-learns/kill-zombie-processes/featured.webp" />
+    <meta property="twitter:image" content="https://leminhnguyen.github.io/post/linux-learns/kill-zombie-processes/featured.webp" /><meta property="og:locale" content="en-us" />
+  
+    
+      <meta
+        property="article:published_time"
+        content="2022-03-09T11:01:17&#43;00:00"
+      />
+    
+    <meta property="article:modified_time" content="2022-06-30T10:55:41&#43;00:00">
+  
+
+  
+
+
+    
+
+
+
+
+
+
+  
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://leminhnguyen.github.io/post/linux-learns/kill-zombie-processes/"
+  },
+  "headline": "How to kill zombie processes using GPU ?",
+  
+  "image": [
+    "https://leminhnguyen.github.io/post/linux-learns/kill-zombie-processes/featured.webp"
+  ],
+  
+  "datePublished": "2022-03-09T11:01:17Z",
+  "dateModified": "2022-06-30T10:55:41Z",
+  
+  "author": {
+    "@type": "Person",
+    "name": "Le Minh Nguyen (nguyenlm)"
+  },
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "leminhnguyen's blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://leminhnguyen.github.io/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_192x192_fill_lanczos_center_3.png"
+    }
+  },
+  "description": "The trick for killing zombie processes using GPU in Linux 😃."
+}
+</script>
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+  <title>How to kill zombie processes using GPU ? | leminhnguyen&#39;s blog</title>
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="3e01837e6b4ce96f8b12fbae1f4afe93" >
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <script src="/js/wowchemy-init.min.6619cc29fe1a874b6ea1a0359aab5cfb.js"></script>
+
+  
+
+
+<aside class="search-modal" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#" aria-label="Close"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search" class="form-control"
+        aria-label="Search...">
+        
+      </div>
+
+      
+      
+
+      
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+
+  <div class="page-header">
+    
+
+
+
+
+
+
+
+
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+  <div class="container-xl">
+
+    
+
+    
+    <button type="button" class="navbar-toggler" data-toggle="collapse"
+            data-target="#navbar-content" aria-controls="navbar-content" aria-expanded="false" aria-label="Toggle navigation">
+    <span><i class="fas fa-bars"></i></span>
+    </button>
+    
+
+    
+
+    
+    
+    <div class="navbar-collapse main-menu-item collapse justify-content-end" id="navbar-content">
+
+      
+      <ul class="navbar-nav d-md-inline-flex">
+        
+
+        
+
+        
+        
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/"><span>Home</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/about/"><span>About</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/category/linux/"><span>Linux</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/category/nlp/"><span>NLP</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/category/python/"><span>Python</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+      </ul>
+    </div>
+
+    <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+
+      
+      
+        
+      
+
+      
+      
+      <li class="nav-item">
+        <a class="nav-link js-search" href="#" aria-label="Search"><i class="fas fa-search" aria-hidden="true"></i></a>
+      </li>
+      
+
+      
+      
+      <li class="nav-item dropdown theme-dropdown">
+        <a href="#" class="nav-link" data-toggle="dropdown" aria-haspopup="true" aria-label="Display preferences">
+          <i class="fas fa-moon" aria-hidden="true"></i>
+        </a>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item js-set-theme-light">
+            <span>Light</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-dark">
+            <span>Dark</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-auto">
+            <span>Automatic</span>
+          </a>
+        </div>
+      </li>
+      
+
+      
+      
+
+    </ul>
+
+  </div>
+</nav>
+
+
+  </div>
+
+  <div class="page-body">
+    <article class="article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+<div class="article-container pt-3">
+  <h1>How to kill zombie processes using GPU ?</h1>
+
+  
+
+  
+    
+
+
+<div class="article-metadata">
+
+  
+  
+  
+  
+  <div>
+    
+
+  <span >
+      Le Minh Nguyen (nguyenlm)</span>
+  </div>
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+          Last updated on
+      
+    
+    Jun 30, 2022
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    3 min read
+  </span>
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder mr-1"></i><a href="/category/linux/">Linux</a>, <a href="/category/os/">OS</a></span>
+  
+
+</div>
+
+    
+
+
+
+
+
+  
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
+      <h2 id="overview">Overview</h2>
+<!-- ![Python](images/python.svg) -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="" srcset="
+               /post/linux-learns/kill-zombie-processes/images/zombie_hu6d97b3e824db4a9840663df6fd482ef2_449021_e550662dba03fb1e0cbb4c95ac466ad0.png 400w,
+               /post/linux-learns/kill-zombie-processes/images/zombie_hu6d97b3e824db4a9840663df6fd482ef2_449021_21b82c453c043986e8d659acaa888025.png 760w,
+               /post/linux-learns/kill-zombie-processes/images/zombie_hu6d97b3e824db4a9840663df6fd482ef2_449021_1200x1200_fit_lanczos_3.png 1200w"
+               src="/post/linux-learns/kill-zombie-processes/images/zombie_hu6d97b3e824db4a9840663df6fd482ef2_449021_e550662dba03fb1e0cbb4c95ac466ad0.png"
+               width="760"
+               height="393"
+               loading="lazy" data-zoomable /></div>
+  </div></figure>
+<div style="text-align: justify; font-size: 15px;">
+<h3 id="what-is-a-zombie-process">What is a zombie process?</h3>
+<p>As you know, in Linux OS when we start an application the OS will create a process and this process can start other processes. The process starts other processes is refered as the parent and the new processes are refered as the children. The Linux OS keeps the information of processes in a table called the process table. The parent and the children run almost independently, but sometimes they share some resources (input, output) or contexts. When a child finished its job, it will send a <code>SIGCHLD</code> signal to the parent. The parent then reads the exit code of the child and removes its entry from the process table, this also cleans the resources used by the child. But there are sometimes the children cannot send the <code>SIGCHLD</code> signal to the parent or the parent was died by incident, in such cases the children outlive from their parent and the Linux OS refers them as <code>orphaned</code> or <code>zombie</code> processes.</p>
+<h3 id="the-problem-of-zombie-processes">The problem of zombie processes</h3>
+<p>Because of outliving the parent, the resources used by the children (<code>zombie</code>) cannot be released, and hence, other processes cannot use these resources. To overcome this problem, we need to kill the children manually based on their ids. But, the main question is how we can find the the ids of the children? To answer that question, let&rsquo;s continue to the next sections.</p>
+<h3 id="killing-zombie-processes-using-gpu">Killing zombie processes using GPU</h3>
+<p>Working as a research engineer, I&rsquo;m usually using <code>GPUs</code> to train the deep learning models and checking the used resources with <code>nvtop</code> command. Usually each process using <code>GPU</code> will has an entry in the <code>nvtop</code> table and the Linux kernel refers that process as the parent process, the entry consists of some information about that process, for example, <code>PID</code> - the parent id, <code>USER</code> - the user that the parent belongs to, <code>GPU</code> - the GPU id used by the parent&hellip;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  id="figure-nvtop_snapshot">
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="" srcset="
+               /post/linux-learns/kill-zombie-processes/images/nvtop_snapshot_hu80f2f16fbe58c54e81357197183d5f64_349386_fa9a822110acef161bbdfe1115f146bc.png 400w,
+               /post/linux-learns/kill-zombie-processes/images/nvtop_snapshot_hu80f2f16fbe58c54e81357197183d5f64_349386_8f85c6b05b4cf30cd4b59c2d3da45a42.png 760w,
+               /post/linux-learns/kill-zombie-processes/images/nvtop_snapshot_hu80f2f16fbe58c54e81357197183d5f64_349386_1200x1200_fit_lanczos_3.png 1200w"
+               src="/post/linux-learns/kill-zombie-processes/images/nvtop_snapshot_hu80f2f16fbe58c54e81357197183d5f64_349386_fa9a822110acef161bbdfe1115f146bc.png"
+               width="760"
+               height="515"
+               loading="lazy" data-zoomable /></div>
+  </div></figure>
+To kill a process using <code>GPU</code> we simply use the command <code>kill PID</code> or <code>kill -9 PID</code>, but there are some cases we cannot kill the process by that way, for example, the process has <code>PID=18309</code> in the <a href="#figure-nvtop_snapshot">figure1</a>. This because the process (<code>parent</code>) is already dead (indicated by <code>N/A</code> USER column) but the children (<code>orphaned</code>) are still alive and hold the resouces (in this case, the zombie proceses are holding about 85% GPU MEM). In order to access the child processes you have to excute <code>sudo fuser -v /dev/nvidia*</code> and all processes using GPUs will be listed with each <code>GPU</code> id. For example, when running the <code>sudo fuser -v /dev/nvidia*</code> command on my training server we will see the output looks like:</p>
+<pre><code class="language-bash">$ sudo fuser -v /dev/nvidia*
+                     USER        PID ACCESS COMMAND
+/dev/nvidia0:        nguyenlm  15909 F.... nvtop
+                     nguyenlm  20717 F.... nvtop
+                     nguyenlm  21042 F.... nvtop
+                     root      24536 F.... nvtop
+                     nguyenlm  24787 F...m tensorboard
+                     nguyenlm  25078 F...m python
+                     nguyenlm  25079 F...m python
+                     nguyenlm  25080 F...m python
+                     nguyenlm  25081 F...m python
+                     nguyenlm  25082 F...m python
+                     nguyenlm  25085 F...m python
+                     nguyenlm  32199 F...m python
+</code></pre>
+<p>From the output, we have a dozen of processes using <code>GPU=0</code> (<em>python, nvtop, tensorboard</em>). Simply, we can kill them all with their <code>PIDs</code> by the <code>kill</code> command as mentioned to release the resources. However, we can do that easier by an observation, the zombie processes are usually have consecutive ids, so if we look the output carefully we will see a group of processes has the id ranged from <code>25078</code> to <code>25082</code> and those actually are zombie <code>PIDs</code>.</p>
+</div>
+<h2 id="references">References:</h2>
+<ol>
+<li><a href="https://theblackcat102.github.io/fixing-nvidia-gpu-zombie-process/" target="_blank" rel="noopener">Kill zombie process using GPU memory</a></li>
+<li><a href="https://realpython.com/python-subprocess/" target="_blank" rel="noopener">The subprocess Module: Wrapping Programs With Python</a></li>
+</ol>
+
+    </div>
+
+    
+
+
+
+
+
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tag/tts/">tts</a>
+  
+  <a class="badge badge-light" href="/tag/learning/">learning</a>
+  
+</div>
+
+
+
+<div class="share-box">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=https://leminhnguyen.github.io/post/linux-learns/kill-zombie-processes/&amp;text=How%20to%20kill%20zombie%20processes%20using%20GPU%20?" target="_blank" rel="noopener" class="share-btn-twitter" aria-label="twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=https://leminhnguyen.github.io/post/linux-learns/kill-zombie-processes/&amp;t=How%20to%20kill%20zombie%20processes%20using%20GPU%20?" target="_blank" rel="noopener" class="share-btn-facebook" aria-label="facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=How%20to%20kill%20zombie%20processes%20using%20GPU%20?&amp;body=https://leminhnguyen.github.io/post/linux-learns/kill-zombie-processes/" target="_blank" rel="noopener" class="share-btn-email" aria-label="envelope">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=https://leminhnguyen.github.io/post/linux-learns/kill-zombie-processes/&amp;title=How%20to%20kill%20zombie%20processes%20using%20GPU%20?" target="_blank" rel="noopener" class="share-btn-linkedin" aria-label="linkedin-in">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="whatsapp://send?text=How%20to%20kill%20zombie%20processes%20using%20GPU%20?%20https://leminhnguyen.github.io/post/linux-learns/kill-zombie-processes/" target="_blank" rel="noopener" class="share-btn-whatsapp" aria-label="whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=https://leminhnguyen.github.io/post/linux-learns/kill-zombie-processes/&amp;title=How%20to%20kill%20zombie%20processes%20using%20GPU%20?" target="_blank" rel="noopener" class="share-btn-weibo" aria-label="weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+
+
+
+  
+  
+  
+    
+  
+  
+  
+  <div class="media author-card content-widget-hr">
+    
+      
+      <a href="https://leminhnguyen.github.io/"><img class="avatar mr-3 avatar-circle" src="/author/le-minh-nguyen-nguyenlm/avatar_hu586c523d115b3f967b27666ef5eaf5a0_532962_270x270_fill_lanczos_center_3.png" alt="Le Minh Nguyen (nguyenlm)"></a>
+    
+
+    <div class="media-body">
+      <h5 class="card-title"><a href="https://leminhnguyen.github.io/">Le Minh Nguyen (nguyenlm)</a></h5>
+      <h6 class="card-subtitle">Research Engineer</h6>
+      <p class="card-text">A Software Engineer loves NLP &amp; Speech Technology.</p>
+      <ul class="network-icon" aria-hidden="true">
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="/about/#contact" >
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://www.facebook.com/minhnguyen.le.180072/" target="_blank" rel="noopener">
+        <i class="fab fa-facebook"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://stackoverflow.com/users/10629841/leminhnguyen" target="_blank" rel="noopener">
+        <i class="fab fa-stack-overflow"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://www.linkedin.com/in/minh-nguyen-le-a83b0419b/" target="_blank" rel="noopener">
+        <i class="fab fa-linkedin"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://github.com/leminhnguyen" target="_blank" rel="noopener">
+        <i class="fab fa-github"></i>
+      </a>
+    </li>
+  
+</ul>
+
+    </div>
+  </div>
+
+
+  
+
+
+
+
+
+
+
+
+
+
+<div class="article-widget">
+  
+<div class="post-nav">
+  
+  
+  
+  <div class="post-nav-item">
+    <div class="meta-nav">Next</div>
+    <a href="/post/how-did-i-learn-python/" rel="next">How did I learn Python ?</a>
+  </div>
+  
+  
+  
+  <div class="post-nav-item">
+    <div class="meta-nav">Previous</div>
+    <a href="/post/tts-learns/voice-conversion/" rel="prev">KNN-VC vs Phoneme Hallucinator ?</a>
+  </div>
+  
+</div>
+
+</div>
+
+
+
+
+
+  
+  
+  <div class="article-widget content-widget-hr">
+    <h3>Related</h3>
+    <ul>
+      
+      <li><a href="/post/linux-learns/broken-pipe-error/">Fix &#34;[Errno 32] Broken pipe&#34; in Python</a></li>
+      
+      <li><a href="/post/tts-learns/tts-learns/">Comparing batch vs layer normalization</a></li>
+      
+      <li><a href="/post/tts-learns/voice-conversion/">KNN-VC vs Phoneme Hallucinator ?</a></li>
+      
+      <li><a href="/post/tts-learns/postnet-layer/">Postnet Layer</a></li>
+      
+    </ul>
+  </div>
+  
+
+
+
+
+
+  </div>
+</article>
+  </div>
+
+  <div class="page-footer">
+    
+    
+    <div class="container">
+      <footer class="site-footer">
+
+  
+
+
+
+  
+
+  
+
+  
+  <p class="powered-by">
+    © {2022} leminhnguyen
+  </p>
+  
+
+  
+  
+
+
+
+
+
+
+  <p class="powered-by">
+    
+    
+    
+      
+      
+      
+      
+      
+      
+      Published with <a href="https://wowchemy.com/?utm_campaign=poweredby" target="_blank" rel="noopener">Wowchemy</a> — the free, <a href="https://github.com/wowchemy/wowchemy-hugo-themes" target="_blank" rel="noopener">open source</a> website builder that empowers creators.
+    
+  </p>
+</footer>
+
+    </div>
+    
+  </div>
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+      
+
+    
+    <script src="/js/vendor-bundle.min.5a3a4e7cbc7b4e121b2d29312cf8ad59.js"></script>
+
+    
+    
+    
+      
+      
+
+      
+      
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/highlight.min.js" integrity="sha512-TDKKr+IvoqZnPzc3l35hdjpHD0m+b2EC2SrLEgKDRWpxf2rFCxemkgvJ5kfU48ip+Y+m2XVKyOCD85ybtlZDmw==" crossorigin="anonymous"></script>
+        
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/r.min.js" crossorigin="anonymous"></script>
+        
+      
+
+    
+
+    
+    
+    
+
+    
+    
+
+    
+    
+    
+      
+      <script id="search-hit-fuse-template" type="text/x-template">
+        <div class="search-hit" id="summary-{{key}}">
+          <div class="search-hit-content">
+            <div class="search-hit-name">
+              <a href="{{relpermalink}}">{{title}}</a>
+              <div class="article-metadata search-hit-type">{{type}}</div>
+              <p class="search-hit-description">{{snippet}}</p>
+            </div>
+          </div>
+        </div>
+      </script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+      
+    
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+      
+      
+      
+      
+      
+      
+      
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+    
+    
+    <script src="/en/js/wowchemy.min.44f54723226744971bcdd9c0ca685057.js"></script>
+
+    
+
+
+
+
+
+
+</body>
+</html>

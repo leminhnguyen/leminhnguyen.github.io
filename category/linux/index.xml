@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Linux | leminhnguyen&#39;s blog</title>
+    <link>https://leminhnguyen.github.io/category/linux/</link>
+      <atom:link href="https://leminhnguyen.github.io/category/linux/index.xml" rel="self" type="application/rss+xml" />
+    <description>Linux</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>© {2022} leminhnguyen</copyright><lastBuildDate>Wed, 09 Mar 2022 11:01:17 +0000</lastBuildDate>
+    <image>
+      <url>https://leminhnguyen.github.io/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_3.png</url>
+      <title>Linux</title>
+      <link>https://leminhnguyen.github.io/category/linux/</link>
+    </image>
+    
+    <item>
+      <title>Fix &#34;[Errno 32] Broken pipe&#34; in Python</title>
+      <link>https://leminhnguyen.github.io/post/linux-learns/broken-pipe-error/</link>
+      <pubDate>Wed, 09 Mar 2022 11:01:17 +0000</pubDate>
+      <guid>https://leminhnguyen.github.io/post/linux-learns/broken-pipe-error/</guid>
+      <description>&lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
+&lt;div style=&#34;text-align: justify; font-size: 15px;&#34;&gt;
+&lt;p&gt;One day, I&amp;rsquo;ve tried to run a python script using multiprocessing technique &lt;code&gt;n_jobs=10&lt;/code&gt; and for a while the program crashed and raised the &lt;strong&gt;[Errno 32] Broken pipe&lt;/strong&gt; error.
+With some google searches I founded the problem as well the solution for it.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&amp;ldquo;Broken pipe&amp;rdquo; is essentially an IOError error (short for input/output error), which happened at the Linux system level. It usually occurs when reading and writing files, or in other words, doing file input/output or network input/output (via sockets) &lt;sup id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;In programs that uses worker processes to speed up processing and make use of multi-core CPUs, you can try reducing the number of the worker processes to see whether the error disappear or not &lt;sup id=&#34;fnref1:1&#34;&gt;&lt;a href=&#34;#fn:1&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;From that suggestion, I reduced &lt;code&gt;n_jobs=10&lt;/code&gt; to &lt;code&gt;n_jobs=5&lt;/code&gt; and boom, the error got disappeared.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;footnotes&#34; role=&#34;doc-endnotes&#34;&gt;
+&lt;hr&gt;
+&lt;ol&gt;
+&lt;li id=&#34;fn:1&#34;&gt;
+&lt;p&gt;&lt;a href=&#34;https://linuxpip.org/broken-pipe-python-error&#34; style=&#34;text-align: justify; font-size: 15px;&#34;&gt;[Errno 32] Broken pipe in Python&lt;/a&gt;&amp;#160;&lt;a href=&#34;#fnref:1&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&amp;#160;&lt;a href=&#34;#fnref1:1&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>How to kill zombie processes using GPU ?</title>
+      <link>https://leminhnguyen.github.io/post/linux-learns/kill-zombie-processes/</link>
+      <pubDate>Wed, 09 Mar 2022 11:01:17 +0000</pubDate>
+      <guid>https://leminhnguyen.github.io/post/linux-learns/kill-zombie-processes/</guid>
+      <description>&lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
+&lt;!-- ![Python](images/python.svg) --&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;&#34; srcset=&#34;
+               /post/linux-learns/kill-zombie-processes/images/zombie_hu6d97b3e824db4a9840663df6fd482ef2_449021_e550662dba03fb1e0cbb4c95ac466ad0.png 400w,
+               /post/linux-learns/kill-zombie-processes/images/zombie_hu6d97b3e824db4a9840663df6fd482ef2_449021_21b82c453c043986e8d659acaa888025.png 760w,
+               /post/linux-learns/kill-zombie-processes/images/zombie_hu6d97b3e824db4a9840663df6fd482ef2_449021_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://leminhnguyen.github.io/post/linux-learns/kill-zombie-processes/images/zombie_hu6d97b3e824db4a9840663df6fd482ef2_449021_e550662dba03fb1e0cbb4c95ac466ad0.png&#34;
+               width=&#34;760&#34;
+               height=&#34;393&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;div style=&#34;text-align: justify; font-size: 15px;&#34;&gt;
+&lt;h3 id=&#34;what-is-a-zombie-process&#34;&gt;What is a zombie process?&lt;/h3&gt;
+&lt;p&gt;As you know, in Linux OS when we start an application the OS will create a process and this process can start other processes. The process starts other processes is refered as the parent and the new processes are refered as the children. The Linux OS keeps the information of processes in a table called the process table. The parent and the children run almost independently, but sometimes they share some resources (input, output) or contexts. When a child finished its job, it will send a &lt;code&gt;SIGCHLD&lt;/code&gt; signal to the parent. The parent then reads the exit code of the child and removes its entry from the process table, this also cleans the resources used by the child. But there are sometimes the children cannot send the &lt;code&gt;SIGCHLD&lt;/code&gt; signal to the parent or the parent was died by incident, in such cases the children outlive from their parent and the Linux OS refers them as &lt;code&gt;orphaned&lt;/code&gt; or &lt;code&gt;zombie&lt;/code&gt; processes.&lt;/p&gt;
+&lt;h3 id=&#34;the-problem-of-zombie-processes&#34;&gt;The problem of zombie processes&lt;/h3&gt;
+&lt;p&gt;Because of outliving the parent, the resources used by the children (&lt;code&gt;zombie&lt;/code&gt;) cannot be released, and hence, other processes cannot use these resources. To overcome this problem, we need to kill the children manually based on their ids. But, the main question is how we can find the the ids of the children? To answer that question, let&amp;rsquo;s continue to the next sections.&lt;/p&gt;
+&lt;h3 id=&#34;killing-zombie-processes-using-gpu&#34;&gt;Killing zombie processes using GPU&lt;/h3&gt;
+&lt;p&gt;Working as a research engineer, I&amp;rsquo;m usually using &lt;code&gt;GPUs&lt;/code&gt; to train the deep learning models and checking the used resources with &lt;code&gt;nvtop&lt;/code&gt; command. Usually each process using &lt;code&gt;GPU&lt;/code&gt; will has an entry in the &lt;code&gt;nvtop&lt;/code&gt; table and the Linux kernel refers that process as the parent process, the entry consists of some information about that process, for example, &lt;code&gt;PID&lt;/code&gt; - the parent id, &lt;code&gt;USER&lt;/code&gt; - the user that the parent belongs to, &lt;code&gt;GPU&lt;/code&gt; - the GPU id used by the parent&amp;hellip;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  id=&#34;figure-nvtop_snapshot&#34;&gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;&#34; srcset=&#34;
+               /post/linux-learns/kill-zombie-processes/images/nvtop_snapshot_hu80f2f16fbe58c54e81357197183d5f64_349386_fa9a822110acef161bbdfe1115f146bc.png 400w,
+               /post/linux-learns/kill-zombie-processes/images/nvtop_snapshot_hu80f2f16fbe58c54e81357197183d5f64_349386_8f85c6b05b4cf30cd4b59c2d3da45a42.png 760w,
+               /post/linux-learns/kill-zombie-processes/images/nvtop_snapshot_hu80f2f16fbe58c54e81357197183d5f64_349386_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://leminhnguyen.github.io/post/linux-learns/kill-zombie-processes/images/nvtop_snapshot_hu80f2f16fbe58c54e81357197183d5f64_349386_fa9a822110acef161bbdfe1115f146bc.png&#34;
+               width=&#34;760&#34;
+               height=&#34;515&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+To kill a process using &lt;code&gt;GPU&lt;/code&gt; we simply use the command &lt;code&gt;kill PID&lt;/code&gt; or &lt;code&gt;kill -9 PID&lt;/code&gt;, but there are some cases we cannot kill the process by that way, for example, the process has &lt;code&gt;PID=18309&lt;/code&gt; in the &lt;a href=&#34;#figure-nvtop_snapshot&#34;&gt;figure1&lt;/a&gt;. This because the process (&lt;code&gt;parent&lt;/code&gt;) is already dead (indicated by &lt;code&gt;N/A&lt;/code&gt; USER column) but the children (&lt;code&gt;orphaned&lt;/code&gt;) are still alive and hold the resouces (in this case, the zombie proceses are holding about 85% GPU MEM). In order to access the child processes you have to excute &lt;code&gt;sudo fuser -v /dev/nvidia*&lt;/code&gt; and all processes using GPUs will be listed with each &lt;code&gt;GPU&lt;/code&gt; id. For example, when running the &lt;code&gt;sudo fuser -v /dev/nvidia*&lt;/code&gt; command on my training server we will see the output looks like:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ sudo fuser -v /dev/nvidia*
+                     USER        PID ACCESS COMMAND
+/dev/nvidia0:        nguyenlm  15909 F.... nvtop
+                     nguyenlm  20717 F.... nvtop
+                     nguyenlm  21042 F.... nvtop
+                     root      24536 F.... nvtop
+                     nguyenlm  24787 F...m tensorboard
+                     nguyenlm  25078 F...m python
+                     nguyenlm  25079 F...m python
+                     nguyenlm  25080 F...m python
+                     nguyenlm  25081 F...m python
+                     nguyenlm  25082 F...m python
+                     nguyenlm  25085 F...m python
+                     nguyenlm  32199 F...m python
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;From the output, we have a dozen of processes using &lt;code&gt;GPU=0&lt;/code&gt; (&lt;em&gt;python, nvtop, tensorboard&lt;/em&gt;). Simply, we can kill them all with their &lt;code&gt;PIDs&lt;/code&gt; by the &lt;code&gt;kill&lt;/code&gt; command as mentioned to release the resources. However, we can do that easier by an observation, the zombie processes are usually have consecutive ids, so if we look the output carefully we will see a group of processes has the id ranged from &lt;code&gt;25078&lt;/code&gt; to &lt;code&gt;25082&lt;/code&gt; and those actually are zombie &lt;code&gt;PIDs&lt;/code&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;h2 id=&#34;references&#34;&gt;References:&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;https://theblackcat102.github.io/fixing-nvidia-gpu-zombie-process/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Kill zombie process using GPU memory&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://realpython.com/python-subprocess/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;The subprocess Module: Wrapping Programs With Python&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
