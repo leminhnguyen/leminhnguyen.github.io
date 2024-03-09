@@ -77,7 +77,7 @@ The purpose of normalization is to provide &lt;span style=&#39;font-weight:bold&
       <description>&lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
 &lt;div id=&#39;section-1&#39; class=&#39;section&#39; style=&#34;width: 100%&#34;&gt;
         &lt;h2&gt;Comparing different methods&lt;/h2&gt;
-        &lt;p&gt;This section compares Phoneme Hallucinator kNN-VC and FreeVC.&lt;/p&gt;
+        &lt;p&gt;This section compares Phoneme Hallucinator kNN-VC and Phoneme Hallucinator.&lt;/p&gt;
 &lt;table style=&#34;width: 100%&#34;&gt;
   &lt;thead&gt;
     &lt;tr&gt;
