@@ -35,10 +35,10 @@
 &lt;figure  &gt;
   &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
     &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;&#34; srcset=&#34;
-               /post/tts-learns/voice-conversion-09-03-2024/_featured_hu247d5b7fd5c49ebd144b6f04e075f068_52595_99fc9acf1cb068d4e0e6102d08ff0fe5.webp 400w,
-               /post/tts-learns/voice-conversion-09-03-2024/_featured_hu247d5b7fd5c49ebd144b6f04e075f068_52595_52e4c5cd6b7bbf22657ae07aef01176a.webp 760w,
-               /post/tts-learns/voice-conversion-09-03-2024/_featured_hu247d5b7fd5c49ebd144b6f04e075f068_52595_1200x1200_fit_q75_h2_lanczos_2.webp 1200w&#34;
-               src=&#34;https://leminhnguyen.github.io/post/tts-learns/voice-conversion-09-03-2024/_featured_hu247d5b7fd5c49ebd144b6f04e075f068_52595_99fc9acf1cb068d4e0e6102d08ff0fe5.webp&#34;
+               /post/tts-learns/voice-conversion-09-03-2024/images/phoneme_hallucinator_hu247d5b7fd5c49ebd144b6f04e075f068_52595_25a7f069e8f68b7c0d925051fcbe7fb4.png 400w,
+               /post/tts-learns/voice-conversion-09-03-2024/images/phoneme_hallucinator_hu247d5b7fd5c49ebd144b6f04e075f068_52595_ba4aaaf560428797c0d9482aa234b0a6.png 760w,
+               /post/tts-learns/voice-conversion-09-03-2024/images/phoneme_hallucinator_hu247d5b7fd5c49ebd144b6f04e075f068_52595_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://leminhnguyen.github.io/post/tts-learns/voice-conversion-09-03-2024/images/phoneme_hallucinator_hu247d5b7fd5c49ebd144b6f04e075f068_52595_25a7f069e8f68b7c0d925051fcbe7fb4.png&#34;
                width=&#34;752&#34;
                height=&#34;486&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
@@ -195,10 +195,10 @@
 &lt;figure  &gt;
   &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
     &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;&#34; srcset=&#34;
-               /post/tts-learns/voice-conversion-23-03-2024/_featured_hu9c2c2c0b1c61256ebe168fc02f8de765_124214_526ebb98ad45b04948fa8d2e0a84d115.webp 400w,
-               /post/tts-learns/voice-conversion-23-03-2024/_featured_hu9c2c2c0b1c61256ebe168fc02f8de765_124214_6403774661a448fb025c847bec6f2af1.webp 760w,
-               /post/tts-learns/voice-conversion-23-03-2024/_featured_hu9c2c2c0b1c61256ebe168fc02f8de765_124214_1200x1200_fit_q75_h2_lanczos_2.webp 1200w&#34;
-               src=&#34;https://leminhnguyen.github.io/post/tts-learns/voice-conversion-23-03-2024/_featured_hu9c2c2c0b1c61256ebe168fc02f8de765_124214_526ebb98ad45b04948fa8d2e0a84d115.webp&#34;
+               /post/tts-learns/voice-conversion-23-03-2024/images/voice-conversion-improvement_hu9c2c2c0b1c61256ebe168fc02f8de765_124214_a2d27f9f56804762a78877b0a2bfc74d.png 400w,
+               /post/tts-learns/voice-conversion-23-03-2024/images/voice-conversion-improvement_hu9c2c2c0b1c61256ebe168fc02f8de765_124214_83c259e7f182431e085e9b327cdd2c18.png 760w,
+               /post/tts-learns/voice-conversion-23-03-2024/images/voice-conversion-improvement_hu9c2c2c0b1c61256ebe168fc02f8de765_124214_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://leminhnguyen.github.io/post/tts-learns/voice-conversion-23-03-2024/images/voice-conversion-improvement_hu9c2c2c0b1c61256ebe168fc02f8de765_124214_a2d27f9f56804762a78877b0a2bfc74d.png&#34;
                width=&#34;760&#34;
                height=&#34;446&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
