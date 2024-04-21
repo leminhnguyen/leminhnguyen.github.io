@@ -173,6 +173,166 @@
     </item>
     
     <item>
+      <title>KNN-VC vs Phoneme Hallucinator [10/04/2024] ?</title>
+      <link>https://leminhnguyen.github.io/post/tts-learns/voice-conversion-10-04-2024/</link>
+      <pubDate>Wed, 09 Mar 2022 11:01:17 +0000</pubDate>
+      <guid>https://leminhnguyen.github.io/post/tts-learns/voice-conversion-10-04-2024/</guid>
+      <description>&lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;&#34; srcset=&#34;
+               /post/tts-learns/voice-conversion-10-04-2024/images/new-vc-architecture_hu971822d0f98b31a6e6ccd103a428207c_122016_402d308e4cc0466a6716761c67ac5260.png 400w,
+               /post/tts-learns/voice-conversion-10-04-2024/images/new-vc-architecture_hu971822d0f98b31a6e6ccd103a428207c_122016_5bbc6f5994e960a7413518bb425da12a.png 760w,
+               /post/tts-learns/voice-conversion-10-04-2024/images/new-vc-architecture_hu971822d0f98b31a6e6ccd103a428207c_122016_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://leminhnguyen.github.io/post/tts-learns/voice-conversion-10-04-2024/images/new-vc-architecture_hu971822d0f98b31a6e6ccd103a428207c_122016_402d308e4cc0466a6716761c67ac5260.png&#34;
+               width=&#34;760&#34;
+               height=&#34;607&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;div id=&#39;section-1&#39; class=&#39;section&#39; style=&#34;width: 100%&#34;&gt;
+        &lt;h2&gt;Comparing different methods&lt;/h2&gt;
+        &lt;p&gt;This section compares Phoneme Hallucinator kNN-VC and Phoneme Hallucinator.&lt;/p&gt;
+&lt;table style=&#34;width: 100%&#34;&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&#34;min-width: 175px&#34;&gt;Source&lt;/th&gt;
+      &lt;th style=&#34;min-width: 175px&#34;&gt;Target&lt;/th&gt;
+      &lt;th style=&#34;min-width: 175px&#34;&gt;Phoneme Hallucinator&lt;/th&gt;
+      &lt;th style=&#34;min-width: 175px&#34;&gt;Phoneme Hallucinator + Text2SSL&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;
+        &lt;div class=&#39;labeled-audio&#39;&gt;&lt;audio preload=&#39;metadata&#39; controls&gt;&lt;source src=&#39;samples/source_01.wav&#39; type=&#39;audio/mpeg&#39;&gt;&lt;/audio&gt;&lt;/div&gt;
+      &lt;/td&gt;
+      &lt;td&gt;
+        &lt;div class=&#39;labeled-audio&#39;&gt;&lt;audio preload=&#39;metadata&#39; controls&gt;&lt;source src=&#39;samples/target_01.wav&#39; type=&#39;audio/mpeg&#39;&gt;&lt;/audio&gt;&lt;/div&gt;
+      &lt;/td&gt;
+      &lt;td&gt;
+        &lt;div class=&#39;labeled-audio&#39;&gt;&lt;audio preload=&#39;metadata&#39; controls&gt;&lt;source src=&#39;samples/result_phone-hallucinator_01.wav&#39; type=&#39;audio/mpeg&#39;&gt;&lt;/audio&gt;&lt;/div&gt;
+      &lt;/td&gt;
+      &lt;td&gt;
+        &lt;div class=&#39;labeled-audio&#39;&gt;&lt;audio preload=&#39;metadata&#39; controls&gt;&lt;source src=&#39;samples/result_phone-hallucinator_01(text2ssl)_.wav&#39; type=&#39;audio/mpeg&#39;&gt;&lt;/audio&gt;&lt;/div&gt;
+      &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;
+        &lt;div class=&#39;labeled-audio&#39;&gt;&lt;audio preload=&#39;metadata&#39; controls&gt;&lt;source src=&#39;samples/source_05.wav&#39; type=&#39;audio/mpeg&#39;&gt;&lt;/audio&gt;&lt;/div&gt;
+      &lt;/td&gt;
+      &lt;td&gt;
+        &lt;div class=&#39;labeled-audio&#39;&gt;&lt;audio preload=&#39;metadata&#39; controls&gt;&lt;source src=&#39;samples/target_05.wav&#39; type=&#39;audio/mpeg&#39;&gt;&lt;/audio&gt;&lt;/div&gt;
+      &lt;/td&gt;
+      &lt;td&gt;
+        &lt;div class=&#39;labeled-audio&#39;&gt;&lt;audio preload=&#39;metadata&#39; controls&gt;&lt;source src=&#39;samples/result_phone-hallucinator_05.wav&#39; type=&#39;audio/mpeg&#39;&gt;&lt;/audio&gt;&lt;/div&gt;
+      &lt;/td&gt;
+      &lt;td&gt;
+        &lt;div class=&#39;labeled-audio&#39;&gt;&lt;audio preload=&#39;metadata&#39; controls&gt;&lt;source src=&#39;samples/result_phone-hallucinator_05(text2ssl)_.wav&#39; type=&#39;audio/mpeg&#39;&gt;&lt;/audio&gt;&lt;/div&gt;
+      &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;
+        &lt;div class=&#39;labeled-audio&#39;&gt;&lt;audio preload=&#39;metadata&#39; controls&gt;&lt;source src=&#39;samples/demo/[2] source.wav&#39; type=&#39;audio/mpeg&#39;&gt;&lt;/audio&gt;&lt;/div&gt;
+      &lt;/td&gt;
+      &lt;td&gt;
+        &lt;div class=&#39;labeled-audio&#39;&gt;&lt;audio preload=&#39;metadata&#39; controls&gt;&lt;source src=&#39;samples/demo/[2] target.wav&#39; type=&#39;audio/mpeg&#39;&gt;&lt;/audio&gt;&lt;/div&gt;
+      &lt;/td&gt;
+      &lt;td&gt;
+        &lt;div class=&#39;labeled-audio&#39;&gt;&lt;audio preload=&#39;metadata&#39; controls&gt;&lt;source src=&#39;samples/demo/[2] knn-vc.wav&#39; type=&#39;audio/mpeg&#39;&gt;&lt;/audio&gt;&lt;/div&gt;
+      &lt;/td&gt;
+      &lt;td&gt;
+        &lt;div class=&#39;labeled-audio&#39;&gt;&lt;audio preload=&#39;metadata&#39; controls&gt;&lt;source src=&#39;samples/demo/[2] phone_hallucinator_mn.wav&#39; type=&#39;audio/mpeg&#39;&gt;&lt;/audio&gt;&lt;/div&gt;
+      &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;
+        &lt;div class=&#39;labeled-audio&#39;&gt;&lt;audio preload=&#39;metadata&#39; controls&gt;&lt;source src=&#39;samples/demo/[3] source.wav&#39; type=&#39;audio/mpeg&#39;&gt;&lt;/audio&gt;&lt;/div&gt;
+      &lt;/td&gt;
+      &lt;td&gt;
+        &lt;div class=&#39;labeled-audio&#39;&gt;&lt;audio preload=&#39;metadata&#39; controls&gt;&lt;source src=&#39;samples/demo/[3] target.wav&#39; type=&#39;audio/mpeg&#39;&gt;&lt;/audio&gt;&lt;/div&gt;
+      &lt;/td&gt;
+      &lt;td&gt;
+        &lt;div class=&#39;labeled-audio&#39;&gt;&lt;audio preload=&#39;metadata&#39; controls&gt;&lt;source src=&#39;samples/demo/[3] knn-vc.wav&#39; type=&#39;audio/mpeg&#39;&gt;&lt;/audio&gt;&lt;/div&gt;
+      &lt;/td&gt;
+      &lt;td&gt;
+        &lt;div class=&#39;labeled-audio&#39;&gt;&lt;audio preload=&#39;metadata&#39; controls&gt;&lt;source src=&#39;samples/demo/[3] phone_hallucinator.wav&#39; type=&#39;audio/mpeg&#39;&gt;&lt;/audio&gt;&lt;/div&gt;
+      &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;
+        &lt;div class=&#39;labeled-audio&#39;&gt;&lt;audio preload=&#39;metadata&#39; controls&gt;&lt;source src=&#39;samples/demo/[6] source.wav&#39; type=&#39;audio/mpeg&#39;&gt;&lt;/audio&gt;&lt;/div&gt;
+      &lt;/td&gt;
+      &lt;td&gt;
+        &lt;div class=&#39;labeled-audio&#39;&gt;&lt;audio preload=&#39;metadata&#39; controls&gt;&lt;source src=&#39;samples/demo/[6] target.wav&#39; type=&#39;audio/mpeg&#39;&gt;&lt;/audio&gt;&lt;/div&gt;
+      &lt;/td&gt;
+      &lt;td&gt;
+        &lt;div class=&#39;labeled-audio&#39;&gt;&lt;audio preload=&#39;metadata&#39; controls&gt;&lt;source src=&#39;samples/demo/[6] knn-vc.wav&#39; type=&#39;audio/mpeg&#39;&gt;&lt;/audio&gt;&lt;/div&gt;
+      &lt;/td&gt;
+      &lt;td&gt;
+        &lt;div class=&#39;labeled-audio&#39;&gt;&lt;audio preload=&#39;metadata&#39; controls&gt;&lt;source src=&#39;samples/demo/[6] phone_hallucinator_hr.wav&#39; type=&#39;audio/mpeg&#39;&gt;&lt;/audio&gt;&lt;/div&gt;
+      &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;
+        &lt;div class=&#39;labeled-audio&#39;&gt;&lt;audio preload=&#39;metadata&#39; controls&gt;&lt;source src=&#39;samples/source_06.wav&#39; type=&#39;audio/mpeg&#39;&gt;&lt;/audio&gt;&lt;/div&gt;
+      &lt;/td&gt;
+      &lt;td&gt;
+        &lt;div class=&#39;labeled-audio&#39;&gt;&lt;audio preload=&#39;metadata&#39; controls&gt;&lt;source src=&#39;samples/target_06.wav&#39; type=&#39;audio/mpeg&#39;&gt;&lt;/audio&gt;&lt;/div&gt;
+      &lt;/td&gt;
+      &lt;td&gt;
+        &lt;div class=&#39;labeled-audio&#39;&gt;&lt;audio preload=&#39;metadata&#39; controls&gt;&lt;source src=&#39;samples/result_phone-hallucinator_06.wav&#39; type=&#39;audio/mpeg&#39;&gt;&lt;/audio&gt;&lt;/div&gt;
+      &lt;/td&gt;
+      &lt;td&gt;
+        &lt;div class=&#39;labeled-audio&#39;&gt;&lt;audio preload=&#39;metadata&#39; controls&gt;&lt;source src=&#39;samples/result_phone-hallucinator_06(text2ssl)_.wav&#39; type=&#39;audio/mpeg&#39;&gt;&lt;/audio&gt;&lt;/div&gt;
+      &lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;div class=&#34;table&#34; style=&#34;width: 100%&#34;&gt;
+&lt;/div&gt;
+&lt;!-- ![Python](images/python.svg) --&gt;
+&lt;!-- 
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;&#34; srcset=&#34;
+               /post/tts-learns/voice-conversion-10-04-2024/images/main_huec624690a5e35421dcb4a187a8905990_505572_3102e5b3320686e4bfd436129d57b956.png 400w,
+               /post/tts-learns/voice-conversion-10-04-2024/images/main_huec624690a5e35421dcb4a187a8905990_505572_ba247c54d0c340584a86934861cb6f46.png 760w,
+               /post/tts-learns/voice-conversion-10-04-2024/images/main_huec624690a5e35421dcb4a187a8905990_505572_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://leminhnguyen.github.io/post/tts-learns/voice-conversion-10-04-2024/images/main_huec624690a5e35421dcb4a187a8905990_505572_3102e5b3320686e4bfd436129d57b956.png&#34;
+               width=&#34;720&#34;
+               height=&#34;760&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt; --&gt;</description>
+    </item>
+    
+    <item>
       <title>KNN-VC vs Phoneme Hallucinator [23/03/2024] ?</title>
       <link>https://leminhnguyen.github.io/post/tts-learns/voice-conversion-23-03-2024/</link>
       <pubDate>Wed, 09 Mar 2022 11:01:17 +0000</pubDate>
