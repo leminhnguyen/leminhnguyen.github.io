@@ -60,8 +60,7 @@
   
     
   
-  <meta name="description" content="Overview Comparing different methodsThis section compares Phoneme Hallucinator kNN-VC and Phoneme Hallucinator.
-SourceTargetPhoneme HallucinatorPhoneme Hallucinator &#43; Text2SSL" />
+  <meta name="description" content="Overview This thesis develops a voice conversion model for Vietnamese based on the Phoneme Hallucinator model with 2 adoptions: (1) Add a Text2SSL module to get more context information before performing the KNN algorithm, (2) To create a morediverse dataset we apply spectrogram-resize (SR) based data augmentation idea from Free-VC model which distorts speaker information without changing content information to generate more ”speakers”." />
 
   
   <link rel="alternate" hreflang="en-us" href="https://leminhnguyen.github.io/post/tts-learns/voice-conversion-10-04-2024/" />
@@ -301,9 +300,8 @@ SourceTargetPhoneme HallucinatorPhoneme Hallucinator &#43; Text2SSL" />
   
   <meta property="og:site_name" content="leminhnguyen&#39;s blog" />
   <meta property="og:url" content="https://leminhnguyen.github.io/post/tts-learns/voice-conversion-10-04-2024/" />
-  <meta property="og:title" content="KNN-VC vs Phoneme Hallucinator [10/04/2024] ? | leminhnguyen&#39;s blog" />
-  <meta property="og:description" content="Overview Comparing different methodsThis section compares Phoneme Hallucinator kNN-VC and Phoneme Hallucinator.
-SourceTargetPhoneme HallucinatorPhoneme Hallucinator &#43; Text2SSL" /><meta property="og:image" content="https://leminhnguyen.github.io/post/tts-learns/voice-conversion-10-04-2024/featured.webp" />
+  <meta property="og:title" content="Vietnamese Voice Conversion | leminhnguyen&#39;s blog" />
+  <meta property="og:description" content="Overview This thesis develops a voice conversion model for Vietnamese based on the Phoneme Hallucinator model with 2 adoptions: (1) Add a Text2SSL module to get more context information before performing the KNN algorithm, (2) To create a morediverse dataset we apply spectrogram-resize (SR) based data augmentation idea from Free-VC model which distorts speaker information without changing content information to generate more ”speakers”." /><meta property="og:image" content="https://leminhnguyen.github.io/post/tts-learns/voice-conversion-10-04-2024/featured.webp" />
     <meta property="twitter:image" content="https://leminhnguyen.github.io/post/tts-learns/voice-conversion-10-04-2024/featured.webp" /><meta property="og:locale" content="en-us" />
   
     
@@ -338,7 +336,7 @@ SourceTargetPhoneme HallucinatorPhoneme Hallucinator &#43; Text2SSL" /><meta
     "@type": "WebPage",
     "@id": "https://leminhnguyen.github.io/post/tts-learns/voice-conversion-10-04-2024/"
   },
-  "headline": "KNN-VC vs Phoneme Hallucinator [10/04/2024] ?",
+  "headline": "Vietnamese Voice Conversion",
   
   "image": [
     "https://leminhnguyen.github.io/post/tts-learns/voice-conversion-10-04-2024/featured.webp"
@@ -360,7 +358,7 @@ SourceTargetPhoneme HallucinatorPhoneme Hallucinator &#43; Text2SSL" /><meta
       "url": "https://leminhnguyen.github.io/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_192x192_fill_lanczos_center_3.png"
     }
   },
-  "description": "Overview Comparing different methods\rThis section compares Phoneme Hallucinator kNN-VC and Phoneme Hallucinator.\nSource\rTarget\rPhoneme Hallucinator\rPhoneme Hallucinator + Text2SSL\r"
+  "description": "Overview This thesis develops a voice conversion model for Vietnamese based on the Phoneme Hallucinator model with 2 adoptions: (1) Add a Text2SSL module to get more context information before performing the KNN algorithm, (2) To create a more\rdiverse dataset we apply spectrogram-resize (SR) based data augmentation idea from Free-VC model which distorts speaker information without changing content information to generate more ”speakers”."
 }
 </script>
 
@@ -376,7 +374,7 @@ SourceTargetPhoneme HallucinatorPhoneme Hallucinator &#43; Text2SSL" /><meta
 
 
 
-  <title>KNN-VC vs Phoneme Hallucinator [10/04/2024] ? | leminhnguyen&#39;s blog</title>
+  <title>Vietnamese Voice Conversion | leminhnguyen&#39;s blog</title>
 </head>
 
 
@@ -719,10 +717,10 @@ SourceTargetPhoneme HallucinatorPhoneme Hallucinator &#43; Text2SSL" /><meta
   
   
 <div class="article-container pt-3">
-  <h1>KNN-VC vs Phoneme Hallucinator [10/04/2024] ?</h1>
+  <h1>Vietnamese Voice Conversion</h1>
 
   
-  <p class="page-subtitle">KNN-VC vs Phoneme Hallucinator [10/04/2024] ?</p>
+  <p class="page-subtitle">Vietnamese Voice Conversion</p>
   
 
   
@@ -794,6 +792,37 @@ SourceTargetPhoneme HallucinatorPhoneme Hallucinator &#43; Text2SSL" /><meta
 
     <div class="article-style">
       <h2 id="overview">Overview</h2>
+<div style="text-align:justify">
+This thesis develops a voice conversion model for Vietnamese based on the Phoneme Hallucinator model with 2 adoptions: (1) Add a Text2SSL module to get more context information before performing the KNN algorithm, (2) To create a more
+diverse dataset we apply spectrogram-resize (SR) based data augmentation idea from Free-VC model which distorts speaker information without changing content information to generate more ”speakers”.
+</div>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  id="figure-the-proposal-model">
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="The proposal model" srcset="
+               /post/tts-learns/voice-conversion-10-04-2024/images/new-vc-architecture_hu971822d0f98b31a6e6ccd103a428207c_122016_402d308e4cc0466a6716761c67ac5260.png 400w,
+               /post/tts-learns/voice-conversion-10-04-2024/images/new-vc-architecture_hu971822d0f98b31a6e6ccd103a428207c_122016_5bbc6f5994e960a7413518bb425da12a.png 760w,
+               /post/tts-learns/voice-conversion-10-04-2024/images/new-vc-architecture_hu971822d0f98b31a6e6ccd103a428207c_122016_1200x1200_fit_lanczos_3.png 1200w"
+               src="/post/tts-learns/voice-conversion-10-04-2024/images/new-vc-architecture_hu971822d0f98b31a6e6ccd103a428207c_122016_402d308e4cc0466a6716761c67ac5260.png"
+               width="760"
+               height="607"
+               loading="lazy" data-zoomable /></div>
+  </div><figcaption>
+      The proposal model
+    </figcaption></figure>
 
 
 
@@ -811,27 +840,30 @@ SourceTargetPhoneme HallucinatorPhoneme Hallucinator &#43; Text2SSL" /><meta
 <figure  >
   <div class="d-flex justify-content-center">
     <div class="w-100" ><img alt="" srcset="
-               /post/tts-learns/voice-conversion-10-04-2024/images/new-vc-architecture_hu971822d0f98b31a6e6ccd103a428207c_122016_402d308e4cc0466a6716761c67ac5260.png 400w,
-               /post/tts-learns/voice-conversion-10-04-2024/images/new-vc-architecture_hu971822d0f98b31a6e6ccd103a428207c_122016_5bbc6f5994e960a7413518bb425da12a.png 760w,
-               /post/tts-learns/voice-conversion-10-04-2024/images/new-vc-architecture_hu971822d0f98b31a6e6ccd103a428207c_122016_1200x1200_fit_lanczos_3.png 1200w"
-               src="/post/tts-learns/voice-conversion-10-04-2024/images/new-vc-architecture_hu971822d0f98b31a6e6ccd103a428207c_122016_402d308e4cc0466a6716761c67ac5260.png"
+               /post/tts-learns/voice-conversion-10-04-2024/images/spec-augmentation_hud7d16e2cc8f6180373396b214284b457_491908_54a6cd26a3842fb84b50dc5e8f9b4ac5.png 400w,
+               /post/tts-learns/voice-conversion-10-04-2024/images/spec-augmentation_hud7d16e2cc8f6180373396b214284b457_491908_8f518ab3170d7857360ba1ffa07379d5.png 760w,
+               /post/tts-learns/voice-conversion-10-04-2024/images/spec-augmentation_hud7d16e2cc8f6180373396b214284b457_491908_1200x1200_fit_lanczos_3.png 1200w"
+               src="/post/tts-learns/voice-conversion-10-04-2024/images/spec-augmentation_hud7d16e2cc8f6180373396b214284b457_491908_54a6cd26a3842fb84b50dc5e8f9b4ac5.png"
                width="760"
-               height="607"
+               height="351"
                loading="lazy" data-zoomable /></div>
-  </div></figure>
+  </div></figure></p>
 <div id='section-1' class='section' style="width: 100%">
         <h2>Comparing different methods</h2>
-        <p>This section compares Phoneme Hallucinator kNN-VC and Phoneme Hallucinator.</p>
+        <p>This section compares the baseline and the proposal model.</p>
 <table style="width: 100%">
   <thead>
     <tr>
       <th style="min-width: 175px">Source</th>
       <th style="min-width: 175px">Target</th>
-      <th style="min-width: 175px">Phoneme Hallucinator</th>
-      <th style="min-width: 175px">Phoneme Hallucinator + Text2SSL</th>
+      <th style="min-width: 175px">Baseline Model</th>
+      <th style="min-width: 175px">Proposal Model</th>
     </tr>
   </thead>
   <tbody>
+    <tr>
+      <td colspan="4"> <b>[trangntt]</b> Female to Female Conversion <td>
+    </tr>
     <tr>
       <td>
         <div class='labeled-audio'><audio preload='metadata' controls><source src='samples/source_01.wav' type='audio/mpeg'></audio></div>
@@ -845,6 +877,9 @@ SourceTargetPhoneme HallucinatorPhoneme Hallucinator &#43; Text2SSL" /><meta
       <td>
         <div class='labeled-audio'><audio preload='metadata' controls><source src='samples/result_phone-hallucinator_01(text2ssl)_.wav' type='audio/mpeg'></audio></div>
       </td>
+    </tr>
+    <tr>
+      <td colspan="4"> <b>[trangntt] </b> Male to Female Conversion  </td>
     </tr>
     <tr>
       <td>
@@ -861,6 +896,9 @@ SourceTargetPhoneme HallucinatorPhoneme Hallucinator &#43; Text2SSL" /><meta
       </td>
     </tr>
     <tr>
+      <td colspan="4"> <b>[nguyenlm] </b> Male to Male Conversion  </td>
+    </tr>
+    <tr>
       <td>
         <div class='labeled-audio'><audio preload='metadata' controls><source src='samples/demo/[2] source.wav' type='audio/mpeg'></audio></div>
       </td>
@@ -873,6 +911,9 @@ SourceTargetPhoneme HallucinatorPhoneme Hallucinator &#43; Text2SSL" /><meta
       <td>
         <div class='labeled-audio'><audio preload='metadata' controls><source src='samples/demo/[2] phone_hallucinator_mn.wav' type='audio/mpeg'></audio></div>
       </td>
+    </tr>
+    <tr>
+      <td colspan="4"> <b>[nguyenlm] </b> Female to Male Conversion  </td>
     </tr>
     <tr>
       <td>
@@ -888,6 +929,9 @@ SourceTargetPhoneme HallucinatorPhoneme Hallucinator &#43; Text2SSL" /><meta
         <div class='labeled-audio'><audio preload='metadata' controls><source src='samples/demo/[3] phone_hallucinator.wav' type='audio/mpeg'></audio></div>
       </td>
     </tr>
+     <tr>
+      <td colspan="4"> <b>[thanhpv] </b> Male to Male Conversion  </td>
+    </tr>
     <tr>
       <td>
         <div class='labeled-audio'><audio preload='metadata' controls><source src='samples/demo/[6] source.wav' type='audio/mpeg'></audio></div>
@@ -901,6 +945,9 @@ SourceTargetPhoneme HallucinatorPhoneme Hallucinator &#43; Text2SSL" /><meta
       <td>
         <div class='labeled-audio'><audio preload='metadata' controls><source src='samples/demo/[6] phone_hallucinator_hr.wav' type='audio/mpeg'></audio></div>
       </td>
+    </tr>
+      <tr>
+      <td colspan="4"> <b>[thanhpv] </b> Female to Male Conversion  </td>
     </tr>
     <tr>
       <td>
@@ -976,7 +1023,7 @@ SourceTargetPhoneme HallucinatorPhoneme Hallucinator &#43; Text2SSL" /><meta
       
       
       <li>
-        <a href="https://twitter.com/intent/tweet?url=https://leminhnguyen.github.io/post/tts-learns/voice-conversion-10-04-2024/&amp;text=KNN-VC%20vs%20Phoneme%20Hallucinator%20[10/04/2024]%20?" target="_blank" rel="noopener" class="share-btn-twitter" aria-label="twitter">
+        <a href="https://twitter.com/intent/tweet?url=https://leminhnguyen.github.io/post/tts-learns/voice-conversion-10-04-2024/&amp;text=Vietnamese%20Voice%20Conversion" target="_blank" rel="noopener" class="share-btn-twitter" aria-label="twitter">
           <i class="fab fa-twitter"></i>
         </a>
       </li>
@@ -989,7 +1036,7 @@ SourceTargetPhoneme HallucinatorPhoneme Hallucinator &#43; Text2SSL" /><meta
       
       
       <li>
-        <a href="https://www.facebook.com/sharer.php?u=https://leminhnguyen.github.io/post/tts-learns/voice-conversion-10-04-2024/&amp;t=KNN-VC%20vs%20Phoneme%20Hallucinator%20[10/04/2024]%20?" target="_blank" rel="noopener" class="share-btn-facebook" aria-label="facebook">
+        <a href="https://www.facebook.com/sharer.php?u=https://leminhnguyen.github.io/post/tts-learns/voice-conversion-10-04-2024/&amp;t=Vietnamese%20Voice%20Conversion" target="_blank" rel="noopener" class="share-btn-facebook" aria-label="facebook">
           <i class="fab fa-facebook"></i>
         </a>
       </li>
@@ -1002,7 +1049,7 @@ SourceTargetPhoneme HallucinatorPhoneme Hallucinator &#43; Text2SSL" /><meta
       
       
       <li>
-        <a href="mailto:?subject=KNN-VC%20vs%20Phoneme%20Hallucinator%20[10/04/2024]%20?&amp;body=https://leminhnguyen.github.io/post/tts-learns/voice-conversion-10-04-2024/" target="_blank" rel="noopener" class="share-btn-email" aria-label="envelope">
+        <a href="mailto:?subject=Vietnamese%20Voice%20Conversion&amp;body=https://leminhnguyen.github.io/post/tts-learns/voice-conversion-10-04-2024/" target="_blank" rel="noopener" class="share-btn-email" aria-label="envelope">
           <i class="fas fa-envelope"></i>
         </a>
       </li>
@@ -1015,7 +1062,7 @@ SourceTargetPhoneme HallucinatorPhoneme Hallucinator &#43; Text2SSL" /><meta
       
       
       <li>
-        <a href="https://www.linkedin.com/shareArticle?url=https://leminhnguyen.github.io/post/tts-learns/voice-conversion-10-04-2024/&amp;title=KNN-VC%20vs%20Phoneme%20Hallucinator%20[10/04/2024]%20?" target="_blank" rel="noopener" class="share-btn-linkedin" aria-label="linkedin-in">
+        <a href="https://www.linkedin.com/shareArticle?url=https://leminhnguyen.github.io/post/tts-learns/voice-conversion-10-04-2024/&amp;title=Vietnamese%20Voice%20Conversion" target="_blank" rel="noopener" class="share-btn-linkedin" aria-label="linkedin-in">
           <i class="fab fa-linkedin-in"></i>
         </a>
       </li>
@@ -1028,7 +1075,7 @@ SourceTargetPhoneme HallucinatorPhoneme Hallucinator &#43; Text2SSL" /><meta
       
       
       <li>
-        <a href="whatsapp://send?text=KNN-VC%20vs%20Phoneme%20Hallucinator%20[10/04/2024]%20?%20https://leminhnguyen.github.io/post/tts-learns/voice-conversion-10-04-2024/" target="_blank" rel="noopener" class="share-btn-whatsapp" aria-label="whatsapp">
+        <a href="whatsapp://send?text=Vietnamese%20Voice%20Conversion%20https://leminhnguyen.github.io/post/tts-learns/voice-conversion-10-04-2024/" target="_blank" rel="noopener" class="share-btn-whatsapp" aria-label="whatsapp">
           <i class="fab fa-whatsapp"></i>
         </a>
       </li>
@@ -1041,7 +1088,7 @@ SourceTargetPhoneme HallucinatorPhoneme Hallucinator &#43; Text2SSL" /><meta
       
       
       <li>
-        <a href="https://service.weibo.com/share/share.php?url=https://leminhnguyen.github.io/post/tts-learns/voice-conversion-10-04-2024/&amp;title=KNN-VC%20vs%20Phoneme%20Hallucinator%20[10/04/2024]%20?" target="_blank" rel="noopener" class="share-btn-weibo" aria-label="weibo">
+        <a href="https://service.weibo.com/share/share.php?url=https://leminhnguyen.github.io/post/tts-learns/voice-conversion-10-04-2024/&amp;title=Vietnamese%20Voice%20Conversion" target="_blank" rel="noopener" class="share-btn-weibo" aria-label="weibo">
           <i class="fab fa-weibo"></i>
         </a>
       </li>
@@ -1194,15 +1241,9 @@ SourceTargetPhoneme HallucinatorPhoneme Hallucinator &#43; Text2SSL" /><meta
   
   <div class="post-nav-item">
     <div class="meta-nav">Next</div>
-    <a href="/post/tts-learns/voice-conversion-09-03-2024/" rel="next">KNN-VC vs Phoneme Hallucinator [09/03/2024] ?</a>
+    <a href="/post/tts-learns/postnet-layer/" rel="next">Postnet Layer</a>
   </div>
   
-  
-  
-  <div class="post-nav-item">
-    <div class="meta-nav">Previous</div>
-    <a href="/post/tts-learns/voice-conversion-23-03-2024/" rel="prev">KNN-VC vs Phoneme Hallucinator [23/03/2024] ?</a>
-  </div>
   
 </div>
 
