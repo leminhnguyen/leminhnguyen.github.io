@@ -5,7 +5,7 @@
     <link>https://leminhnguyen.github.io/category/tts/</link>
       <atom:link href="https://leminhnguyen.github.io/category/tts/index.xml" rel="self" type="application/rss+xml" />
     <description>TTS</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>© {2022} leminhnguyen</copyright><lastBuildDate>Wed, 09 Mar 2022 11:01:17 +0000</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>© {2025} leminhnguyen</copyright><lastBuildDate>Wed, 09 Mar 2022 11:01:17 +0000</lastBuildDate>
     <image>
       <url>https://leminhnguyen.github.io/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_3.png</url>
       <title>TTS</title>
@@ -14,9 +14,9 @@
     
     <item>
       <title>Comparing batch vs layer normalization</title>
-      <link>https://leminhnguyen.github.io/post/tts-learns/tts-learns/</link>
+      <link>https://leminhnguyen.github.io/post/voice-research/tts-learns/tts-learns/</link>
       <pubDate>Wed, 09 Mar 2022 11:01:17 +0000</pubDate>
-      <guid>https://leminhnguyen.github.io/post/tts-learns/tts-learns/</guid>
+      <guid>https://leminhnguyen.github.io/post/voice-research/tts-learns/tts-learns/</guid>
       <description>&lt;h2 id=&#34;-batch-vs-layer-normalization&#34;&gt;💣 Batch vs Layer Normalization&lt;/h2&gt;
 &lt;div style=&#34;text-align: justify; font-size: 15px;&#34;&gt;
 The purpose of normalization is to provide &lt;span style=&#39;font-weight:bold&#39;&gt; an uniform scale for the input data &lt;/span&gt; to avoid varing in huge range. The normalization method ensures there is no loss of information and even the range of values isn&#39;t affected. In spite of normalizing the input data, &lt;span style=&#39;font-weight:bold&#39;&gt; the value of activations of certain neurons in the hidden layers can start varying across a wide scale during the training process. &lt;/span&gt; This means the input to the neurons to the next hidden layer will also range across the wide range, bringing instability.
@@ -37,10 +37,10 @@ The purpose of normalization is to provide &lt;span style=&#39;font-weight:bold&
 &lt;figure  &gt;
   &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
     &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;&#34; srcset=&#34;
-               /post/tts-learns/tts-learns/images/batch-vs-layer-normalization_hubc5419aa4d7ca81a5c5c39fc33adf9bc_24068_26e8274f2bf3d60894ddf4d1cdbfe1ca.webp 400w,
-               /post/tts-learns/tts-learns/images/batch-vs-layer-normalization_hubc5419aa4d7ca81a5c5c39fc33adf9bc_24068_caee8622773b04039cc2c664010e6c40.webp 760w,
-               /post/tts-learns/tts-learns/images/batch-vs-layer-normalization_hubc5419aa4d7ca81a5c5c39fc33adf9bc_24068_1200x1200_fit_q75_h2_lanczos_2.webp 1200w&#34;
-               src=&#34;https://leminhnguyen.github.io/post/tts-learns/tts-learns/images/batch-vs-layer-normalization_hubc5419aa4d7ca81a5c5c39fc33adf9bc_24068_26e8274f2bf3d60894ddf4d1cdbfe1ca.webp&#34;
+               /post/voice-research/tts-learns/tts-learns/images/batch-vs-layer-normalization_hubc5419aa4d7ca81a5c5c39fc33adf9bc_24068_26e8274f2bf3d60894ddf4d1cdbfe1ca.webp 400w,
+               /post/voice-research/tts-learns/tts-learns/images/batch-vs-layer-normalization_hubc5419aa4d7ca81a5c5c39fc33adf9bc_24068_caee8622773b04039cc2c664010e6c40.webp 760w,
+               /post/voice-research/tts-learns/tts-learns/images/batch-vs-layer-normalization_hubc5419aa4d7ca81a5c5c39fc33adf9bc_24068_1200x1200_fit_q75_h2_lanczos_2.webp 1200w&#34;
+               src=&#34;https://leminhnguyen.github.io/post/voice-research/tts-learns/tts-learns/images/batch-vs-layer-normalization_hubc5419aa4d7ca81a5c5c39fc33adf9bc_24068_26e8274f2bf3d60894ddf4d1cdbfe1ca.webp&#34;
                width=&#34;760&#34;
                height=&#34;444&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
@@ -71,9 +71,9 @@ The purpose of normalization is to provide &lt;span style=&#39;font-weight:bold&
     
     <item>
       <title>Postnet Layer</title>
-      <link>https://leminhnguyen.github.io/post/tts-learns/postnet-layer/</link>
+      <link>https://leminhnguyen.github.io/post/voice-research/tts-learns/postnet-layer/</link>
       <pubDate>Wed, 09 Mar 2022 11:01:17 +0000</pubDate>
-      <guid>https://leminhnguyen.github.io/post/tts-learns/postnet-layer/</guid>
+      <guid>https://leminhnguyen.github.io/post/voice-research/tts-learns/postnet-layer/</guid>
       <description>&lt;h2 id=&#34;-postnet-layer&#34;&gt;💣 Postnet Layer&lt;/h2&gt;
 &lt;div style=&#34;text-align: justify; font-size: 15px;&#34;&gt;
 In some end-to-end TTS models today, after the hidden representations are passed through the decoder we got the mel-spectrogram which contains the predictions of the acoustic features. Finally, the decoder predictions are passed over &lt;span style=&#39;font-weight:bold&#39;&gt; the Postnet layer which predicts residual information to improve the construction performance of the model &lt;/span&gt;. The section below notes some insights about &lt;span style=&#39;font-weight:bold&#39;&gt; the Postnet layer &lt;/span&gt; by me when learning TTS.
@@ -115,10 +115,10 @@ postnet has the effect of reducing autoregressive sampling errors and tightening
 &lt;figure  &gt;
   &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
     &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;&#34; srcset=&#34;
-               /post/tts-learns/postnet-layer/images/postnet_hu55b7b326dc86b48b5eb6c9cddaea2438_98725_3d454b8539ed4f3c7668c209efbf7722.png 400w,
-               /post/tts-learns/postnet-layer/images/postnet_hu55b7b326dc86b48b5eb6c9cddaea2438_98725_59f0b4c02707bb74d1a3fa8996c51df0.png 760w,
-               /post/tts-learns/postnet-layer/images/postnet_hu55b7b326dc86b48b5eb6c9cddaea2438_98725_1200x1200_fit_lanczos_3.png 1200w&#34;
-               src=&#34;https://leminhnguyen.github.io/post/tts-learns/postnet-layer/images/postnet_hu55b7b326dc86b48b5eb6c9cddaea2438_98725_3d454b8539ed4f3c7668c209efbf7722.png&#34;
+               /post/voice-research/tts-learns/postnet-layer/images/postnet_hu55b7b326dc86b48b5eb6c9cddaea2438_98725_3d454b8539ed4f3c7668c209efbf7722.png 400w,
+               /post/voice-research/tts-learns/postnet-layer/images/postnet_hu55b7b326dc86b48b5eb6c9cddaea2438_98725_59f0b4c02707bb74d1a3fa8996c51df0.png 760w,
+               /post/voice-research/tts-learns/postnet-layer/images/postnet_hu55b7b326dc86b48b5eb6c9cddaea2438_98725_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://leminhnguyen.github.io/post/voice-research/tts-learns/postnet-layer/images/postnet_hu55b7b326dc86b48b5eb6c9cddaea2438_98725_3d454b8539ed4f3c7668c209efbf7722.png&#34;
                width=&#34;760&#34;
                height=&#34;432&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;

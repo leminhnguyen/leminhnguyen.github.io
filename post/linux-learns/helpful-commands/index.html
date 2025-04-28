@@ -1,0 +1,1315 @@
+<!DOCTYPE html><html lang="en-us" >
+
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  
+  
+    <meta name="generator" content="Wowchemy 5.3.0 for Hugo" />
+  
+
+  
+  
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  
+
+  
+  
+  
+    
+      
+      <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap" media="print" onload="this.media='all'">
+    
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="Minh Nguyen Le" />
+
+  
+  
+  
+    
+  
+  <meta name="description" content="A curated collection of bash functions, troubleshooting commands, and performance tweaks that I often use in my daily workflow." />
+
+  
+  <link rel="alternate" hreflang="en-us" href="https://leminhnguyen.github.io/post/linux-learns/helpful-commands/" />
+
+  
+  
+  
+    <meta name="theme-color" content="#2962ff" />
+  
+
+  
+  
+
+  
+
+  <link rel="stylesheet" href="/css/vendor-bundle.min.f1ecf783c14edc00c9320c205831ad8e.css" media="print" onload="this.media='all'">
+
+  
+  
+  
+    
+    
+
+    
+    
+    
+    
+      
+      
+    
+    
+    
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/github.min.css" crossorigin="anonymous" title="hl-light" media="print" onload="this.media='all'">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" media="print" onload="this.media='all'" disabled>
+        
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+        
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+  
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/wowchemy.dcf1ca119ff3e4b07cba6e82b2b89576.css" />
+
+  
+
+
+
+  
+
+  
+
+  
+
+
+
+
+  
+  
+  
+
+  
+
+  
+    <link rel="manifest" href="/manifest.webmanifest" />
+  
+
+  <link rel="icon" type="image/png" href="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_32x32_fill_lanczos_center_3.png" />
+  <link rel="apple-touch-icon" type="image/png" href="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_180x180_fill_lanczos_center_3.png" />
+
+  <link rel="canonical" href="https://leminhnguyen.github.io/post/linux-learns/helpful-commands/" />
+
+  
+  
+  
+  
+  
+  
+  
+  
+    
+    
+  
+  
+
+  
+  
+    
+    
+  
+  <meta property="twitter:card" content="summary" />
+  
+    <meta property="twitter:site" content="@wowchemy" />
+    <meta property="twitter:creator" content="@wowchemy" />
+  
+  <meta property="og:site_name" content="leminhnguyen&#39;s blog" />
+  <meta property="og:url" content="https://leminhnguyen.github.io/post/linux-learns/helpful-commands/" />
+  <meta property="og:title" content="Handy Bash Snippets and Linux Tips | leminhnguyen&#39;s blog" />
+  <meta property="og:description" content="A curated collection of bash functions, troubleshooting commands, and performance tweaks that I often use in my daily workflow." /><meta property="og:image" content="https://leminhnguyen.github.io/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_3.png" />
+    <meta property="twitter:image" content="https://leminhnguyen.github.io/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_3.png" /><meta property="og:locale" content="en-us" />
+  
+    
+      <meta
+        property="article:published_time"
+        content="2025-04-28T12:00:00&#43;00:00"
+      />
+    
+    <meta property="article:modified_time" content="2025-04-28T12:00:00&#43;00:00">
+  
+
+  
+
+
+    
+
+
+
+
+
+
+  
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://leminhnguyen.github.io/post/linux-learns/helpful-commands/"
+  },
+  "headline": "Handy Bash Snippets and Linux Tips",
+  
+  "datePublished": "2025-04-28T12:00:00Z",
+  "dateModified": "2025-04-28T12:00:00Z",
+  
+  "author": {
+    "@type": "Person",
+    "name": "Minh Nguyen Le"
+  },
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "leminhnguyen's blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://leminhnguyen.github.io/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_192x192_fill_lanczos_center_3.png"
+    }
+  },
+  "description": "A curated collection of bash functions, troubleshooting commands, and performance tweaks that I often use in my daily workflow."
+}
+</script>
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+  <title>Handy Bash Snippets and Linux Tips | leminhnguyen&#39;s blog</title>
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="e2fd8fce4f74ae03373387704ee60b5a" >
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <script src="/js/wowchemy-init.min.6619cc29fe1a874b6ea1a0359aab5cfb.js"></script>
+
+  
+
+
+<aside class="search-modal" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#" aria-label="Close"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search" class="form-control"
+        aria-label="Search...">
+        
+      </div>
+
+      
+      
+
+      
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+
+  <div class="page-header">
+    
+
+
+
+
+
+
+
+
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+  <div class="container-xl">
+
+    
+
+    
+    <button type="button" class="navbar-toggler" data-toggle="collapse"
+            data-target="#navbar-content" aria-controls="navbar-content" aria-expanded="false" aria-label="Toggle navigation">
+    <span><i class="fas fa-bars"></i></span>
+    </button>
+    
+
+    
+
+    
+    
+    <div class="navbar-collapse main-menu-item collapse justify-content-end" id="navbar-content">
+
+      
+      <ul class="navbar-nav d-md-inline-flex">
+        
+
+        
+
+        
+        
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/"><span>Home</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/about/"><span>About Me</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/category/linux/"><span>Linux</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/category/nlp/"><span>NLP</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/category/python/"><span>Python</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/category/voice-conversion/"><span>Voice Conversion</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+      </ul>
+    </div>
+
+    <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+
+      
+      
+        
+      
+
+      
+      
+      <li class="nav-item">
+        <a class="nav-link js-search" href="#" aria-label="Search"><i class="fas fa-search" aria-hidden="true"></i></a>
+      </li>
+      
+
+      
+      
+      <li class="nav-item dropdown theme-dropdown">
+        <a href="#" class="nav-link" data-toggle="dropdown" aria-haspopup="true" aria-label="Display preferences">
+          <i class="fas fa-moon" aria-hidden="true"></i>
+        </a>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item js-set-theme-light">
+            <span>Light</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-dark">
+            <span>Dark</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-auto">
+            <span>Automatic</span>
+          </a>
+        </div>
+      </li>
+      
+
+      
+      
+
+    </ul>
+
+  </div>
+</nav>
+
+
+  </div>
+
+  <div class="page-body">
+    <article class="article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+<div class="article-container pt-3">
+  <h1>Handy Bash Snippets and Linux Tips</h1>
+
+  
+
+  
+    
+
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    Apr 28, 2025
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    2 min read
+  </span>
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder mr-1"></i><a href="/category/linux/">Linux</a>, <a href="/category/os/">OS</a>, <a href="/category/python/">Python</a></span>
+  
+
+</div>
+
+    
+
+
+
+
+
+  
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
+      <p>In my day-to-day work with Linux systems and development environments, I&rsquo;ve collected a variety of useful command-line snippets and troubleshooting notes.  This blog post shares some of my favorites from counting files to fixing display issues designed to boost your productivity and make your life easier. 🚀</p>
+<hr>
+<h3 id="1-quickly-count-files-in-a-folder">1. Quickly Count Files in a Folder</h3>
+<pre><code class="language-bash">fcount() { ls -1q &quot;$1&quot; | wc -l; }
+</code></pre>
+<blockquote>
+<p>Example:<br>
+<code>fcount /home/nguyenlm/wavs</code> → <code>27</code></p>
+</blockquote>
+<hr>
+<h3 id="2-force-fix-broken-cuda-installation">2. Force Fix Broken CUDA Installation</h3>
+<pre><code class="language-bash">sudo apt-get -o Dpkg::Options::=&quot;--force-overwrite&quot; install --fix-broken
+</code></pre>
+<hr>
+<h3 id="3-count-non-blank-lines-in-a-file">3. Count Non-Blank Lines in a File</h3>
+<pre><code class="language-bash">nbl-count() { grep -cve '^\s*$' &quot;$1&quot;; }
+</code></pre>
+<blockquote>
+<p>Example:<br>
+<code>nbl-count file.txt</code> → <code>10</code></p>
+</blockquote>
+<hr>
+<h3 id="4-run-docker-without-sudo">4. Run Docker Without Sudo</h3>
+<pre><code class="language-bash">sudo chmod 666 /var/run/docker.sock
+</code></pre>
+<blockquote>
+<p>⚠️ <strong>Warning</strong>: This gives broad access to Docker socket. In production, add user to <code>docker</code> group instead.</p>
+</blockquote>
+<hr>
+<h3 id="5-fix-second-monitor-detection-in-ubuntu">5. Fix Second Monitor Detection in Ubuntu</h3>
+<pre><code class="language-bash">sudo apt-get purge 'nvidia*'
+sudo add-apt-repository ppa:graphics-drivers
+sudo apt-get update
+sudo ubuntu-drivers autoinstall
+</code></pre>
+<hr>
+<h3 id="6-fix-invalid-mit-magic-cookie-1-error-javafx-display-issue">6. Fix &ldquo;Invalid MIT-MAGIC-COOKIE-1&rdquo; Error (JavaFX Display Issue)</h3>
+<p>First, check your active DISPLAY:</p>
+<pre><code class="language-bash">who
+# Example: user :1 2017-10-12 21:58 (:1)
+</code></pre>
+<p>Set the correct environment:</p>
+<pre><code class="language-bash">export DISPLAY=:1.0
+zenity --info --text &quot;foobar&quot;
+</code></pre>
+<blockquote>
+<p>Tip: Check <code>.bashrc</code>, <code>.zshrc</code>, <code>/etc/environment</code>, or desktop environment configs.</p>
+</blockquote>
+<p>Reference: <a href="https://bbs.archlinux.org/viewtopic.php?id=230828" target="_blank" rel="noopener">Arch Linux Forum</a></p>
+<hr>
+<h3 id="7-check-folder-size-quickly">7. Check Folder Size Quickly</h3>
+<pre><code class="language-bash">sizeof() {
+    du -h --max-depth=0 &quot;$1&quot;
+}
+</code></pre>
+<blockquote>
+<p>Example:<br>
+<code>sizeof BOOK</code> → <code>895M    BOOK/</code></p>
+</blockquote>
+<hr>
+<h3 id="8-sync-files-from-local-to-remote-using-rsync">8. Sync Files from Local to Remote Using Rsync</h3>
+<pre><code class="language-bash">rsync -aPz -e &quot;ssh -p port&quot; local_folder/ user@remote_host:remote_folder
+</code></pre>
+<blockquote>
+<p>Tip: Add <code>-n</code> for dry-run to preview changes.</p>
+</blockquote>
+<p>Reference: <a href="https://linuxize.com/post/how-to-use-rsync-for-local-and-remote-data-transfer-and-synchronization/" target="_blank" rel="noopener">Rsync Command in Linux - Linuxize</a></p>
+<hr>
+<h3 id="9-find-and-kill-specific-processes">9. Find and Kill Specific Processes</h3>
+<pre><code class="language-bash">kill $(ps aux | grep '[p]rocess.py' | awk '{print $2}')
+</code></pre>
+<blockquote>
+<p><code>[p]</code> prevents the grep command from appearing in the process list.</p>
+</blockquote>
+<hr>
+<h3 id="10-recover-a-lost-tmux-session">10. Recover a Lost Tmux Session</h3>
+<pre><code class="language-bash">pkill -USR1 tmux
+</code></pre>
+<hr>
+<h2 id="final-thoughts">Final Thoughts</h2>
+<p>These snippets have saved me countless hours when working with Linux environments, machine learning servers, and production systems.  Feel free to bookmark or adapt them to fit your own workflow! ⚡</p>
+
+    </div>
+
+    
+
+
+
+
+
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tag/bash/">bash</a>
+  
+  <a class="badge badge-light" href="/tag/linux/">linux</a>
+  
+  <a class="badge badge-light" href="/tag/cli-tools/">cli-tools</a>
+  
+  <a class="badge badge-light" href="/tag/tips/">tips</a>
+  
+  <a class="badge badge-light" href="/tag/automation/">automation</a>
+  
+</div>
+
+
+
+<div class="share-box">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=https://leminhnguyen.github.io/post/linux-learns/helpful-commands/&amp;text=Handy%20Bash%20Snippets%20and%20Linux%20Tips" target="_blank" rel="noopener" class="share-btn-twitter" aria-label="twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=https://leminhnguyen.github.io/post/linux-learns/helpful-commands/&amp;t=Handy%20Bash%20Snippets%20and%20Linux%20Tips" target="_blank" rel="noopener" class="share-btn-facebook" aria-label="facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=Handy%20Bash%20Snippets%20and%20Linux%20Tips&amp;body=https://leminhnguyen.github.io/post/linux-learns/helpful-commands/" target="_blank" rel="noopener" class="share-btn-email" aria-label="envelope">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=https://leminhnguyen.github.io/post/linux-learns/helpful-commands/&amp;title=Handy%20Bash%20Snippets%20and%20Linux%20Tips" target="_blank" rel="noopener" class="share-btn-linkedin" aria-label="linkedin-in">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="whatsapp://send?text=Handy%20Bash%20Snippets%20and%20Linux%20Tips%20https://leminhnguyen.github.io/post/linux-learns/helpful-commands/" target="_blank" rel="noopener" class="share-btn-whatsapp" aria-label="whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=https://leminhnguyen.github.io/post/linux-learns/helpful-commands/&amp;title=Handy%20Bash%20Snippets%20and%20Linux%20Tips" target="_blank" rel="noopener" class="share-btn-weibo" aria-label="weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+  
+  
+    
+  
+  
+  
+  <div class="media author-card content-widget-hr">
+    
+      
+      <a href="https://leminhnguyen.github.io/"><img class="avatar mr-3 avatar-circle" src="/author/minh-nguyen-le/avatar_hue73c4865dd3562863accf819672b4d4e_72777_270x270_fill_lanczos_center_3.png" alt="Minh Nguyen Le"></a>
+    
+
+    <div class="media-body">
+      <h5 class="card-title"><a href="https://leminhnguyen.github.io/">Minh Nguyen Le</a></h5>
+      <h6 class="card-subtitle">AI Engineer</h6>
+      
+      <ul class="network-icon" aria-hidden="true">
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="/about/#contact" >
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://www.facebook.com/minhnguyen.le.180072/" target="_blank" rel="noopener">
+        <i class="fab fa-facebook"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://stackoverflow.com/users/10629841/leminhnguyen" target="_blank" rel="noopener">
+        <i class="fab fa-stack-overflow"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://www.linkedin.com/in/minh-nguyen-le-a83b0419b/" target="_blank" rel="noopener">
+        <i class="fab fa-linkedin"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://github.com/leminhnguyen" target="_blank" rel="noopener">
+        <i class="fab fa-github"></i>
+      </a>
+    </li>
+  
+</ul>
+
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="article-widget">
+  
+<div class="post-nav">
+  
+  
+  
+  <div class="post-nav-item">
+    <div class="meta-nav">Previous</div>
+    <a href="/post/voice-research/speaker-diarization/" rel="prev">Sort Loss and Cross Entropy Explained: How Speaker Diarization Models Learn</a>
+  </div>
+  
+</div>
+
+</div>
+
+
+
+
+
+  
+  
+  <div class="article-widget content-widget-hr">
+    <h3>Related</h3>
+    <ul>
+      
+      <li><a href="/post/linux-learns/broken-pipe-error/">Fix &#34;[Errno 32] Broken pipe&#34; in Python</a></li>
+      
+      <li><a href="/post/linux-learns/kill-zombie-processes/">How to kill zombie processes using GPU ?</a></li>
+      
+    </ul>
+  </div>
+  
+
+
+
+
+
+  </div>
+</article>
+  </div>
+
+  <div class="page-footer">
+    
+    
+    <div class="container">
+      <footer class="site-footer">
+
+  
+
+
+
+  
+
+  
+
+  
+  <p class="powered-by">
+    © {2025} leminhnguyen
+  </p>
+  
+
+  
+  
+
+
+
+
+
+
+  <p class="powered-by">
+    
+    
+    
+      
+      
+      
+      
+      
+      
+      Published with <a href="https://wowchemy.com/?utm_campaign=poweredby" target="_blank" rel="noopener">Wowchemy</a> — the free, <a href="https://github.com/wowchemy/wowchemy-hugo-themes" target="_blank" rel="noopener">open source</a> website builder that empowers creators.
+    
+  </p>
+</footer>
+
+    </div>
+    
+  </div>
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+      
+
+    
+    <script src="/js/vendor-bundle.min.5a3a4e7cbc7b4e121b2d29312cf8ad59.js"></script>
+
+    
+    
+    
+      
+      
+
+      
+      
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/highlight.min.js" integrity="sha512-TDKKr+IvoqZnPzc3l35hdjpHD0m+b2EC2SrLEgKDRWpxf2rFCxemkgvJ5kfU48ip+Y+m2XVKyOCD85ybtlZDmw==" crossorigin="anonymous"></script>
+        
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/r.min.js" crossorigin="anonymous"></script>
+        
+      
+
+    
+
+    
+    
+    
+
+    
+    
+
+    
+    
+    
+      
+      <script id="search-hit-fuse-template" type="text/x-template">
+        <div class="search-hit" id="summary-{{key}}">
+          <div class="search-hit-content">
+            <div class="search-hit-name">
+              <a href="{{relpermalink}}">{{title}}</a>
+              <div class="article-metadata search-hit-type">{{type}}</div>
+              <p class="search-hit-description">{{snippet}}</p>
+            </div>
+          </div>
+        </div>
+      </script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+      
+    
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+      
+      
+      
+      
+      
+      
+      
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+    
+    
+    <script src="/en/js/wowchemy.min.44f54723226744971bcdd9c0ca685057.js"></script>
+
+    
+
+
+
+
+
+
+</body>
+</html>

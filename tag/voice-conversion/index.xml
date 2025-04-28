@@ -5,7 +5,7 @@
     <link>https://leminhnguyen.github.io/tag/voice-conversion/</link>
       <atom:link href="https://leminhnguyen.github.io/tag/voice-conversion/index.xml" rel="self" type="application/rss+xml" />
     <description>voice-conversion</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>© {2022} leminhnguyen</copyright><lastBuildDate>Wed, 09 Mar 2022 11:01:17 +0000</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>© {2025} leminhnguyen</copyright><lastBuildDate>Wed, 09 Mar 2022 11:01:17 +0000</lastBuildDate>
     <image>
       <url>https://leminhnguyen.github.io/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_3.png</url>
       <title>voice-conversion</title>
@@ -14,9 +14,9 @@
     
     <item>
       <title>KNN-VC vs Phoneme Hallucinator [09/03/2024] ?</title>
-      <link>https://leminhnguyen.github.io/post/tts-learns/voice-conversion-09-03-2024/</link>
+      <link>https://leminhnguyen.github.io/post/voice-research/voice-conversion/voice-conversion-09-03-2024/</link>
       <pubDate>Wed, 09 Mar 2022 11:01:17 +0000</pubDate>
-      <guid>https://leminhnguyen.github.io/post/tts-learns/voice-conversion-09-03-2024/</guid>
+      <guid>https://leminhnguyen.github.io/post/voice-research/voice-conversion/voice-conversion-09-03-2024/</guid>
       <description>&lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
 
 
@@ -35,10 +35,10 @@
 &lt;figure  &gt;
   &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
     &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;&#34; srcset=&#34;
-               /post/tts-learns/voice-conversion-09-03-2024/images/phoneme_hallucinator_hu247d5b7fd5c49ebd144b6f04e075f068_52595_25a7f069e8f68b7c0d925051fcbe7fb4.png 400w,
-               /post/tts-learns/voice-conversion-09-03-2024/images/phoneme_hallucinator_hu247d5b7fd5c49ebd144b6f04e075f068_52595_ba4aaaf560428797c0d9482aa234b0a6.png 760w,
-               /post/tts-learns/voice-conversion-09-03-2024/images/phoneme_hallucinator_hu247d5b7fd5c49ebd144b6f04e075f068_52595_1200x1200_fit_lanczos_3.png 1200w&#34;
-               src=&#34;https://leminhnguyen.github.io/post/tts-learns/voice-conversion-09-03-2024/images/phoneme_hallucinator_hu247d5b7fd5c49ebd144b6f04e075f068_52595_25a7f069e8f68b7c0d925051fcbe7fb4.png&#34;
+               /post/voice-research/voice-conversion/voice-conversion-09-03-2024/images/phoneme_hallucinator_hu247d5b7fd5c49ebd144b6f04e075f068_52595_25a7f069e8f68b7c0d925051fcbe7fb4.png 400w,
+               /post/voice-research/voice-conversion/voice-conversion-09-03-2024/images/phoneme_hallucinator_hu247d5b7fd5c49ebd144b6f04e075f068_52595_ba4aaaf560428797c0d9482aa234b0a6.png 760w,
+               /post/voice-research/voice-conversion/voice-conversion-09-03-2024/images/phoneme_hallucinator_hu247d5b7fd5c49ebd144b6f04e075f068_52595_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://leminhnguyen.github.io/post/voice-research/voice-conversion/voice-conversion-09-03-2024/images/phoneme_hallucinator_hu247d5b7fd5c49ebd144b6f04e075f068_52595_25a7f069e8f68b7c0d925051fcbe7fb4.png&#34;
                width=&#34;752&#34;
                height=&#34;486&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
@@ -162,10 +162,10 @@
 &lt;figure  &gt;
   &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
     &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;&#34; srcset=&#34;
-               /post/tts-learns/voice-conversion-09-03-2024/images/main_huec624690a5e35421dcb4a187a8905990_505572_3102e5b3320686e4bfd436129d57b956.png 400w,
-               /post/tts-learns/voice-conversion-09-03-2024/images/main_huec624690a5e35421dcb4a187a8905990_505572_ba247c54d0c340584a86934861cb6f46.png 760w,
-               /post/tts-learns/voice-conversion-09-03-2024/images/main_huec624690a5e35421dcb4a187a8905990_505572_1200x1200_fit_lanczos_3.png 1200w&#34;
-               src=&#34;https://leminhnguyen.github.io/post/tts-learns/voice-conversion-09-03-2024/images/main_huec624690a5e35421dcb4a187a8905990_505572_3102e5b3320686e4bfd436129d57b956.png&#34;
+               /post/voice-research/voice-conversion/voice-conversion-09-03-2024/images/main_huec624690a5e35421dcb4a187a8905990_505572_3102e5b3320686e4bfd436129d57b956.png 400w,
+               /post/voice-research/voice-conversion/voice-conversion-09-03-2024/images/main_huec624690a5e35421dcb4a187a8905990_505572_ba247c54d0c340584a86934861cb6f46.png 760w,
+               /post/voice-research/voice-conversion/voice-conversion-09-03-2024/images/main_huec624690a5e35421dcb4a187a8905990_505572_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://leminhnguyen.github.io/post/voice-research/voice-conversion/voice-conversion-09-03-2024/images/main_huec624690a5e35421dcb4a187a8905990_505572_3102e5b3320686e4bfd436129d57b956.png&#34;
                width=&#34;720&#34;
                height=&#34;760&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
@@ -174,9 +174,9 @@
     
     <item>
       <title>KNN-VC vs Phoneme Hallucinator [23/03/2024] ?</title>
-      <link>https://leminhnguyen.github.io/post/tts-learns/voice-conversion-23-03-2024/</link>
+      <link>https://leminhnguyen.github.io/post/voice-research/voice-conversion/voice-conversion-23-03-2024/</link>
       <pubDate>Wed, 09 Mar 2022 11:01:17 +0000</pubDate>
-      <guid>https://leminhnguyen.github.io/post/tts-learns/voice-conversion-23-03-2024/</guid>
+      <guid>https://leminhnguyen.github.io/post/voice-research/voice-conversion/voice-conversion-23-03-2024/</guid>
       <description>&lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
 
 
@@ -195,10 +195,10 @@
 &lt;figure  &gt;
   &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
     &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;&#34; srcset=&#34;
-               /post/tts-learns/voice-conversion-23-03-2024/images/voice-conversion-improvement_hu9c2c2c0b1c61256ebe168fc02f8de765_124214_a2d27f9f56804762a78877b0a2bfc74d.png 400w,
-               /post/tts-learns/voice-conversion-23-03-2024/images/voice-conversion-improvement_hu9c2c2c0b1c61256ebe168fc02f8de765_124214_83c259e7f182431e085e9b327cdd2c18.png 760w,
-               /post/tts-learns/voice-conversion-23-03-2024/images/voice-conversion-improvement_hu9c2c2c0b1c61256ebe168fc02f8de765_124214_1200x1200_fit_lanczos_3.png 1200w&#34;
-               src=&#34;https://leminhnguyen.github.io/post/tts-learns/voice-conversion-23-03-2024/images/voice-conversion-improvement_hu9c2c2c0b1c61256ebe168fc02f8de765_124214_a2d27f9f56804762a78877b0a2bfc74d.png&#34;
+               /post/voice-research/voice-conversion/voice-conversion-23-03-2024/images/voice-conversion-improvement_hu9c2c2c0b1c61256ebe168fc02f8de765_124214_a2d27f9f56804762a78877b0a2bfc74d.png 400w,
+               /post/voice-research/voice-conversion/voice-conversion-23-03-2024/images/voice-conversion-improvement_hu9c2c2c0b1c61256ebe168fc02f8de765_124214_83c259e7f182431e085e9b327cdd2c18.png 760w,
+               /post/voice-research/voice-conversion/voice-conversion-23-03-2024/images/voice-conversion-improvement_hu9c2c2c0b1c61256ebe168fc02f8de765_124214_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://leminhnguyen.github.io/post/voice-research/voice-conversion/voice-conversion-23-03-2024/images/voice-conversion-improvement_hu9c2c2c0b1c61256ebe168fc02f8de765_124214_a2d27f9f56804762a78877b0a2bfc74d.png&#34;
                width=&#34;760&#34;
                height=&#34;446&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
@@ -322,10 +322,10 @@
 &lt;figure  &gt;
   &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
     &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;&#34; srcset=&#34;
-               /post/tts-learns/voice-conversion-23-03-2024/images/main_huec624690a5e35421dcb4a187a8905990_505572_3102e5b3320686e4bfd436129d57b956.png 400w,
-               /post/tts-learns/voice-conversion-23-03-2024/images/main_huec624690a5e35421dcb4a187a8905990_505572_ba247c54d0c340584a86934861cb6f46.png 760w,
-               /post/tts-learns/voice-conversion-23-03-2024/images/main_huec624690a5e35421dcb4a187a8905990_505572_1200x1200_fit_lanczos_3.png 1200w&#34;
-               src=&#34;https://leminhnguyen.github.io/post/tts-learns/voice-conversion-23-03-2024/images/main_huec624690a5e35421dcb4a187a8905990_505572_3102e5b3320686e4bfd436129d57b956.png&#34;
+               /post/voice-research/voice-conversion/voice-conversion-23-03-2024/images/main_huec624690a5e35421dcb4a187a8905990_505572_3102e5b3320686e4bfd436129d57b956.png 400w,
+               /post/voice-research/voice-conversion/voice-conversion-23-03-2024/images/main_huec624690a5e35421dcb4a187a8905990_505572_ba247c54d0c340584a86934861cb6f46.png 760w,
+               /post/voice-research/voice-conversion/voice-conversion-23-03-2024/images/main_huec624690a5e35421dcb4a187a8905990_505572_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://leminhnguyen.github.io/post/voice-research/voice-conversion/voice-conversion-23-03-2024/images/main_huec624690a5e35421dcb4a187a8905990_505572_3102e5b3320686e4bfd436129d57b956.png&#34;
                width=&#34;720&#34;
                height=&#34;760&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
@@ -334,9 +334,9 @@
     
     <item>
       <title>Vietnamese Voice Conversion</title>
-      <link>https://leminhnguyen.github.io/post/tts-learns/voice-conversion-10-04-2024/</link>
+      <link>https://leminhnguyen.github.io/post/voice-research/voice-conversion/voice-conversion-10-04-2024/</link>
       <pubDate>Wed, 09 Mar 2022 11:01:17 +0000</pubDate>
-      <guid>https://leminhnguyen.github.io/post/tts-learns/voice-conversion-10-04-2024/</guid>
+      <guid>https://leminhnguyen.github.io/post/voice-research/voice-conversion/voice-conversion-10-04-2024/</guid>
       <description>&lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
 &lt;div style=&#34;text-align:justify&#34;&gt;
 This thesis develops a voice conversion model for Vietnamese based on the Phoneme Hallucinator model with 2 adoptions: (1) Add a Text2SSL module to get more context information before performing the KNN algorithm, (2) To create a more
@@ -359,10 +359,10 @@ diverse dataset we apply spectrogram-resize (SR) based data augmentation idea fr
 &lt;figure  id=&#34;figure-the-proposal-model&#34;&gt;
   &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
     &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;The proposal model&#34; srcset=&#34;
-               /post/tts-learns/voice-conversion-10-04-2024/images/new-vc-architecture_hu971822d0f98b31a6e6ccd103a428207c_122016_402d308e4cc0466a6716761c67ac5260.png 400w,
-               /post/tts-learns/voice-conversion-10-04-2024/images/new-vc-architecture_hu971822d0f98b31a6e6ccd103a428207c_122016_5bbc6f5994e960a7413518bb425da12a.png 760w,
-               /post/tts-learns/voice-conversion-10-04-2024/images/new-vc-architecture_hu971822d0f98b31a6e6ccd103a428207c_122016_1200x1200_fit_lanczos_3.png 1200w&#34;
-               src=&#34;https://leminhnguyen.github.io/post/tts-learns/voice-conversion-10-04-2024/images/new-vc-architecture_hu971822d0f98b31a6e6ccd103a428207c_122016_402d308e4cc0466a6716761c67ac5260.png&#34;
+               /post/voice-research/voice-conversion/voice-conversion-10-04-2024/images/new-vc-architecture_hu971822d0f98b31a6e6ccd103a428207c_122016_402d308e4cc0466a6716761c67ac5260.png 400w,
+               /post/voice-research/voice-conversion/voice-conversion-10-04-2024/images/new-vc-architecture_hu971822d0f98b31a6e6ccd103a428207c_122016_5bbc6f5994e960a7413518bb425da12a.png 760w,
+               /post/voice-research/voice-conversion/voice-conversion-10-04-2024/images/new-vc-architecture_hu971822d0f98b31a6e6ccd103a428207c_122016_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://leminhnguyen.github.io/post/voice-research/voice-conversion/voice-conversion-10-04-2024/images/new-vc-architecture_hu971822d0f98b31a6e6ccd103a428207c_122016_402d308e4cc0466a6716761c67ac5260.png&#34;
                width=&#34;760&#34;
                height=&#34;607&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
@@ -386,10 +386,10 @@ diverse dataset we apply spectrogram-resize (SR) based data augmentation idea fr
 &lt;figure  &gt;
   &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
     &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;&#34; srcset=&#34;
-               /post/tts-learns/voice-conversion-10-04-2024/images/spec-augmentation_hud7d16e2cc8f6180373396b214284b457_491908_54a6cd26a3842fb84b50dc5e8f9b4ac5.png 400w,
-               /post/tts-learns/voice-conversion-10-04-2024/images/spec-augmentation_hud7d16e2cc8f6180373396b214284b457_491908_8f518ab3170d7857360ba1ffa07379d5.png 760w,
-               /post/tts-learns/voice-conversion-10-04-2024/images/spec-augmentation_hud7d16e2cc8f6180373396b214284b457_491908_1200x1200_fit_lanczos_3.png 1200w&#34;
-               src=&#34;https://leminhnguyen.github.io/post/tts-learns/voice-conversion-10-04-2024/images/spec-augmentation_hud7d16e2cc8f6180373396b214284b457_491908_54a6cd26a3842fb84b50dc5e8f9b4ac5.png&#34;
+               /post/voice-research/voice-conversion/voice-conversion-10-04-2024/images/spec-augmentation_hud7d16e2cc8f6180373396b214284b457_491908_54a6cd26a3842fb84b50dc5e8f9b4ac5.png 400w,
+               /post/voice-research/voice-conversion/voice-conversion-10-04-2024/images/spec-augmentation_hud7d16e2cc8f6180373396b214284b457_491908_8f518ab3170d7857360ba1ffa07379d5.png 760w,
+               /post/voice-research/voice-conversion/voice-conversion-10-04-2024/images/spec-augmentation_hud7d16e2cc8f6180373396b214284b457_491908_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://leminhnguyen.github.io/post/voice-research/voice-conversion/voice-conversion-10-04-2024/images/spec-augmentation_hud7d16e2cc8f6180373396b214284b457_491908_54a6cd26a3842fb84b50dc5e8f9b4ac5.png&#34;
                width=&#34;760&#34;
                height=&#34;351&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
@@ -531,10 +531,10 @@ diverse dataset we apply spectrogram-resize (SR) based data augmentation idea fr
 &lt;figure  &gt;
   &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
     &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;&#34; srcset=&#34;
-               /post/tts-learns/voice-conversion-10-04-2024/images/main_huec624690a5e35421dcb4a187a8905990_505572_3102e5b3320686e4bfd436129d57b956.png 400w,
-               /post/tts-learns/voice-conversion-10-04-2024/images/main_huec624690a5e35421dcb4a187a8905990_505572_ba247c54d0c340584a86934861cb6f46.png 760w,
-               /post/tts-learns/voice-conversion-10-04-2024/images/main_huec624690a5e35421dcb4a187a8905990_505572_1200x1200_fit_lanczos_3.png 1200w&#34;
-               src=&#34;https://leminhnguyen.github.io/post/tts-learns/voice-conversion-10-04-2024/images/main_huec624690a5e35421dcb4a187a8905990_505572_3102e5b3320686e4bfd436129d57b956.png&#34;
+               /post/voice-research/voice-conversion/voice-conversion-10-04-2024/images/main_huec624690a5e35421dcb4a187a8905990_505572_3102e5b3320686e4bfd436129d57b956.png 400w,
+               /post/voice-research/voice-conversion/voice-conversion-10-04-2024/images/main_huec624690a5e35421dcb4a187a8905990_505572_ba247c54d0c340584a86934861cb6f46.png 760w,
+               /post/voice-research/voice-conversion/voice-conversion-10-04-2024/images/main_huec624690a5e35421dcb4a187a8905990_505572_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://leminhnguyen.github.io/post/voice-research/voice-conversion/voice-conversion-10-04-2024/images/main_huec624690a5e35421dcb4a187a8905990_505572_3102e5b3320686e4bfd436129d57b956.png&#34;
                width=&#34;720&#34;
                height=&#34;760&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;

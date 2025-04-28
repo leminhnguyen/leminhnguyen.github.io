@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>cli-tools | leminhnguyen&#39;s blog</title>
+    <link>https://leminhnguyen.github.io/tag/cli-tools/</link>
+      <atom:link href="https://leminhnguyen.github.io/tag/cli-tools/index.xml" rel="self" type="application/rss+xml" />
+    <description>cli-tools</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>© {2025} leminhnguyen</copyright><lastBuildDate>Mon, 28 Apr 2025 12:00:00 +0000</lastBuildDate>
+    <image>
+      <url>https://leminhnguyen.github.io/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_3.png</url>
+      <title>cli-tools</title>
+      <link>https://leminhnguyen.github.io/tag/cli-tools/</link>
+    </image>
+    
+    <item>
+      <title>Handy Bash Snippets and Linux Tips</title>
+      <link>https://leminhnguyen.github.io/post/linux-learns/helpful-commands/</link>
+      <pubDate>Mon, 28 Apr 2025 12:00:00 +0000</pubDate>
+      <guid>https://leminhnguyen.github.io/post/linux-learns/helpful-commands/</guid>
+      <description>&lt;p&gt;In my day-to-day work with Linux systems and development environments, I&amp;rsquo;ve collected a variety of useful command-line snippets and troubleshooting notes.  This blog post shares some of my favorites from counting files to fixing display issues designed to boost your productivity and make your life easier. 🚀&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;1-quickly-count-files-in-a-folder&#34;&gt;1. Quickly Count Files in a Folder&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;fcount() { ls -1q &amp;quot;$1&amp;quot; | wc -l; }
+&lt;/code&gt;&lt;/pre&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Example:&lt;br&gt;
+&lt;code&gt;fcount /home/nguyenlm/wavs&lt;/code&gt; → &lt;code&gt;27&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;2-force-fix-broken-cuda-installation&#34;&gt;2. Force Fix Broken CUDA Installation&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sudo apt-get -o Dpkg::Options::=&amp;quot;--force-overwrite&amp;quot; install --fix-broken
+&lt;/code&gt;&lt;/pre&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;3-count-non-blank-lines-in-a-file&#34;&gt;3. Count Non-Blank Lines in a File&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;nbl-count() { grep -cve &#39;^\s*$&#39; &amp;quot;$1&amp;quot;; }
+&lt;/code&gt;&lt;/pre&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Example:&lt;br&gt;
+&lt;code&gt;nbl-count file.txt&lt;/code&gt; → &lt;code&gt;10&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;4-run-docker-without-sudo&#34;&gt;4. Run Docker Without Sudo&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sudo chmod 666 /var/run/docker.sock
+&lt;/code&gt;&lt;/pre&gt;
+&lt;blockquote&gt;
+&lt;p&gt;⚠️ &lt;strong&gt;Warning&lt;/strong&gt;: This gives broad access to Docker socket. In production, add user to &lt;code&gt;docker&lt;/code&gt; group instead.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;5-fix-second-monitor-detection-in-ubuntu&#34;&gt;5. Fix Second Monitor Detection in Ubuntu&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sudo apt-get purge &#39;nvidia*&#39;
+sudo add-apt-repository ppa:graphics-drivers
+sudo apt-get update
+sudo ubuntu-drivers autoinstall
+&lt;/code&gt;&lt;/pre&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;6-fix-invalid-mit-magic-cookie-1-error-javafx-display-issue&#34;&gt;6. Fix &amp;ldquo;Invalid MIT-MAGIC-COOKIE-1&amp;rdquo; Error (JavaFX Display Issue)&lt;/h3&gt;
+&lt;p&gt;First, check your active DISPLAY:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;who
+# Example: user :1 2017-10-12 21:58 (:1)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Set the correct environment:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;export DISPLAY=:1.0
+zenity --info --text &amp;quot;foobar&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Tip: Check &lt;code&gt;.bashrc&lt;/code&gt;, &lt;code&gt;.zshrc&lt;/code&gt;, &lt;code&gt;/etc/environment&lt;/code&gt;, or desktop environment configs.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Reference: &lt;a href=&#34;https://bbs.archlinux.org/viewtopic.php?id=230828&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Arch Linux Forum&lt;/a&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;7-check-folder-size-quickly&#34;&gt;7. Check Folder Size Quickly&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sizeof() {
+    du -h --max-depth=0 &amp;quot;$1&amp;quot;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Example:&lt;br&gt;
+&lt;code&gt;sizeof BOOK&lt;/code&gt; → &lt;code&gt;895M    BOOK/&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;8-sync-files-from-local-to-remote-using-rsync&#34;&gt;8. Sync Files from Local to Remote Using Rsync&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;rsync -aPz -e &amp;quot;ssh -p port&amp;quot; local_folder/ user@remote_host:remote_folder
+&lt;/code&gt;&lt;/pre&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Tip: Add &lt;code&gt;-n&lt;/code&gt; for dry-run to preview changes.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Reference: &lt;a href=&#34;https://linuxize.com/post/how-to-use-rsync-for-local-and-remote-data-transfer-and-synchronization/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Rsync Command in Linux - Linuxize&lt;/a&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;9-find-and-kill-specific-processes&#34;&gt;9. Find and Kill Specific Processes&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;kill $(ps aux | grep &#39;[p]rocess.py&#39; | awk &#39;{print $2}&#39;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;[p]&lt;/code&gt; prevents the grep command from appearing in the process list.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;10-recover-a-lost-tmux-session&#34;&gt;10. Recover a Lost Tmux Session&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;pkill -USR1 tmux
+&lt;/code&gt;&lt;/pre&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;final-thoughts&#34;&gt;Final Thoughts&lt;/h2&gt;
+&lt;p&gt;These snippets have saved me countless hours when working with Linux environments, machine learning servers, and production systems.  Feel free to bookmark or adapt them to fit your own workflow! ⚡&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tutorials | leminhnguyen&#39;s blog</title>
+    <link>https://leminhnguyen.github.io/category/tutorials/</link>
+      <atom:link href="https://leminhnguyen.github.io/category/tutorials/index.xml" rel="self" type="application/rss+xml" />
+    <description>Tutorials</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>© {2025} leminhnguyen</copyright><lastBuildDate>Mon, 28 Apr 2025 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>https://leminhnguyen.github.io/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_3.png</url>
+      <title>Tutorials</title>
+      <link>https://leminhnguyen.github.io/category/tutorials/</link>
+    </image>
+    
+    <item>
+      <title>Sort Loss and Cross Entropy Explained: How Speaker Diarization Models Learn</title>
+      <link>https://leminhnguyen.github.io/post/voice-research/speaker-diarization/</link>
+      <pubDate>Mon, 28 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>https://leminhnguyen.github.io/post/voice-research/speaker-diarization/</guid>
+      <description>&lt;h1 id=&#34;introduction&#34;&gt;Introduction&lt;/h1&gt;
+&lt;p&gt;In multi-speaker speech tasks like &lt;strong&gt;speaker diarization&lt;/strong&gt;, correctly identifying &amp;ldquo;who spoke when&amp;rdquo; is challenging. Traditional models use &lt;strong&gt;Permutation Invariant Loss (PIL)&lt;/strong&gt;, but newer models like &lt;strong&gt;Sortformer&lt;/strong&gt; introduce a faster and smarter way to handle this: &lt;strong&gt;Sort Loss&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;In this blog post, we&amp;rsquo;ll explain:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;How Sort Loss works.&lt;/li&gt;
+&lt;li&gt;How Sortformer training happens.&lt;/li&gt;
+&lt;li&gt;Why we use Binary Cross-Entropy (BCE) instead of traditional Cross-Entropy (CE).&lt;/li&gt;
+&lt;li&gt;How Softmax and Sigmoid activations differ.&lt;/li&gt;
+&lt;li&gt;Tiny examples to make it crystal clear!&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h1 id=&#34;what-problem-does-sort-loss-solve&#34;&gt;What Problem Does Sort Loss Solve?&lt;/h1&gt;
+&lt;p&gt;Speaker diarization models predict &lt;strong&gt;who&lt;/strong&gt; is speaking at &lt;strong&gt;each frame&lt;/strong&gt; of audio.&lt;br&gt;
+But — &lt;strong&gt;the model doesn&amp;rsquo;t know speaker identities&lt;/strong&gt;! It only uses generic speaker labels (e.g., Speaker-0, Speaker-1).&lt;/p&gt;
+&lt;p&gt;Traditional training needs to match predicted speakers to ground-truth speakers, trying every possible permutation (PIL) — very expensive when many speakers exist!&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Sortformer&lt;/strong&gt; solves this by introducing &lt;strong&gt;Sort Loss&lt;/strong&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Sort speakers &lt;strong&gt;by their speaking start time&lt;/strong&gt; (Arrival Time Order — ATO).&lt;/li&gt;
+&lt;li&gt;Always treat the first speaker as Speaker-0, second as Speaker-1, etc.&lt;/li&gt;
+&lt;li&gt;No need for heavy permutation matching!&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h1 id=&#34;how-sortformer-training-works&#34;&gt;How Sortformer Training Works&lt;/h1&gt;
+&lt;p&gt;The training steps are:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Input audio&lt;/strong&gt; ➔ Extract frame-wise features.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Sort the ground-truth speakers&lt;/strong&gt; by their &lt;strong&gt;start time&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Model predicts&lt;/strong&gt; frame-level speaker activities independently (using Sigmoid).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Calculate Sort Loss&lt;/strong&gt;: Match model outputs with sorted true labels using &lt;strong&gt;Binary Cross-Entropy&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Backpropagate&lt;/strong&gt; and update model.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;✅ Speakers who speak earlier are consistently mapped to earlier speaker labels during training!&lt;/p&gt;
+&lt;hr&gt;
+&lt;h1 id=&#34;-sort-loss-formula&#34;&gt;📜 Sort Loss Formula&lt;/h1&gt;
+&lt;p&gt;Mathematically, Sort Loss is:&lt;/p&gt;
+&lt;p&gt;[
+L_{\text{Sort}}(Y, P) = \frac{1}{K} \sum_{k=1}^{K} \text{BCE}(y_{\eta(k)}, q_k)
+]&lt;/p&gt;
+&lt;p&gt;where:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;(Y) = ground-truth speaker activities.&lt;/li&gt;
+&lt;li&gt;(P) = predicted speaker probabilities.&lt;/li&gt;
+&lt;li&gt;(\eta(k)) = the sorted index by arrival time.&lt;/li&gt;
+&lt;li&gt;(K) = number of speakers.&lt;/li&gt;
+&lt;li&gt;BCE = Binary Cross-Entropy loss.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;✅ Each speaker is evaluated independently.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h1 id=&#34;-why-binary-cross-entropy-bce-not-normal-cross-entropy&#34;&gt;🤔 Why Binary Cross-Entropy (BCE), Not Normal Cross-Entropy?&lt;/h1&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;Feature&lt;/th&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;Cross Entropy (CE)&lt;/th&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;Binary Cross Entropy (BCE)&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Use case&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Single-label classification&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Multi-label classification&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Output Activation&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Softmax (probabilities sum to 1)&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Sigmoid (independent probabilities)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Can handle overlaps?&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;❌ No&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;✅ Yes&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Example&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Pick one animal (cat, dog, rabbit)&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Pick all fruits you like (apple, banana, grape)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;In speaker diarization:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Multiple speakers can talk at once&lt;/strong&gt; ➔ multi-label ➔ &lt;strong&gt;Binary Cross Entropy is needed&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;Each speaker is predicted &lt;strong&gt;independently&lt;/strong&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h1 id=&#34;-tiny-example-of-sort-loss-in-action&#34;&gt;🔥 Tiny Example of Sort Loss in Action&lt;/h1&gt;
+&lt;p&gt;Suppose we have 2 speakers and 3 frames:&lt;/p&gt;
+&lt;p&gt;Ground-truth (after sorting):&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;Frame&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;spk0&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;spk1&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;t1&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;1&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;t2&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;1&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;t3&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;0&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Predicted outputs:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;Frame&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;spk0&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;spk1&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;t1&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;0.9&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;0.1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;t2&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;0.6&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;0.8&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;t3&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;0.2&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;0.7&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Binary Cross Entropy is applied &lt;strong&gt;separately for each speaker&lt;/strong&gt;, and averaged over speakers.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h1 id=&#34;-quick-summary-softmax-vs-sigmoid&#34;&gt;🧠 Quick Summary: Softmax vs Sigmoid&lt;/h1&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;&lt;/th&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;Softmax&lt;/th&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;Sigmoid&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Sum of outputs&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;1&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Not necessarily&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Mutual exclusivity&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Yes&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;No&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Application&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Single-label classification (only 1 class active)&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Multi-label classification (multiple active)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Used with&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Cross Entropy Loss&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Binary Cross Entropy Loss&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;✅ &lt;strong&gt;Softmax&lt;/strong&gt; is used with Cross Entropy.&lt;br&gt;
+✅ &lt;strong&gt;Sigmoid&lt;/strong&gt; is used with Binary Cross Entropy.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h1 id=&#34;-conclusion&#34;&gt;📦 Conclusion&lt;/h1&gt;
+&lt;p&gt;✅ Sortformer introduces a faster, more elegant solution for speaker diarization by sorting speakers by arrival time and applying simple Binary Cross-Entropy.&lt;/p&gt;
+&lt;p&gt;✅ BCE and Sigmoid are natural choices when multiple speakers can overlap.&lt;/p&gt;
+&lt;p&gt;✅ No more expensive permutation matching is needed!&lt;/p&gt;
+&lt;hr&gt;
+&lt;h1 id=&#34;-final-words&#34;&gt;🏁 Final Words&lt;/h1&gt;
+&lt;p&gt;This approach is simpler, faster, and works better for multi-speaker real-world conversations.&lt;/p&gt;
+&lt;p&gt;Stay tuned for more tutorials where we dive into multispeaker ASR models and joint training with speaker supervision!&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

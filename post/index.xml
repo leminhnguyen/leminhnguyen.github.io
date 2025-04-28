@@ -5,7 +5,7 @@
     <link>https://leminhnguyen.github.io/post/</link>
       <atom:link href="https://leminhnguyen.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     <description>Posts</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>© {2022} leminhnguyen</copyright><lastBuildDate>Wed, 08 Jun 2022 11:22:03 +0000</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>© {2025} leminhnguyen</copyright><lastBuildDate>Wed, 08 Jun 2022 11:22:03 +0000</lastBuildDate>
     <image>
       <url>https://leminhnguyen.github.io/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_3.png</url>
       <title>Posts</title>
@@ -13,10 +13,294 @@
     </image>
     
     <item>
+      <title>Handy Bash Snippets and Linux Tips</title>
+      <link>https://leminhnguyen.github.io/post/linux-learns/helpful-commands/</link>
+      <pubDate>Mon, 28 Apr 2025 12:00:00 +0000</pubDate>
+      <guid>https://leminhnguyen.github.io/post/linux-learns/helpful-commands/</guid>
+      <description>&lt;p&gt;In my day-to-day work with Linux systems and development environments, I&amp;rsquo;ve collected a variety of useful command-line snippets and troubleshooting notes.  This blog post shares some of my favorites from counting files to fixing display issues designed to boost your productivity and make your life easier. 🚀&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;1-quickly-count-files-in-a-folder&#34;&gt;1. Quickly Count Files in a Folder&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;fcount() { ls -1q &amp;quot;$1&amp;quot; | wc -l; }
+&lt;/code&gt;&lt;/pre&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Example:&lt;br&gt;
+&lt;code&gt;fcount /home/nguyenlm/wavs&lt;/code&gt; → &lt;code&gt;27&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;2-force-fix-broken-cuda-installation&#34;&gt;2. Force Fix Broken CUDA Installation&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sudo apt-get -o Dpkg::Options::=&amp;quot;--force-overwrite&amp;quot; install --fix-broken
+&lt;/code&gt;&lt;/pre&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;3-count-non-blank-lines-in-a-file&#34;&gt;3. Count Non-Blank Lines in a File&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;nbl-count() { grep -cve &#39;^\s*$&#39; &amp;quot;$1&amp;quot;; }
+&lt;/code&gt;&lt;/pre&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Example:&lt;br&gt;
+&lt;code&gt;nbl-count file.txt&lt;/code&gt; → &lt;code&gt;10&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;4-run-docker-without-sudo&#34;&gt;4. Run Docker Without Sudo&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sudo chmod 666 /var/run/docker.sock
+&lt;/code&gt;&lt;/pre&gt;
+&lt;blockquote&gt;
+&lt;p&gt;⚠️ &lt;strong&gt;Warning&lt;/strong&gt;: This gives broad access to Docker socket. In production, add user to &lt;code&gt;docker&lt;/code&gt; group instead.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;5-fix-second-monitor-detection-in-ubuntu&#34;&gt;5. Fix Second Monitor Detection in Ubuntu&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sudo apt-get purge &#39;nvidia*&#39;
+sudo add-apt-repository ppa:graphics-drivers
+sudo apt-get update
+sudo ubuntu-drivers autoinstall
+&lt;/code&gt;&lt;/pre&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;6-fix-invalid-mit-magic-cookie-1-error-javafx-display-issue&#34;&gt;6. Fix &amp;ldquo;Invalid MIT-MAGIC-COOKIE-1&amp;rdquo; Error (JavaFX Display Issue)&lt;/h3&gt;
+&lt;p&gt;First, check your active DISPLAY:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;who
+# Example: user :1 2017-10-12 21:58 (:1)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Set the correct environment:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;export DISPLAY=:1.0
+zenity --info --text &amp;quot;foobar&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Tip: Check &lt;code&gt;.bashrc&lt;/code&gt;, &lt;code&gt;.zshrc&lt;/code&gt;, &lt;code&gt;/etc/environment&lt;/code&gt;, or desktop environment configs.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Reference: &lt;a href=&#34;https://bbs.archlinux.org/viewtopic.php?id=230828&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Arch Linux Forum&lt;/a&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;7-check-folder-size-quickly&#34;&gt;7. Check Folder Size Quickly&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sizeof() {
+    du -h --max-depth=0 &amp;quot;$1&amp;quot;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Example:&lt;br&gt;
+&lt;code&gt;sizeof BOOK&lt;/code&gt; → &lt;code&gt;895M    BOOK/&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;8-sync-files-from-local-to-remote-using-rsync&#34;&gt;8. Sync Files from Local to Remote Using Rsync&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;rsync -aPz -e &amp;quot;ssh -p port&amp;quot; local_folder/ user@remote_host:remote_folder
+&lt;/code&gt;&lt;/pre&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Tip: Add &lt;code&gt;-n&lt;/code&gt; for dry-run to preview changes.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Reference: &lt;a href=&#34;https://linuxize.com/post/how-to-use-rsync-for-local-and-remote-data-transfer-and-synchronization/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Rsync Command in Linux - Linuxize&lt;/a&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;9-find-and-kill-specific-processes&#34;&gt;9. Find and Kill Specific Processes&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;kill $(ps aux | grep &#39;[p]rocess.py&#39; | awk &#39;{print $2}&#39;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;[p]&lt;/code&gt; prevents the grep command from appearing in the process list.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;10-recover-a-lost-tmux-session&#34;&gt;10. Recover a Lost Tmux Session&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;pkill -USR1 tmux
+&lt;/code&gt;&lt;/pre&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;final-thoughts&#34;&gt;Final Thoughts&lt;/h2&gt;
+&lt;p&gt;These snippets have saved me countless hours when working with Linux environments, machine learning servers, and production systems.  Feel free to bookmark or adapt them to fit your own workflow! ⚡&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Sort Loss and Cross Entropy Explained: How Speaker Diarization Models Learn</title>
+      <link>https://leminhnguyen.github.io/post/voice-research/speaker-diarization/</link>
+      <pubDate>Mon, 28 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>https://leminhnguyen.github.io/post/voice-research/speaker-diarization/</guid>
+      <description>&lt;h1 id=&#34;introduction&#34;&gt;Introduction&lt;/h1&gt;
+&lt;p&gt;In multi-speaker speech tasks like &lt;strong&gt;speaker diarization&lt;/strong&gt;, correctly identifying &amp;ldquo;who spoke when&amp;rdquo; is challenging. Traditional models use &lt;strong&gt;Permutation Invariant Loss (PIL)&lt;/strong&gt;, but newer models like &lt;strong&gt;Sortformer&lt;/strong&gt; introduce a faster and smarter way to handle this: &lt;strong&gt;Sort Loss&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;In this blog post, we&amp;rsquo;ll explain:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;How Sort Loss works.&lt;/li&gt;
+&lt;li&gt;How Sortformer training happens.&lt;/li&gt;
+&lt;li&gt;Why we use Binary Cross-Entropy (BCE) instead of traditional Cross-Entropy (CE).&lt;/li&gt;
+&lt;li&gt;How Softmax and Sigmoid activations differ.&lt;/li&gt;
+&lt;li&gt;Tiny examples to make it crystal clear!&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h1 id=&#34;what-problem-does-sort-loss-solve&#34;&gt;What Problem Does Sort Loss Solve?&lt;/h1&gt;
+&lt;p&gt;Speaker diarization models predict &lt;strong&gt;who&lt;/strong&gt; is speaking at &lt;strong&gt;each frame&lt;/strong&gt; of audio.&lt;br&gt;
+But — &lt;strong&gt;the model doesn&amp;rsquo;t know speaker identities&lt;/strong&gt;! It only uses generic speaker labels (e.g., Speaker-0, Speaker-1).&lt;/p&gt;
+&lt;p&gt;Traditional training needs to match predicted speakers to ground-truth speakers, trying every possible permutation (PIL) — very expensive when many speakers exist!&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Sortformer&lt;/strong&gt; solves this by introducing &lt;strong&gt;Sort Loss&lt;/strong&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Sort speakers &lt;strong&gt;by their speaking start time&lt;/strong&gt; (Arrival Time Order — ATO).&lt;/li&gt;
+&lt;li&gt;Always treat the first speaker as Speaker-0, second as Speaker-1, etc.&lt;/li&gt;
+&lt;li&gt;No need for heavy permutation matching!&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h1 id=&#34;how-sortformer-training-works&#34;&gt;How Sortformer Training Works&lt;/h1&gt;
+&lt;p&gt;The training steps are:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Input audio&lt;/strong&gt; ➔ Extract frame-wise features.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Sort the ground-truth speakers&lt;/strong&gt; by their &lt;strong&gt;start time&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Model predicts&lt;/strong&gt; frame-level speaker activities independently (using Sigmoid).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Calculate Sort Loss&lt;/strong&gt;: Match model outputs with sorted true labels using &lt;strong&gt;Binary Cross-Entropy&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Backpropagate&lt;/strong&gt; and update model.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;✅ Speakers who speak earlier are consistently mapped to earlier speaker labels during training!&lt;/p&gt;
+&lt;hr&gt;
+&lt;h1 id=&#34;-sort-loss-formula&#34;&gt;📜 Sort Loss Formula&lt;/h1&gt;
+&lt;p&gt;Mathematically, Sort Loss is:&lt;/p&gt;
+&lt;p&gt;[
+L_{\text{Sort}}(Y, P) = \frac{1}{K} \sum_{k=1}^{K} \text{BCE}(y_{\eta(k)}, q_k)
+]&lt;/p&gt;
+&lt;p&gt;where:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;(Y) = ground-truth speaker activities.&lt;/li&gt;
+&lt;li&gt;(P) = predicted speaker probabilities.&lt;/li&gt;
+&lt;li&gt;(\eta(k)) = the sorted index by arrival time.&lt;/li&gt;
+&lt;li&gt;(K) = number of speakers.&lt;/li&gt;
+&lt;li&gt;BCE = Binary Cross-Entropy loss.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;✅ Each speaker is evaluated independently.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h1 id=&#34;-why-binary-cross-entropy-bce-not-normal-cross-entropy&#34;&gt;🤔 Why Binary Cross-Entropy (BCE), Not Normal Cross-Entropy?&lt;/h1&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;Feature&lt;/th&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;Cross Entropy (CE)&lt;/th&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;Binary Cross Entropy (BCE)&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Use case&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Single-label classification&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Multi-label classification&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Output Activation&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Softmax (probabilities sum to 1)&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Sigmoid (independent probabilities)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Can handle overlaps?&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;❌ No&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;✅ Yes&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Example&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Pick one animal (cat, dog, rabbit)&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Pick all fruits you like (apple, banana, grape)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;In speaker diarization:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Multiple speakers can talk at once&lt;/strong&gt; ➔ multi-label ➔ &lt;strong&gt;Binary Cross Entropy is needed&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;Each speaker is predicted &lt;strong&gt;independently&lt;/strong&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h1 id=&#34;-tiny-example-of-sort-loss-in-action&#34;&gt;🔥 Tiny Example of Sort Loss in Action&lt;/h1&gt;
+&lt;p&gt;Suppose we have 2 speakers and 3 frames:&lt;/p&gt;
+&lt;p&gt;Ground-truth (after sorting):&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;Frame&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;spk0&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;spk1&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;t1&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;1&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;t2&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;1&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;t3&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;0&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Predicted outputs:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;Frame&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;spk0&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;spk1&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;t1&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;0.9&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;0.1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;t2&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;0.6&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;0.8&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;t3&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;0.2&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;0.7&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Binary Cross Entropy is applied &lt;strong&gt;separately for each speaker&lt;/strong&gt;, and averaged over speakers.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h1 id=&#34;-quick-summary-softmax-vs-sigmoid&#34;&gt;🧠 Quick Summary: Softmax vs Sigmoid&lt;/h1&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;&lt;/th&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;Softmax&lt;/th&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;Sigmoid&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Sum of outputs&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;1&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Not necessarily&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Mutual exclusivity&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Yes&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;No&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Application&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Single-label classification (only 1 class active)&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Multi-label classification (multiple active)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Used with&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Cross Entropy Loss&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Binary Cross Entropy Loss&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;✅ &lt;strong&gt;Softmax&lt;/strong&gt; is used with Cross Entropy.&lt;br&gt;
+✅ &lt;strong&gt;Sigmoid&lt;/strong&gt; is used with Binary Cross Entropy.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h1 id=&#34;-conclusion&#34;&gt;📦 Conclusion&lt;/h1&gt;
+&lt;p&gt;✅ Sortformer introduces a faster, more elegant solution for speaker diarization by sorting speakers by arrival time and applying simple Binary Cross-Entropy.&lt;/p&gt;
+&lt;p&gt;✅ BCE and Sigmoid are natural choices when multiple speakers can overlap.&lt;/p&gt;
+&lt;p&gt;✅ No more expensive permutation matching is needed!&lt;/p&gt;
+&lt;hr&gt;
+&lt;h1 id=&#34;-final-words&#34;&gt;🏁 Final Words&lt;/h1&gt;
+&lt;p&gt;This approach is simpler, faster, and works better for multi-speaker real-world conversations.&lt;/p&gt;
+&lt;p&gt;Stay tuned for more tutorials where we dive into multispeaker ASR models and joint training with speaker supervision!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Comparing batch vs layer normalization</title>
-      <link>https://leminhnguyen.github.io/post/tts-learns/tts-learns/</link>
+      <link>https://leminhnguyen.github.io/post/voice-research/tts-learns/tts-learns/</link>
       <pubDate>Wed, 09 Mar 2022 11:01:17 +0000</pubDate>
-      <guid>https://leminhnguyen.github.io/post/tts-learns/tts-learns/</guid>
+      <guid>https://leminhnguyen.github.io/post/voice-research/tts-learns/tts-learns/</guid>
       <description>&lt;h2 id=&#34;-batch-vs-layer-normalization&#34;&gt;💣 Batch vs Layer Normalization&lt;/h2&gt;
 &lt;div style=&#34;text-align: justify; font-size: 15px;&#34;&gt;
 The purpose of normalization is to provide &lt;span style=&#39;font-weight:bold&#39;&gt; an uniform scale for the input data &lt;/span&gt; to avoid varing in huge range. The normalization method ensures there is no loss of information and even the range of values isn&#39;t affected. In spite of normalizing the input data, &lt;span style=&#39;font-weight:bold&#39;&gt; the value of activations of certain neurons in the hidden layers can start varying across a wide scale during the training process. &lt;/span&gt; This means the input to the neurons to the next hidden layer will also range across the wide range, bringing instability.
@@ -37,10 +321,10 @@ The purpose of normalization is to provide &lt;span style=&#39;font-weight:bold&
 &lt;figure  &gt;
   &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
     &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;&#34; srcset=&#34;
-               /post/tts-learns/tts-learns/images/batch-vs-layer-normalization_hubc5419aa4d7ca81a5c5c39fc33adf9bc_24068_26e8274f2bf3d60894ddf4d1cdbfe1ca.webp 400w,
-               /post/tts-learns/tts-learns/images/batch-vs-layer-normalization_hubc5419aa4d7ca81a5c5c39fc33adf9bc_24068_caee8622773b04039cc2c664010e6c40.webp 760w,
-               /post/tts-learns/tts-learns/images/batch-vs-layer-normalization_hubc5419aa4d7ca81a5c5c39fc33adf9bc_24068_1200x1200_fit_q75_h2_lanczos_2.webp 1200w&#34;
-               src=&#34;https://leminhnguyen.github.io/post/tts-learns/tts-learns/images/batch-vs-layer-normalization_hubc5419aa4d7ca81a5c5c39fc33adf9bc_24068_26e8274f2bf3d60894ddf4d1cdbfe1ca.webp&#34;
+               /post/voice-research/tts-learns/tts-learns/images/batch-vs-layer-normalization_hubc5419aa4d7ca81a5c5c39fc33adf9bc_24068_26e8274f2bf3d60894ddf4d1cdbfe1ca.webp 400w,
+               /post/voice-research/tts-learns/tts-learns/images/batch-vs-layer-normalization_hubc5419aa4d7ca81a5c5c39fc33adf9bc_24068_caee8622773b04039cc2c664010e6c40.webp 760w,
+               /post/voice-research/tts-learns/tts-learns/images/batch-vs-layer-normalization_hubc5419aa4d7ca81a5c5c39fc33adf9bc_24068_1200x1200_fit_q75_h2_lanczos_2.webp 1200w&#34;
+               src=&#34;https://leminhnguyen.github.io/post/voice-research/tts-learns/tts-learns/images/batch-vs-layer-normalization_hubc5419aa4d7ca81a5c5c39fc33adf9bc_24068_26e8274f2bf3d60894ddf4d1cdbfe1ca.webp&#34;
                width=&#34;760&#34;
                height=&#34;444&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
@@ -242,9 +526,9 @@ To kill a process using &lt;code&gt;GPU&lt;/code&gt; we simply use the command &
     
     <item>
       <title>KNN-VC vs Phoneme Hallucinator [09/03/2024] ?</title>
-      <link>https://leminhnguyen.github.io/post/tts-learns/voice-conversion-09-03-2024/</link>
+      <link>https://leminhnguyen.github.io/post/voice-research/voice-conversion/voice-conversion-09-03-2024/</link>
       <pubDate>Wed, 09 Mar 2022 11:01:17 +0000</pubDate>
-      <guid>https://leminhnguyen.github.io/post/tts-learns/voice-conversion-09-03-2024/</guid>
+      <guid>https://leminhnguyen.github.io/post/voice-research/voice-conversion/voice-conversion-09-03-2024/</guid>
       <description>&lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
 
 
@@ -263,10 +547,10 @@ To kill a process using &lt;code&gt;GPU&lt;/code&gt; we simply use the command &
 &lt;figure  &gt;
   &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
     &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;&#34; srcset=&#34;
-               /post/tts-learns/voice-conversion-09-03-2024/images/phoneme_hallucinator_hu247d5b7fd5c49ebd144b6f04e075f068_52595_25a7f069e8f68b7c0d925051fcbe7fb4.png 400w,
-               /post/tts-learns/voice-conversion-09-03-2024/images/phoneme_hallucinator_hu247d5b7fd5c49ebd144b6f04e075f068_52595_ba4aaaf560428797c0d9482aa234b0a6.png 760w,
-               /post/tts-learns/voice-conversion-09-03-2024/images/phoneme_hallucinator_hu247d5b7fd5c49ebd144b6f04e075f068_52595_1200x1200_fit_lanczos_3.png 1200w&#34;
-               src=&#34;https://leminhnguyen.github.io/post/tts-learns/voice-conversion-09-03-2024/images/phoneme_hallucinator_hu247d5b7fd5c49ebd144b6f04e075f068_52595_25a7f069e8f68b7c0d925051fcbe7fb4.png&#34;
+               /post/voice-research/voice-conversion/voice-conversion-09-03-2024/images/phoneme_hallucinator_hu247d5b7fd5c49ebd144b6f04e075f068_52595_25a7f069e8f68b7c0d925051fcbe7fb4.png 400w,
+               /post/voice-research/voice-conversion/voice-conversion-09-03-2024/images/phoneme_hallucinator_hu247d5b7fd5c49ebd144b6f04e075f068_52595_ba4aaaf560428797c0d9482aa234b0a6.png 760w,
+               /post/voice-research/voice-conversion/voice-conversion-09-03-2024/images/phoneme_hallucinator_hu247d5b7fd5c49ebd144b6f04e075f068_52595_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://leminhnguyen.github.io/post/voice-research/voice-conversion/voice-conversion-09-03-2024/images/phoneme_hallucinator_hu247d5b7fd5c49ebd144b6f04e075f068_52595_25a7f069e8f68b7c0d925051fcbe7fb4.png&#34;
                width=&#34;752&#34;
                height=&#34;486&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
@@ -390,10 +674,10 @@ To kill a process using &lt;code&gt;GPU&lt;/code&gt; we simply use the command &
 &lt;figure  &gt;
   &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
     &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;&#34; srcset=&#34;
-               /post/tts-learns/voice-conversion-09-03-2024/images/main_huec624690a5e35421dcb4a187a8905990_505572_3102e5b3320686e4bfd436129d57b956.png 400w,
-               /post/tts-learns/voice-conversion-09-03-2024/images/main_huec624690a5e35421dcb4a187a8905990_505572_ba247c54d0c340584a86934861cb6f46.png 760w,
-               /post/tts-learns/voice-conversion-09-03-2024/images/main_huec624690a5e35421dcb4a187a8905990_505572_1200x1200_fit_lanczos_3.png 1200w&#34;
-               src=&#34;https://leminhnguyen.github.io/post/tts-learns/voice-conversion-09-03-2024/images/main_huec624690a5e35421dcb4a187a8905990_505572_3102e5b3320686e4bfd436129d57b956.png&#34;
+               /post/voice-research/voice-conversion/voice-conversion-09-03-2024/images/main_huec624690a5e35421dcb4a187a8905990_505572_3102e5b3320686e4bfd436129d57b956.png 400w,
+               /post/voice-research/voice-conversion/voice-conversion-09-03-2024/images/main_huec624690a5e35421dcb4a187a8905990_505572_ba247c54d0c340584a86934861cb6f46.png 760w,
+               /post/voice-research/voice-conversion/voice-conversion-09-03-2024/images/main_huec624690a5e35421dcb4a187a8905990_505572_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://leminhnguyen.github.io/post/voice-research/voice-conversion/voice-conversion-09-03-2024/images/main_huec624690a5e35421dcb4a187a8905990_505572_3102e5b3320686e4bfd436129d57b956.png&#34;
                width=&#34;720&#34;
                height=&#34;760&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
@@ -402,9 +686,9 @@ To kill a process using &lt;code&gt;GPU&lt;/code&gt; we simply use the command &
     
     <item>
       <title>KNN-VC vs Phoneme Hallucinator [23/03/2024] ?</title>
-      <link>https://leminhnguyen.github.io/post/tts-learns/voice-conversion-23-03-2024/</link>
+      <link>https://leminhnguyen.github.io/post/voice-research/voice-conversion/voice-conversion-23-03-2024/</link>
       <pubDate>Wed, 09 Mar 2022 11:01:17 +0000</pubDate>
-      <guid>https://leminhnguyen.github.io/post/tts-learns/voice-conversion-23-03-2024/</guid>
+      <guid>https://leminhnguyen.github.io/post/voice-research/voice-conversion/voice-conversion-23-03-2024/</guid>
       <description>&lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
 
 
@@ -423,10 +707,10 @@ To kill a process using &lt;code&gt;GPU&lt;/code&gt; we simply use the command &
 &lt;figure  &gt;
   &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
     &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;&#34; srcset=&#34;
-               /post/tts-learns/voice-conversion-23-03-2024/images/voice-conversion-improvement_hu9c2c2c0b1c61256ebe168fc02f8de765_124214_a2d27f9f56804762a78877b0a2bfc74d.png 400w,
-               /post/tts-learns/voice-conversion-23-03-2024/images/voice-conversion-improvement_hu9c2c2c0b1c61256ebe168fc02f8de765_124214_83c259e7f182431e085e9b327cdd2c18.png 760w,
-               /post/tts-learns/voice-conversion-23-03-2024/images/voice-conversion-improvement_hu9c2c2c0b1c61256ebe168fc02f8de765_124214_1200x1200_fit_lanczos_3.png 1200w&#34;
-               src=&#34;https://leminhnguyen.github.io/post/tts-learns/voice-conversion-23-03-2024/images/voice-conversion-improvement_hu9c2c2c0b1c61256ebe168fc02f8de765_124214_a2d27f9f56804762a78877b0a2bfc74d.png&#34;
+               /post/voice-research/voice-conversion/voice-conversion-23-03-2024/images/voice-conversion-improvement_hu9c2c2c0b1c61256ebe168fc02f8de765_124214_a2d27f9f56804762a78877b0a2bfc74d.png 400w,
+               /post/voice-research/voice-conversion/voice-conversion-23-03-2024/images/voice-conversion-improvement_hu9c2c2c0b1c61256ebe168fc02f8de765_124214_83c259e7f182431e085e9b327cdd2c18.png 760w,
+               /post/voice-research/voice-conversion/voice-conversion-23-03-2024/images/voice-conversion-improvement_hu9c2c2c0b1c61256ebe168fc02f8de765_124214_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://leminhnguyen.github.io/post/voice-research/voice-conversion/voice-conversion-23-03-2024/images/voice-conversion-improvement_hu9c2c2c0b1c61256ebe168fc02f8de765_124214_a2d27f9f56804762a78877b0a2bfc74d.png&#34;
                width=&#34;760&#34;
                height=&#34;446&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
@@ -550,10 +834,10 @@ To kill a process using &lt;code&gt;GPU&lt;/code&gt; we simply use the command &
 &lt;figure  &gt;
   &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
     &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;&#34; srcset=&#34;
-               /post/tts-learns/voice-conversion-23-03-2024/images/main_huec624690a5e35421dcb4a187a8905990_505572_3102e5b3320686e4bfd436129d57b956.png 400w,
-               /post/tts-learns/voice-conversion-23-03-2024/images/main_huec624690a5e35421dcb4a187a8905990_505572_ba247c54d0c340584a86934861cb6f46.png 760w,
-               /post/tts-learns/voice-conversion-23-03-2024/images/main_huec624690a5e35421dcb4a187a8905990_505572_1200x1200_fit_lanczos_3.png 1200w&#34;
-               src=&#34;https://leminhnguyen.github.io/post/tts-learns/voice-conversion-23-03-2024/images/main_huec624690a5e35421dcb4a187a8905990_505572_3102e5b3320686e4bfd436129d57b956.png&#34;
+               /post/voice-research/voice-conversion/voice-conversion-23-03-2024/images/main_huec624690a5e35421dcb4a187a8905990_505572_3102e5b3320686e4bfd436129d57b956.png 400w,
+               /post/voice-research/voice-conversion/voice-conversion-23-03-2024/images/main_huec624690a5e35421dcb4a187a8905990_505572_ba247c54d0c340584a86934861cb6f46.png 760w,
+               /post/voice-research/voice-conversion/voice-conversion-23-03-2024/images/main_huec624690a5e35421dcb4a187a8905990_505572_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://leminhnguyen.github.io/post/voice-research/voice-conversion/voice-conversion-23-03-2024/images/main_huec624690a5e35421dcb4a187a8905990_505572_3102e5b3320686e4bfd436129d57b956.png&#34;
                width=&#34;720&#34;
                height=&#34;760&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
@@ -562,9 +846,9 @@ To kill a process using &lt;code&gt;GPU&lt;/code&gt; we simply use the command &
     
     <item>
       <title>Postnet Layer</title>
-      <link>https://leminhnguyen.github.io/post/tts-learns/postnet-layer/</link>
+      <link>https://leminhnguyen.github.io/post/voice-research/tts-learns/postnet-layer/</link>
       <pubDate>Wed, 09 Mar 2022 11:01:17 +0000</pubDate>
-      <guid>https://leminhnguyen.github.io/post/tts-learns/postnet-layer/</guid>
+      <guid>https://leminhnguyen.github.io/post/voice-research/tts-learns/postnet-layer/</guid>
       <description>&lt;h2 id=&#34;-postnet-layer&#34;&gt;💣 Postnet Layer&lt;/h2&gt;
 &lt;div style=&#34;text-align: justify; font-size: 15px;&#34;&gt;
 In some end-to-end TTS models today, after the hidden representations are passed through the decoder we got the mel-spectrogram which contains the predictions of the acoustic features. Finally, the decoder predictions are passed over &lt;span style=&#39;font-weight:bold&#39;&gt; the Postnet layer which predicts residual information to improve the construction performance of the model &lt;/span&gt;. The section below notes some insights about &lt;span style=&#39;font-weight:bold&#39;&gt; the Postnet layer &lt;/span&gt; by me when learning TTS.
@@ -606,10 +890,10 @@ postnet has the effect of reducing autoregressive sampling errors and tightening
 &lt;figure  &gt;
   &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
     &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;&#34; srcset=&#34;
-               /post/tts-learns/postnet-layer/images/postnet_hu55b7b326dc86b48b5eb6c9cddaea2438_98725_3d454b8539ed4f3c7668c209efbf7722.png 400w,
-               /post/tts-learns/postnet-layer/images/postnet_hu55b7b326dc86b48b5eb6c9cddaea2438_98725_59f0b4c02707bb74d1a3fa8996c51df0.png 760w,
-               /post/tts-learns/postnet-layer/images/postnet_hu55b7b326dc86b48b5eb6c9cddaea2438_98725_1200x1200_fit_lanczos_3.png 1200w&#34;
-               src=&#34;https://leminhnguyen.github.io/post/tts-learns/postnet-layer/images/postnet_hu55b7b326dc86b48b5eb6c9cddaea2438_98725_3d454b8539ed4f3c7668c209efbf7722.png&#34;
+               /post/voice-research/tts-learns/postnet-layer/images/postnet_hu55b7b326dc86b48b5eb6c9cddaea2438_98725_3d454b8539ed4f3c7668c209efbf7722.png 400w,
+               /post/voice-research/tts-learns/postnet-layer/images/postnet_hu55b7b326dc86b48b5eb6c9cddaea2438_98725_59f0b4c02707bb74d1a3fa8996c51df0.png 760w,
+               /post/voice-research/tts-learns/postnet-layer/images/postnet_hu55b7b326dc86b48b5eb6c9cddaea2438_98725_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://leminhnguyen.github.io/post/voice-research/tts-learns/postnet-layer/images/postnet_hu55b7b326dc86b48b5eb6c9cddaea2438_98725_3d454b8539ed4f3c7668c209efbf7722.png&#34;
                width=&#34;760&#34;
                height=&#34;432&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
@@ -618,9 +902,9 @@ postnet has the effect of reducing autoregressive sampling errors and tightening
     
     <item>
       <title>Vietnamese Voice Conversion</title>
-      <link>https://leminhnguyen.github.io/post/tts-learns/voice-conversion-10-04-2024/</link>
+      <link>https://leminhnguyen.github.io/post/voice-research/voice-conversion/voice-conversion-10-04-2024/</link>
       <pubDate>Wed, 09 Mar 2022 11:01:17 +0000</pubDate>
-      <guid>https://leminhnguyen.github.io/post/tts-learns/voice-conversion-10-04-2024/</guid>
+      <guid>https://leminhnguyen.github.io/post/voice-research/voice-conversion/voice-conversion-10-04-2024/</guid>
       <description>&lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
 &lt;div style=&#34;text-align:justify&#34;&gt;
 This thesis develops a voice conversion model for Vietnamese based on the Phoneme Hallucinator model with 2 adoptions: (1) Add a Text2SSL module to get more context information before performing the KNN algorithm, (2) To create a more
@@ -643,10 +927,10 @@ diverse dataset we apply spectrogram-resize (SR) based data augmentation idea fr
 &lt;figure  id=&#34;figure-the-proposal-model&#34;&gt;
   &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
     &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;The proposal model&#34; srcset=&#34;
-               /post/tts-learns/voice-conversion-10-04-2024/images/new-vc-architecture_hu971822d0f98b31a6e6ccd103a428207c_122016_402d308e4cc0466a6716761c67ac5260.png 400w,
-               /post/tts-learns/voice-conversion-10-04-2024/images/new-vc-architecture_hu971822d0f98b31a6e6ccd103a428207c_122016_5bbc6f5994e960a7413518bb425da12a.png 760w,
-               /post/tts-learns/voice-conversion-10-04-2024/images/new-vc-architecture_hu971822d0f98b31a6e6ccd103a428207c_122016_1200x1200_fit_lanczos_3.png 1200w&#34;
-               src=&#34;https://leminhnguyen.github.io/post/tts-learns/voice-conversion-10-04-2024/images/new-vc-architecture_hu971822d0f98b31a6e6ccd103a428207c_122016_402d308e4cc0466a6716761c67ac5260.png&#34;
+               /post/voice-research/voice-conversion/voice-conversion-10-04-2024/images/new-vc-architecture_hu971822d0f98b31a6e6ccd103a428207c_122016_402d308e4cc0466a6716761c67ac5260.png 400w,
+               /post/voice-research/voice-conversion/voice-conversion-10-04-2024/images/new-vc-architecture_hu971822d0f98b31a6e6ccd103a428207c_122016_5bbc6f5994e960a7413518bb425da12a.png 760w,
+               /post/voice-research/voice-conversion/voice-conversion-10-04-2024/images/new-vc-architecture_hu971822d0f98b31a6e6ccd103a428207c_122016_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://leminhnguyen.github.io/post/voice-research/voice-conversion/voice-conversion-10-04-2024/images/new-vc-architecture_hu971822d0f98b31a6e6ccd103a428207c_122016_402d308e4cc0466a6716761c67ac5260.png&#34;
                width=&#34;760&#34;
                height=&#34;607&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
@@ -670,10 +954,10 @@ diverse dataset we apply spectrogram-resize (SR) based data augmentation idea fr
 &lt;figure  &gt;
   &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
     &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;&#34; srcset=&#34;
-               /post/tts-learns/voice-conversion-10-04-2024/images/spec-augmentation_hud7d16e2cc8f6180373396b214284b457_491908_54a6cd26a3842fb84b50dc5e8f9b4ac5.png 400w,
-               /post/tts-learns/voice-conversion-10-04-2024/images/spec-augmentation_hud7d16e2cc8f6180373396b214284b457_491908_8f518ab3170d7857360ba1ffa07379d5.png 760w,
-               /post/tts-learns/voice-conversion-10-04-2024/images/spec-augmentation_hud7d16e2cc8f6180373396b214284b457_491908_1200x1200_fit_lanczos_3.png 1200w&#34;
-               src=&#34;https://leminhnguyen.github.io/post/tts-learns/voice-conversion-10-04-2024/images/spec-augmentation_hud7d16e2cc8f6180373396b214284b457_491908_54a6cd26a3842fb84b50dc5e8f9b4ac5.png&#34;
+               /post/voice-research/voice-conversion/voice-conversion-10-04-2024/images/spec-augmentation_hud7d16e2cc8f6180373396b214284b457_491908_54a6cd26a3842fb84b50dc5e8f9b4ac5.png 400w,
+               /post/voice-research/voice-conversion/voice-conversion-10-04-2024/images/spec-augmentation_hud7d16e2cc8f6180373396b214284b457_491908_8f518ab3170d7857360ba1ffa07379d5.png 760w,
+               /post/voice-research/voice-conversion/voice-conversion-10-04-2024/images/spec-augmentation_hud7d16e2cc8f6180373396b214284b457_491908_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://leminhnguyen.github.io/post/voice-research/voice-conversion/voice-conversion-10-04-2024/images/spec-augmentation_hud7d16e2cc8f6180373396b214284b457_491908_54a6cd26a3842fb84b50dc5e8f9b4ac5.png&#34;
                width=&#34;760&#34;
                height=&#34;351&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
@@ -815,10 +1099,10 @@ diverse dataset we apply spectrogram-resize (SR) based data augmentation idea fr
 &lt;figure  &gt;
   &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
     &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;&#34; srcset=&#34;
-               /post/tts-learns/voice-conversion-10-04-2024/images/main_huec624690a5e35421dcb4a187a8905990_505572_3102e5b3320686e4bfd436129d57b956.png 400w,
-               /post/tts-learns/voice-conversion-10-04-2024/images/main_huec624690a5e35421dcb4a187a8905990_505572_ba247c54d0c340584a86934861cb6f46.png 760w,
-               /post/tts-learns/voice-conversion-10-04-2024/images/main_huec624690a5e35421dcb4a187a8905990_505572_1200x1200_fit_lanczos_3.png 1200w&#34;
-               src=&#34;https://leminhnguyen.github.io/post/tts-learns/voice-conversion-10-04-2024/images/main_huec624690a5e35421dcb4a187a8905990_505572_3102e5b3320686e4bfd436129d57b956.png&#34;
+               /post/voice-research/voice-conversion/voice-conversion-10-04-2024/images/main_huec624690a5e35421dcb4a187a8905990_505572_3102e5b3320686e4bfd436129d57b956.png 400w,
+               /post/voice-research/voice-conversion/voice-conversion-10-04-2024/images/main_huec624690a5e35421dcb4a187a8905990_505572_ba247c54d0c340584a86934861cb6f46.png 760w,
+               /post/voice-research/voice-conversion/voice-conversion-10-04-2024/images/main_huec624690a5e35421dcb4a187a8905990_505572_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://leminhnguyen.github.io/post/voice-research/voice-conversion/voice-conversion-10-04-2024/images/main_huec624690a5e35421dcb4a187a8905990_505572_3102e5b3320686e4bfd436129d57b956.png&#34;
                width=&#34;720&#34;
                height=&#34;760&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
