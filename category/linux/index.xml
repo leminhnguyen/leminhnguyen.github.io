@@ -17,14 +17,15 @@
       <link>https://leminhnguyen.github.io/post/linux-learns/helpful-commands/</link>
       <pubDate>Mon, 28 Apr 2025 12:00:00 +0000</pubDate>
       <guid>https://leminhnguyen.github.io/post/linux-learns/helpful-commands/</guid>
-      <description>&lt;p&gt;In my day-to-day work with Linux systems and development environments, I&amp;rsquo;ve collected a variety of useful command-line snippets and troubleshooting notes.  This blog post shares some of my favorites from counting files to fixing display issues designed to boost your productivity and make your life easier. 🚀&lt;/p&gt;
-&lt;hr&gt;
+      <description>&lt;div style=&#34;text-align: justify; font-size: 15px;&#34;&gt;
+&lt;br&gt;
+In my day-to-day work with Linux systems and development environments, I&#39;ve collected a variety of useful command-line snippets and troubleshooting notes.  This blog post shares some of my favorites from counting files to fixing display issues designed to boost your productivity and make your life easier. 
 &lt;h3 id=&#34;1-quickly-count-files-in-a-folder&#34;&gt;1. Quickly Count Files in a Folder&lt;/h3&gt;
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;fcount() { ls -1q &amp;quot;$1&amp;quot; | wc -l; }
 &lt;/code&gt;&lt;/pre&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Example:&lt;br&gt;
-&lt;code&gt;fcount /home/nguyenlm/wavs&lt;/code&gt; → &lt;code&gt;27&lt;/code&gt;&lt;/p&gt;
+&lt;code&gt;fcount /home/nguyenlm/folder&lt;/code&gt; → &lt;code&gt;27&lt;/code&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;hr&gt;
 &lt;h3 id=&#34;2-force-fix-broken-cuda-installation&#34;&gt;2. Force Fix Broken CUDA Installation&lt;/h3&gt;
@@ -98,7 +99,7 @@ zenity --info --text &amp;quot;foobar&amp;quot;
 &lt;hr&gt;
 &lt;h2 id=&#34;final-thoughts&#34;&gt;Final Thoughts&lt;/h2&gt;
 &lt;p&gt;These snippets have saved me countless hours when working with Linux environments, machine learning servers, and production systems.  Feel free to bookmark or adapt them to fit your own workflow! ⚡&lt;/p&gt;
-</description>
+&lt;/div&gt;</description>
     </item>
     
     <item>

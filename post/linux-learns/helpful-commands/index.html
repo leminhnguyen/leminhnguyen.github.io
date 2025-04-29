@@ -73,6 +73,9 @@
 
   
   
+    
+    <script src="/js/mathjax-config.js"></script>
+  
 
   
 
@@ -218,9 +221,9 @@
 
       
       
-        
-      
 
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" integrity="" crossorigin="anonymous" async></script>
       
     
       
@@ -246,7 +249,7 @@
   
   
   
-  <link rel="stylesheet" href="/css/wowchemy.dcf1ca119ff3e4b07cba6e82b2b89576.css" />
+  <link rel="stylesheet" href="/css/wowchemy.d65872b95e794dda92dc12a85e1e04fa.css" />
 
   
 
@@ -285,7 +288,6 @@
   
   
     
-    
   
   
 
@@ -294,7 +296,7 @@
     
     
   
-  <meta property="twitter:card" content="summary" />
+  <meta property="twitter:card" content="summary_large_image" />
   
     <meta property="twitter:site" content="@wowchemy" />
     <meta property="twitter:creator" content="@wowchemy" />
@@ -302,8 +304,8 @@
   <meta property="og:site_name" content="leminhnguyen&#39;s blog" />
   <meta property="og:url" content="https://leminhnguyen.github.io/post/linux-learns/helpful-commands/" />
   <meta property="og:title" content="Handy Bash Snippets and Linux Tips | leminhnguyen&#39;s blog" />
-  <meta property="og:description" content="A curated collection of bash functions, troubleshooting commands, and performance tweaks that I often use in my daily workflow." /><meta property="og:image" content="https://leminhnguyen.github.io/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_3.png" />
-    <meta property="twitter:image" content="https://leminhnguyen.github.io/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_3.png" /><meta property="og:locale" content="en-us" />
+  <meta property="og:description" content="A curated collection of bash functions, troubleshooting commands, and performance tweaks that I often use in my daily workflow." /><meta property="og:image" content="https://leminhnguyen.github.io/post/linux-learns/helpful-commands/featured.webp" />
+    <meta property="twitter:image" content="https://leminhnguyen.github.io/post/linux-learns/helpful-commands/featured.webp" /><meta property="og:locale" content="en-us" />
   
     
       <meta
@@ -338,6 +340,10 @@
     "@id": "https://leminhnguyen.github.io/post/linux-learns/helpful-commands/"
   },
   "headline": "Handy Bash Snippets and Linux Tips",
+  
+  "image": [
+    "https://leminhnguyen.github.io/post/linux-learns/helpful-commands/featured.webp"
+  ],
   
   "datePublished": "2025-04-28T12:00:00Z",
   "dateModified": "2025-04-28T12:00:00Z",
@@ -515,7 +521,7 @@
         
 
         <li class="nav-item">
-          <a class="nav-link " href="/about/"><span>About Me</span></a>
+          <a class="nav-link " href="/about/"><span>About</span></a>
         </li>
 
         
@@ -545,7 +551,7 @@
         
 
         <li class="nav-item">
-          <a class="nav-link " href="/category/linux/"><span>Linux</span></a>
+          <a class="nav-link " href="/category/speech/"><span>Speech</span></a>
         </li>
 
         
@@ -635,7 +641,7 @@
         
 
         <li class="nav-item">
-          <a class="nav-link " href="/category/voice-conversion/"><span>Voice Conversion</span></a>
+          <a class="nav-link " href="/category/linux/"><span>Linux</span></a>
         </li>
 
         
@@ -776,14 +782,15 @@
   <div class="article-container">
 
     <div class="article-style">
-      <p>In my day-to-day work with Linux systems and development environments, I&rsquo;ve collected a variety of useful command-line snippets and troubleshooting notes.  This blog post shares some of my favorites from counting files to fixing display issues designed to boost your productivity and make your life easier. 🚀</p>
-<hr>
+      <div style="text-align: justify; font-size: 15px;">
+<br>
+In my day-to-day work with Linux systems and development environments, I've collected a variety of useful command-line snippets and troubleshooting notes.  This blog post shares some of my favorites from counting files to fixing display issues designed to boost your productivity and make your life easier. 
 <h3 id="1-quickly-count-files-in-a-folder">1. Quickly Count Files in a Folder</h3>
 <pre><code class="language-bash">fcount() { ls -1q &quot;$1&quot; | wc -l; }
 </code></pre>
 <blockquote>
 <p>Example:<br>
-<code>fcount /home/nguyenlm/wavs</code> → <code>27</code></p>
+<code>fcount /home/nguyenlm/folder</code> → <code>27</code></p>
 </blockquote>
 <hr>
 <h3 id="2-force-fix-broken-cuda-installation">2. Force Fix Broken CUDA Installation</h3>
@@ -857,7 +864,7 @@ zenity --info --text &quot;foobar&quot;
 <hr>
 <h2 id="final-thoughts">Final Thoughts</h2>
 <p>These snippets have saved me countless hours when working with Linux environments, machine learning servers, and production systems.  Feel free to bookmark or adapt them to fit your own workflow! ⚡</p>
-
+</div>
     </div>
 
     
@@ -1110,7 +1117,7 @@ zenity --info --text &quot;foobar&quot;
   
   <div class="post-nav-item">
     <div class="meta-nav">Previous</div>
-    <a href="/post/voice-research/speaker-diarization/" rel="prev">Sort Loss and Cross Entropy Explained: How Speaker Diarization Models Learn</a>
+    <a href="/post/speech-research/speaker-diarization/" rel="prev">Sortformer: A novel approach to speaker diarization</a>
   </div>
   
 </div>
