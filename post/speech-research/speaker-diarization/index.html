@@ -60,7 +60,7 @@
   
     
   
-  <meta name="description" content="Traditional Method Diarization, in the context of audio processing and speech recognition, is the process of partitioning an audio stream into segments according to the identity of the speaker. The main goal of diarization is to determine who spoke when in an audio recording that includes multiple speakers." />
+  <meta name="description" content="Speaker Diarization, the task of answering “Who spoken when?” - is an crucial component in many speech processing systems. From meeting transcription to customer service call analysis, diarization allows to segment signal by speakers, making down-stream tasks like speech-to-text, emotion analysis, or intent identification much more effective." />
 
   
   <link rel="alternate" hreflang="en-us" href="https://leminhnguyen.github.io/post/speech-research/speaker-diarization/" />
@@ -303,8 +303,8 @@
   
   <meta property="og:site_name" content="leminhnguyen&#39;s blog" />
   <meta property="og:url" content="https://leminhnguyen.github.io/post/speech-research/speaker-diarization/" />
-  <meta property="og:title" content="Sortformer: A novel approach to speaker diarization | leminhnguyen&#39;s blog" />
-  <meta property="og:description" content="Traditional Method Diarization, in the context of audio processing and speech recognition, is the process of partitioning an audio stream into segments according to the identity of the speaker. The main goal of diarization is to determine who spoke when in an audio recording that includes multiple speakers." /><meta property="og:image" content="https://leminhnguyen.github.io/post/speech-research/speaker-diarization/featured.webp" />
+  <meta property="og:title" content="Speaker Diarization: From Traditional Methods to the Modern Models | leminhnguyen&#39;s blog" />
+  <meta property="og:description" content="Speaker Diarization, the task of answering “Who spoken when?” - is an crucial component in many speech processing systems. From meeting transcription to customer service call analysis, diarization allows to segment signal by speakers, making down-stream tasks like speech-to-text, emotion analysis, or intent identification much more effective." /><meta property="og:image" content="https://leminhnguyen.github.io/post/speech-research/speaker-diarization/featured.webp" />
     <meta property="twitter:image" content="https://leminhnguyen.github.io/post/speech-research/speaker-diarization/featured.webp" /><meta property="og:locale" content="en-us" />
   
     
@@ -339,7 +339,7 @@
     "@type": "WebPage",
     "@id": "https://leminhnguyen.github.io/post/speech-research/speaker-diarization/"
   },
-  "headline": "Sortformer: A novel approach to speaker diarization",
+  "headline": "Speaker Diarization: From Traditional Methods to the Modern Models",
   
   "image": [
     "https://leminhnguyen.github.io/post/speech-research/speaker-diarization/featured.webp"
@@ -361,7 +361,7 @@
       "url": "https://leminhnguyen.github.io/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_192x192_fill_lanczos_center_3.png"
     }
   },
-  "description": "Traditional Method Diarization, in the context of audio processing and speech recognition, is the process of partitioning an audio stream into segments according to the identity of the speaker. The main goal of diarization is to determine who spoke when in an audio recording that includes multiple speakers."
+  "description": "Speaker Diarization, the task of answering “Who spoken when?” - is an crucial component in many speech processing systems. From meeting transcription to customer service call analysis, diarization allows to segment signal by speakers, making down-stream tasks like speech-to-text, emotion analysis, or intent identification much more effective."
 }
 </script>
 
@@ -377,7 +377,7 @@
 
 
 
-  <title>Sortformer: A novel approach to speaker diarization | leminhnguyen&#39;s blog</title>
+  <title>Speaker Diarization: From Traditional Methods to the Modern Models | leminhnguyen&#39;s blog</title>
 </head>
 
 
@@ -720,7 +720,7 @@
   
   
 <div class="article-container pt-3">
-  <h1>Sortformer: A novel approach to speaker diarization</h1>
+  <h1>Speaker Diarization: From Traditional Methods to the Modern Models</h1>
 
   
 
@@ -748,7 +748,7 @@
   
   <span class="middot-divider"></span>
   <span class="article-reading-time">
-    5 min read
+    6 min read
   </span>
   
 
@@ -782,7 +782,8 @@
   <div class="article-container">
 
     <div class="article-style">
-      
+      <div style="text-align: justify; font-size: 15px; margin-top: 20px">
+Speaker Diarization, the task of answering <code>“Who spoken when?”</code> - is an crucial component in many speech processing systems. From meeting transcription to customer service call analysis, diarization allows to segment signal by speakers, making down-stream tasks like speech-to-text, emotion analysis, or intent identification much more effective. The figure 1 below shows the speaker diarization results from my developed model on a youtube audio.
 
 
 
@@ -796,20 +797,32 @@
 
 
 
-<figure  >
+
+<figure  id="figure-fig-1-the-diarization-results-from-my-developed-model">
   <div class="d-flex justify-content-center">
-    <div class="w-100" ><img alt="" srcset="
-               /post/speech-research/speaker-diarization/sortformer-v1_hu1221356e5a41b9a0ee246c50935df5e7_373277_ae505eafbfe2f48d5ad0bd58f1a5160e.png 400w,
-               /post/speech-research/speaker-diarization/sortformer-v1_hu1221356e5a41b9a0ee246c50935df5e7_373277_289e00f5fa3aa5664c30d2e843e20211.png 760w,
-               /post/speech-research/speaker-diarization/sortformer-v1_hu1221356e5a41b9a0ee246c50935df5e7_373277_1200x1200_fit_lanczos_3.png 1200w"
-               src="/post/speech-research/speaker-diarization/sortformer-v1_hu1221356e5a41b9a0ee246c50935df5e7_373277_ae505eafbfe2f48d5ad0bd58f1a5160e.png"
-               width="479"
-               height="760"
+    <div class="w-100" ><img alt="Fig 1: The diarization results from my developed model" srcset="
+               /post/speech-research/speaker-diarization/speaker_diarization_voicelanding_hu28a540502b6e220f67c6fa946091d3da_64895_ab611148729afd5bb6b2b44ff298383d.png 400w,
+               /post/speech-research/speaker-diarization/speaker_diarization_voicelanding_hu28a540502b6e220f67c6fa946091d3da_64895_a1eab91924d3a385687f1ed0b6749f9d.png 760w,
+               /post/speech-research/speaker-diarization/speaker_diarization_voicelanding_hu28a540502b6e220f67c6fa946091d3da_64895_1200x1200_fit_lanczos_3.png 1200w"
+               src="/post/speech-research/speaker-diarization/speaker_diarization_voicelanding_hu28a540502b6e220f67c6fa946091d3da_64895_ab611148729afd5bb6b2b44ff298383d.png"
+               width="760"
+               height="371"
                loading="lazy" data-zoomable /></div>
-  </div></figure>
-<div style="text-align: justify; font-size: 15px;">
-<h3 id="traditional-method">Traditional Method</h3>
-<p>Diarization, in the context of audio processing and speech recognition, is the process of partitioning an audio stream into segments according to the identity of the speaker. The main goal of diarization is to determine <code> who spoke when </code> in an audio recording that includes multiple speakers. This process is essential in applications where distinguishing between different speakers is crucial, such as in meeting transcription, broadcast news analysis, and call center monitoring.</p>
+  </div><figcaption>
+      Fig 1: The diarization results from my developed model
+    </figcaption></figure>
+<div style="text-align: justify; font-size: 15px; margin-top: 10px">
+In this blog, I’ll introduce the core concepts of speaker diarization, discover both traditional and end-to-end methods, and highligth one of the latest innovations in the field: Sortformer model. Whether you’re just getting started or looking to catch up recent innovations, this blog aims give you a comprehensive overview. 
+</div>
+<h3 id="table-of-contents">Table of Contents</h3>
+<ul>
+<li>Traditional Methods</li>
+<li>End-to-End Models</li>
+<li>New Breakthroughs in Diarization</li>
+<li>Conclusion</li>
+</ul>
+<h3 id="1-traditional-methods">1. Traditional Methods</h3>
+<p>
 
 
 
@@ -823,10 +836,9 @@
 
 
 
-
-<figure  >
+<figure  id="figure-fig-2-traditional-speaker-diarization-pipeline">
   <div class="d-flex justify-content-center">
-    <div class="w-100" ><img alt="" srcset="
+    <div class="w-100" ><img alt="Fig 2: Traditional Speaker Diarization Pipeline" srcset="
                /post/speech-research/speaker-diarization/traditional_diar_hua7f002cd508fa95ba83464a48feb282c_171994_9bd4912a2e36e703ab217f84e7f104a5.png 400w,
                /post/speech-research/speaker-diarization/traditional_diar_hua7f002cd508fa95ba83464a48feb282c_171994_59370a29b144f19cf032b93530b94476.png 760w,
                /post/speech-research/speaker-diarization/traditional_diar_hua7f002cd508fa95ba83464a48feb282c_171994_1200x1200_fit_lanczos_3.png 1200w"
@@ -834,30 +846,85 @@
                width="760"
                height="343"
                loading="lazy" data-zoomable /></div>
-  </div></figure>
-<p><strong>Traditional Method</strong>
-Those consist of many independent submodules that are optimized individually, namely being:</p>
+  </div><figcaption>
+      Fig 2: Traditional Speaker Diarization Pipeline
+    </figcaption></figure>
+Traditional diarization systems often rely on modular pipelines, combining speaker embeddings (like i-vectors) with clustering algorithms such as Agglomerative Hierarchical Clustering (AHC). While effective, these systems require careful tuning and may struggle with overlapping speech. Those consist of many independent submodules that are optimized individually, namely being:</p>
+<div style="text-align: justify; font-size: 15px; margin-top: -10px">
 <ul>
-<li><strong>Speech detection:</strong> The first step is to identify speech and remove non-speech signals with a voice activity detector (VAD) algorithm.</li>
-<li><strong>Speech segmentation:</strong> The output of the VAD is then segmented into small segments consisting of a few seconds.</li>
-<li><strong>Speech embedder:</strong> A neural network pre-trained on speaker recognition is used to derive a high-level representation of the speech segments. Those embeddings are vector representations that summarize the voice characteristics (a.k.a voice print).</li>
-<li><strong>Clustering:</strong> After extracting segment embeddings, we need to cluster the speech embeddings with a clustering algorithm (for example K-Means or spectral clustering). The clustering produces our desired diarization results, which consists of identifying the number of unique speakers (derived from the number of unique clusters) and assigning a speaker label to each embedding (or speech segment).</li>
-</ul>
-<h3 id="end-to-end-method">End To End Method</h3>
-<p>In multi-speaker speech processing tasks like speaker diarization, correctly identifying &ldquo;who spoke when&rdquo; is a long-standing challenge. Traditional systems use separate pipelines for speech recognition and diarization. More recent models like Sortformer aim to unify these tasks, with a focus on improving performance and training efficiency.</p>
-<div style="text-align: justify; font-size: 15px; margin-top: -15px; margin-bottom: 10px">
-A core innovation in Sortformer is the use of <code> Sort Loss</code> — a loss function that leverages the order in which speakers begin talking. Combined with Binary Cross-Entropy (BCE) instead of traditional Cross Entropy (CE), this framework is optimized for overlapping speakers and multi-label classification.
-</div>
-<div style="text-align: justify; font-size: 15px;">
-In this blog post, we'll explain:
-<ul style="margin-top: 0px; margin-bottom: 0; padding-left: 30px;">
-<li style="margin-bottom: 0px;">How Sort Loss works.</li>
-<li style="margin-bottom: 0px;">How Sortformer training happens.</li>
-<li style="margin-bottom: 0px;">Why we use Binary Cross-Entropy (BCE) instead of traditional Cross-Entropy (CE).</li>
-<li style="margin-bottom: 0px;">How Softmax and Sigmoid activations differ.</li>
-<li style="margin-bottom: 0px;">Tiny examples to make it crystal clear!</li>
+<li><strong>Speech Detection and Segmentation:</strong> This step detects which regions of the audio contain speech and which are silent or contain noise, then splits the speech into chunks. It usually uses energy-based thresholds, voice activity detectors (VAD), or neural classifiers to separate speech from non-speech regions. Accurate VAD is critical because missed speech or false positives directly affect downstream segmentation and labeling. One of the most popular VAD algorithms is WebRTC VAD, which uses a combination of energy and spectral features to detect speech.</li>
+<li><strong>Speech Embedding:</strong> A neural network pre-trained on speaker recognition is used to derive a high-level representation of the speech segments. Those embeddings are vector representations that summarize the voice characteristics (a.k.a voice print). Early systems used MFCC (Mel-frequency cepstral coefficients), but more modern pipelines use i-vectors or x-vectors, which are compact representations capturing speaker identity.</li>
+<li><strong>Speaker Clustering:</strong> After extracting segment embeddings, we need to cluster the speech embeddings with a clustering algorithm (for example K-Means or spectral clustering). The clustering produces our desired diarization results, which consists of identifying the number of unique speakers (derived from the number of unique clusters) and assigning a speaker label to each embedding (or speech segment).</li>
 </ul>
 </div>
+<h3 id="2-end-to-end-method">2. End To End Method</h3>
+<p>End-to-end (E2E) diarization models aim to integrate the entire diarization process into a single neural network architecture, reducing the need for modular tuning and improving generalization. It usually inclues core crchitecture features such as:</p>
+<div style="text-align: justify; font-size: 15px; margin-top: -20px">
+<ul>
+<li>Joint Learning: E2E models are trained to jointly optimize speech segmentation, speaker embedding extraction, and speaker assignment within one framework.</li>
+<li>Neural Encoders: Use convolutional neural networks (CNNs), recurrent neural networks (RNNs), or transformers to extract rich time-series representations from audio inputs.</li>
+<li>Attention Mechanisms: Incorporate self-attention layers to capture long-range dependencies across audio sequences, which is especially useful in handling speaker changes and overlapping speech.</li>
+<li>Loss Functions: Design specialized loss functions (e.g., permutation-invariant training) that help the model learn speaker assignments without being confused by label permutations.</li>
+</ul>
+</div>
+<p><strong>2.1 Pyannote Audio</strong>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  id="figure-fig-3-pyannote-audio-framework">
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="Fig 3: Pyannote Audio Framework" srcset="
+               /post/speech-research/speaker-diarization/pyannote_audio_pipeline_hu397e532eafa394da5f18400726a029a2_95311_bfcefe4f6bd63bec1b1ca774d5672d01.jpg 400w,
+               /post/speech-research/speaker-diarization/pyannote_audio_pipeline_hu397e532eafa394da5f18400726a029a2_95311_debe6adaba4f91716017823d1d736632.jpg 760w,
+               /post/speech-research/speaker-diarization/pyannote_audio_pipeline_hu397e532eafa394da5f18400726a029a2_95311_1200x1200_fit_q75_lanczos.jpg 1200w"
+               src="/post/speech-research/speaker-diarization/pyannote_audio_pipeline_hu397e532eafa394da5f18400726a029a2_95311_bfcefe4f6bd63bec1b1ca774d5672d01.jpg"
+               width="760"
+               height="428"
+               loading="lazy" data-zoomable /></div>
+  </div><figcaption>
+      Fig 3: Pyannote Audio Framework
+    </figcaption></figure></p>
+<p><strong>2.2 Multi-Scale Diarization Nemo</strong>
+<br>
+Speaker diarization faces a trade-off between accurately capturing speaker traits (which needs long audio segments) and achieving fine temporal resolution (which requires short segments). Traditional single-scale methods balance these but still leave gaps in accuracy, especially for short speaker turns common in conversation. To address this, a multi-scale approach is proposed, where speaker features are extracted at multiple segment lengths and combined using a multi-scale diarization decoder (MSDD). MSDD dynamically assigns weights to each scale using a CNN-based mechanism, improving diarization accuracy by balancing temporal precision and speaker representation quality.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  id="figure-fig-4-multi-scale-diarization-from-nemo">
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="Fig 4: Multi-Scale Diarization from Nemo" srcset="
+               /post/speech-research/speaker-diarization/nemo_unispeech_pipeline_hue6ea386f8be205e2031329979c69f704_676196_bbaec566d3120964c9f68e69f9945a3a.png 400w,
+               /post/speech-research/speaker-diarization/nemo_unispeech_pipeline_hue6ea386f8be205e2031329979c69f704_676196_9ff8823fe4969344afa59efc019f539c.png 760w,
+               /post/speech-research/speaker-diarization/nemo_unispeech_pipeline_hue6ea386f8be205e2031329979c69f704_676196_1200x1200_fit_lanczos_3.png 1200w"
+               src="/post/speech-research/speaker-diarization/nemo_unispeech_pipeline_hue6ea386f8be205e2031329979c69f704_676196_bbaec566d3120964c9f68e69f9945a3a.png"
+               width="760"
+               height="405"
+               loading="lazy" data-zoomable /></div>
+  </div><figcaption>
+      Fig 4: Multi-Scale Diarization from Nemo
+    </figcaption></figure></p>
 <h3 id="what-problem-does-sort-loss-solve">What Problem Does Sort Loss Solve?</h3>
 <p>Speaker diarization models predict <strong>who</strong> is speaking at <strong>each frame</strong> of audio. But — <strong>the model doesn&rsquo;t know speaker identities</strong>! It only uses generic speaker labels (e.g., Speaker-0, Speaker-1). Traditional training needs to match predicted speakers to ground-truth speakers, trying every possible permutation (PIL) — very expensive when many speakers exist!</p>
 <div style="text-align: justify; font-size: 15px; margin-top: -15px;" markdown="1">
@@ -1075,7 +1142,7 @@ Stay tuned for more tutorials where we dive into multispeaker ASR models and joi
       
       
       <li>
-        <a href="https://twitter.com/intent/tweet?url=https://leminhnguyen.github.io/post/speech-research/speaker-diarization/&amp;text=Sortformer:%20A%20novel%20approach%20to%20speaker%20diarization" target="_blank" rel="noopener" class="share-btn-twitter" aria-label="twitter">
+        <a href="https://twitter.com/intent/tweet?url=https://leminhnguyen.github.io/post/speech-research/speaker-diarization/&amp;text=Speaker%20Diarization:%20From%20Traditional%20Methods%20to%20the%20Modern%20Models" target="_blank" rel="noopener" class="share-btn-twitter" aria-label="twitter">
           <i class="fab fa-twitter"></i>
         </a>
       </li>
@@ -1088,7 +1155,7 @@ Stay tuned for more tutorials where we dive into multispeaker ASR models and joi
       
       
       <li>
-        <a href="https://www.facebook.com/sharer.php?u=https://leminhnguyen.github.io/post/speech-research/speaker-diarization/&amp;t=Sortformer:%20A%20novel%20approach%20to%20speaker%20diarization" target="_blank" rel="noopener" class="share-btn-facebook" aria-label="facebook">
+        <a href="https://www.facebook.com/sharer.php?u=https://leminhnguyen.github.io/post/speech-research/speaker-diarization/&amp;t=Speaker%20Diarization:%20From%20Traditional%20Methods%20to%20the%20Modern%20Models" target="_blank" rel="noopener" class="share-btn-facebook" aria-label="facebook">
           <i class="fab fa-facebook"></i>
         </a>
       </li>
@@ -1101,7 +1168,7 @@ Stay tuned for more tutorials where we dive into multispeaker ASR models and joi
       
       
       <li>
-        <a href="mailto:?subject=Sortformer:%20A%20novel%20approach%20to%20speaker%20diarization&amp;body=https://leminhnguyen.github.io/post/speech-research/speaker-diarization/" target="_blank" rel="noopener" class="share-btn-email" aria-label="envelope">
+        <a href="mailto:?subject=Speaker%20Diarization:%20From%20Traditional%20Methods%20to%20the%20Modern%20Models&amp;body=https://leminhnguyen.github.io/post/speech-research/speaker-diarization/" target="_blank" rel="noopener" class="share-btn-email" aria-label="envelope">
           <i class="fas fa-envelope"></i>
         </a>
       </li>
@@ -1114,7 +1181,7 @@ Stay tuned for more tutorials where we dive into multispeaker ASR models and joi
       
       
       <li>
-        <a href="https://www.linkedin.com/shareArticle?url=https://leminhnguyen.github.io/post/speech-research/speaker-diarization/&amp;title=Sortformer:%20A%20novel%20approach%20to%20speaker%20diarization" target="_blank" rel="noopener" class="share-btn-linkedin" aria-label="linkedin-in">
+        <a href="https://www.linkedin.com/shareArticle?url=https://leminhnguyen.github.io/post/speech-research/speaker-diarization/&amp;title=Speaker%20Diarization:%20From%20Traditional%20Methods%20to%20the%20Modern%20Models" target="_blank" rel="noopener" class="share-btn-linkedin" aria-label="linkedin-in">
           <i class="fab fa-linkedin-in"></i>
         </a>
       </li>
@@ -1127,7 +1194,7 @@ Stay tuned for more tutorials where we dive into multispeaker ASR models and joi
       
       
       <li>
-        <a href="whatsapp://send?text=Sortformer:%20A%20novel%20approach%20to%20speaker%20diarization%20https://leminhnguyen.github.io/post/speech-research/speaker-diarization/" target="_blank" rel="noopener" class="share-btn-whatsapp" aria-label="whatsapp">
+        <a href="whatsapp://send?text=Speaker%20Diarization:%20From%20Traditional%20Methods%20to%20the%20Modern%20Models%20https://leminhnguyen.github.io/post/speech-research/speaker-diarization/" target="_blank" rel="noopener" class="share-btn-whatsapp" aria-label="whatsapp">
           <i class="fab fa-whatsapp"></i>
         </a>
       </li>
@@ -1140,7 +1207,7 @@ Stay tuned for more tutorials where we dive into multispeaker ASR models and joi
       
       
       <li>
-        <a href="https://service.weibo.com/share/share.php?url=https://leminhnguyen.github.io/post/speech-research/speaker-diarization/&amp;title=Sortformer:%20A%20novel%20approach%20to%20speaker%20diarization" target="_blank" rel="noopener" class="share-btn-weibo" aria-label="weibo">
+        <a href="https://service.weibo.com/share/share.php?url=https://leminhnguyen.github.io/post/speech-research/speaker-diarization/&amp;title=Speaker%20Diarization:%20From%20Traditional%20Methods%20to%20the%20Modern%20Models" target="_blank" rel="noopener" class="share-btn-weibo" aria-label="weibo">
           <i class="fab fa-weibo"></i>
         </a>
       </li>
