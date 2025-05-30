@@ -1,0 +1,1380 @@
+<!DOCTYPE html><html lang="en-us" >
+
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  
+  
+    <meta name="generator" content="Wowchemy 5.3.0 for Hugo" />
+  
+
+  
+  
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  
+
+  
+  
+  
+    
+      
+      <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap" media="print" onload="this.media='all'">
+    
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="Minh Nguyen Le" />
+
+  
+  
+  
+    
+  
+  <meta name="description" content="Adversarial Attacks on Large Language Models (LLMs)
+Adversarial attacks on large language models (LLMs) involve manipulating inputs to deceive the model into generating harmful, biased, or incorrect outputs. These attacks exploit the vulnerabilities of LLMs, which rely on patterns in training data to generate responses." />
+
+  
+  <link rel="alternate" hreflang="en-us" href="https://leminhnguyen.github.io/post/nlp-research/adversarial-attacks/" />
+
+  
+  
+  
+    <meta name="theme-color" content="#2962ff" />
+  
+
+  
+  
+    
+    <script src="/js/mathjax-config.js"></script>
+  
+
+  
+
+  <link rel="stylesheet" href="/css/vendor-bundle.min.f1ecf783c14edc00c9320c205831ad8e.css" media="print" onload="this.media='all'">
+
+  
+  
+  
+    
+    
+
+    
+    
+    
+    
+      
+      
+    
+    
+    
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/github.min.css" crossorigin="anonymous" title="hl-light" media="print" onload="this.media='all'">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" media="print" onload="this.media='all'" disabled>
+        
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" integrity="" crossorigin="anonymous" async></script>
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+  
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/wowchemy.d65872b95e794dda92dc12a85e1e04fa.css" />
+
+  
+
+
+
+  
+
+  
+
+  
+
+
+
+
+  
+  
+  
+
+  
+
+  
+    <link rel="manifest" href="/manifest.webmanifest" />
+  
+
+  <link rel="icon" type="image/png" href="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_32x32_fill_lanczos_center_3.png" />
+  <link rel="apple-touch-icon" type="image/png" href="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_180x180_fill_lanczos_center_3.png" />
+
+  <link rel="canonical" href="https://leminhnguyen.github.io/post/nlp-research/adversarial-attacks/" />
+
+  
+  
+  
+  
+  
+  
+  
+  
+    
+  
+  
+
+  
+  
+    
+    
+  
+  <meta property="twitter:card" content="summary_large_image" />
+  
+    <meta property="twitter:site" content="@wowchemy" />
+    <meta property="twitter:creator" content="@wowchemy" />
+  
+  <meta property="og:site_name" content="leminhnguyen&#39;s blog" />
+  <meta property="og:url" content="https://leminhnguyen.github.io/post/nlp-research/adversarial-attacks/" />
+  <meta property="og:title" content="Adversarial Attacks on Large Language Models (LLMs) | leminhnguyen&#39;s blog" />
+  <meta property="og:description" content="Adversarial Attacks on Large Language Models (LLMs)
+Adversarial attacks on large language models (LLMs) involve manipulating inputs to deceive the model into generating harmful, biased, or incorrect outputs. These attacks exploit the vulnerabilities of LLMs, which rely on patterns in training data to generate responses." /><meta property="og:image" content="https://leminhnguyen.github.io/post/nlp-research/adversarial-attacks/featured.webp" />
+    <meta property="twitter:image" content="https://leminhnguyen.github.io/post/nlp-research/adversarial-attacks/featured.webp" /><meta property="og:locale" content="en-us" />
+  
+    
+      <meta
+        property="article:published_time"
+        content="2025-01-11T00:00:00&#43;00:00"
+      />
+    
+    <meta property="article:modified_time" content="2025-01-11T00:00:00&#43;00:00">
+  
+
+  
+
+
+    
+
+
+
+
+
+
+  
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://leminhnguyen.github.io/post/nlp-research/adversarial-attacks/"
+  },
+  "headline": "Adversarial Attacks on Large Language Models (LLMs)",
+  
+  "image": [
+    "https://leminhnguyen.github.io/post/nlp-research/adversarial-attacks/featured.webp"
+  ],
+  
+  "datePublished": "2025-01-11T00:00:00Z",
+  "dateModified": "2025-01-11T00:00:00Z",
+  
+  "author": {
+    "@type": "Person",
+    "name": "Minh Nguyen Le"
+  },
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "leminhnguyen's blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://leminhnguyen.github.io/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_192x192_fill_lanczos_center_3.png"
+    }
+  },
+  "description": "Adversarial Attacks on Large Language Models (LLMs)\nAdversarial attacks on large language models (LLMs) involve manipulating inputs to deceive the model into generating harmful, biased, or incorrect outputs. These attacks exploit the vulnerabilities of LLMs, which rely on patterns in training data to generate responses."
+}
+</script>
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+  <title>Adversarial Attacks on Large Language Models (LLMs) | leminhnguyen&#39;s blog</title>
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="3e76c5c2517688530ade7b63aca56672" >
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <script src="/js/wowchemy-init.min.6619cc29fe1a874b6ea1a0359aab5cfb.js"></script>
+
+  
+
+
+<aside class="search-modal" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#" aria-label="Close"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search" class="form-control"
+        aria-label="Search...">
+        
+      </div>
+
+      
+      
+
+      
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+
+  <div class="page-header">
+    
+
+
+
+
+
+
+
+
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+  <div class="container-xl">
+
+    
+
+    
+    <button type="button" class="navbar-toggler" data-toggle="collapse"
+            data-target="#navbar-content" aria-controls="navbar-content" aria-expanded="false" aria-label="Toggle navigation">
+    <span><i class="fas fa-bars"></i></span>
+    </button>
+    
+
+    
+
+    
+    
+    <div class="navbar-collapse main-menu-item collapse justify-content-end" id="navbar-content">
+
+      
+      <ul class="navbar-nav d-md-inline-flex">
+        
+
+        
+
+        
+        
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/"><span>Home</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/about/"><span>About</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/category/speech/"><span>Speech</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/category/nlp/"><span>NLP</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/category/python/"><span>Python</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/category/linux/"><span>Linux</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+      </ul>
+    </div>
+
+    <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+
+      
+      
+        
+      
+
+      
+      
+      <li class="nav-item">
+        <a class="nav-link js-search" href="#" aria-label="Search"><i class="fas fa-search" aria-hidden="true"></i></a>
+      </li>
+      
+
+      
+      
+      <li class="nav-item dropdown theme-dropdown">
+        <a href="#" class="nav-link" data-toggle="dropdown" aria-haspopup="true" aria-label="Display preferences">
+          <i class="fas fa-moon" aria-hidden="true"></i>
+        </a>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item js-set-theme-light">
+            <span>Light</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-dark">
+            <span>Dark</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-auto">
+            <span>Automatic</span>
+          </a>
+        </div>
+      </li>
+      
+
+      
+      
+
+    </ul>
+
+  </div>
+</nav>
+
+
+  </div>
+
+  <div class="page-body">
+    <article class="article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+<div class="article-container pt-3">
+  <h1>Adversarial Attacks on Large Language Models (LLMs)</h1>
+
+  
+
+  
+    
+
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    Jan 11, 2025
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    4 min read
+  </span>
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder mr-1"></i><a href="/category/nlp/">NLP</a>, <a href="/category/large-language-models/">Large Language Models</a></span>
+  
+
+</div>
+
+    
+
+
+
+
+
+  
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
+      <div style="text-align: justify; font-size: 15px; margin-top: 20px">
+<p><strong>Adversarial Attacks on Large Language Models (LLMs)</strong></p>
+<p>Adversarial attacks on large language models (LLMs) involve manipulating inputs to deceive the model into generating harmful, biased, or incorrect outputs. These attacks exploit the vulnerabilities of LLMs, which rely on patterns in training data to generate responses. Below is an overview of key concepts, types of attacks, implications, and defense strategies.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  id="figure-an-overview-of-threats-to-llm-based-applications-source-lillog-blog">
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="An overview of threats to LLM-based applications (source: Lil&#39;Log Blog)" srcset="
+               /post/nlp-research/adversarial-attacks/threats-overview_hu5cc59e8e6448994ce2a12d24e267d6f5_401678_213025f04731a3fd00a3d61c5d51a00f.png 400w,
+               /post/nlp-research/adversarial-attacks/threats-overview_hu5cc59e8e6448994ce2a12d24e267d6f5_401678_39113d4dab022780f9de83ba4af61166.png 760w,
+               /post/nlp-research/adversarial-attacks/threats-overview_hu5cc59e8e6448994ce2a12d24e267d6f5_401678_1200x1200_fit_lanczos_3.png 1200w"
+               src="/post/nlp-research/adversarial-attacks/threats-overview_hu5cc59e8e6448994ce2a12d24e267d6f5_401678_213025f04731a3fd00a3d61c5d51a00f.png"
+               width="760"
+               height="333"
+               loading="lazy" data-zoomable /></div>
+  </div><figcaption>
+      An overview of threats to LLM-based applications (source: Lil&rsquo;Log Blog)
+    </figcaption></figure>
+<hr>
+<h3 id="1-types-of-adversarial-attacks-on-llms"><strong>1. Types of Adversarial Attacks on LLMs</strong></h3>
+<h4 id="a-evasion-attacks">a. Evasion Attacks</h4>
+<ul>
+<li><strong>Description</strong>: Attackers modify input text (e.g., by altering words, punctuation, or structure) to trick the model into producing unintended outputs.</li>
+<li><strong>Example</strong>: Adding a few words like &ldquo;I am a helpful assistant&rdquo; to a prompt to manipulate the model&rsquo;s response.</li>
+<li><strong>Impact</strong>: Can lead to misinformation, phishing, or generation of harmful content.</li>
+</ul>
+<h4 id="b-poisoning-attacks"><strong>b. Poisoning Attacks</strong></h4>
+<ul>
+<li><strong>Description</strong>: Corrupting training data to influence the model&rsquo;s behavior. Attackers inject malicious examples during training.</li>
+<li><strong>Example</strong>: Including biased or harmful data in the training set to make the model generate toxic responses.</li>
+<li><strong>Impact</strong>: Long-term degradation of model reliability and trustworthiness.</li>
+</ul>
+<h4 id="c-injection-attacks"><strong>c. Injection Attacks</strong></h4>
+<ul>
+<li><strong>Description</strong>: Inserting malicious code or prompts into the input to alter the model&rsquo;s execution flow.</li>
+<li><strong>Example</strong>: Using adversarial prompts like &ldquo;Generate a phishing email&rdquo; to exploit the model&rsquo;s tendency to follow instructions.</li>
+<li><strong>Impact</strong>: Enables exploitation of model capabilities for malicious purposes.</li>
+</ul>
+<h4 id="d-data-poisoning"><strong>d. Data Poisoning</strong></h4>
+<ul>
+<li><strong>Description</strong>: Similar to poisoning attacks but focuses on corrupting the training dataset to bias the model&rsquo;s outputs.</li>
+<li><strong>Example</strong>: Adding fake user interactions that encourage the model to generate harmful content.</li>
+<li><strong>Impact</strong>: Systemic bias and ethical risks in model behavior.</li>
+</ul>
+<h4 id="e-model-inversion-attacks"><strong>e. Model Inversion Attacks</strong></h4>
+<ul>
+<li><strong>Description</strong>: Inferring sensitive information about the model&rsquo;s training data by analyzing outputs.</li>
+<li><strong>Example</strong>: Reverse-engineering the model to reveal private data or patterns in the training set.</li>
+<li><strong>Impact</strong>: Privacy breaches and exposure of proprietary information.</li>
+</ul>
+<hr>
+<h3 id="2-implications-of-adversarial-attacks"><strong>2. Implications of Adversarial Attacks</strong></h3>
+<ul>
+<li><strong>Security Risks</strong>: Phishing, misinformation, and malware generation via manipulated prompts.</li>
+<li><strong>Ethical Concerns</strong>: Reinforcement of biases, hate speech, or harmful content.</li>
+<li><strong>Trust Erosion</strong>: Users may lose confidence in LLMs for critical tasks like healthcare, finance, or legal advice.</li>
+<li><strong>Operational Disruption</strong>: Attackers could disrupt services by causing models to fail or produce incorrect outputs.</li>
+</ul>
+<hr>
+<h3 id="3-defense-mechanisms"><strong>3. Defense Mechanisms</strong></h3>
+<h4 id="a-adversarial-training"><strong>a. Adversarial Training</strong></h4>
+<ul>
+<li><strong>Approach</strong>: Train models on adversarial examples to improve robustness.</li>
+<li><strong>Example</strong>: Introduce perturbed inputs during training to make the model resistant to attacks.</li>
+<li><strong>Limitation</strong>: Requires access to adversarial examples, which may be difficult to generate for LLMs.</li>
+</ul>
+<h4 id="b-input-sanitization"><strong>b. Input Sanitization</strong></h4>
+<ul>
+<li><strong>Approach</strong>: Detect and filter malicious patterns in inputs (e.g., using regex or keyword matching).</li>
+<li><strong>Example</strong>: Blocking suspicious prompts like &ldquo;Generate a phishing email&rdquo; or &ldquo;I am a helpful assistant.&rdquo;</li>
+<li><strong>Limitation</strong>: May fail against sophisticated, subtle attacks.</li>
+</ul>
+<h4 id="c-model-ensembles"><strong>c. Model Ensembles</strong></h4>
+<ul>
+<li><strong>Approach</strong>: Use multiple models to cross-validate outputs and detect inconsistencies.</li>
+<li><strong>Example</strong>: If one model generates a harmful response, others may flag it as anomalous.</li>
+<li><strong>Limitation</strong>: Increases computational overhead and complexity.</li>
+</ul>
+<h4 id="d-uncertainty-estimation"><strong>d. Uncertainty Estimation</strong></h4>
+<ul>
+<li><strong>Approach</strong>: Train models to estimate confidence in their outputs, flagging uncertain responses.</li>
+<li><strong>Example</strong>: If the model is unsure about a prompt, it may refuse to generate a response.</li>
+<li><strong>Limitation</strong>: Requires careful calibration and may reduce usability.</li>
+</ul>
+<h4 id="e-prompt-engineering-defenses"><strong>e. Prompt Engineering Defenses</strong></h4>
+<ul>
+<li><strong>Approach</strong>: Design prompts to resist adversarial manipulation (e.g., using multi-step reasoning or safety checks).</li>
+<li><strong>Example</strong>: Incorporating safety constraints like &ldquo;Avoid harmful content&rdquo; into the prompt.</li>
+<li><strong>Limitation</strong>: May not fully prevent attacks, especially if the adversary tailors prompts.</li>
+</ul>
+<hr>
+<h3 id="4-research-and-tools"><strong>4. Research and Tools</strong></h3>
+<ul>
+<li>
+<p><strong>Key Papers</strong>:</p>
+<ul>
+<li><strong>&ldquo;Adversarial Examples for Neural Network Language Models&rdquo;</strong> (Emti et al.) – Explores adversarial examples in NLP.</li>
+<li><strong>&ldquo;Prompt Injection Attacks on Language Models&rdquo;</strong> (Zhang et al.) – Demonstrates how prompts can be weaponized.</li>
+<li><strong>&ldquo;Defending Against Prompt Injection Attacks&rdquo;</strong> (Li et al.) – Proposes defenses against adversarial prompts.</li>
+</ul>
+</li>
+<li>
+<p><strong>Tools</strong>:</p>
+<ul>
+<li><strong>Adversarial Text Generation Tools</strong>: Generate adversarial examples for testing.</li>
+<li><strong>Model Auditing Frameworks</strong>: Analyze model behavior for biases or vulnerabilities.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="5-challenges-and-future-directions"><strong>5. Challenges and Future Directions</strong></h3>
+<ul>
+<li><strong>Dynamic Nature of Attacks</strong>: Adversaries continuously evolve techniques, requiring ongoing research.</li>
+<li><strong>Balancing Safety and Usability</strong>: Defenses must avoid overly restrictive measures that hinder model functionality.</li>
+<li><strong>Cross-Domain Collaboration</strong>: Combining insights from cybersecurity, NLP, and ethics to address risks holistically.</li>
+</ul>
+<hr>
+<h3 id="conclusion"><strong>Conclusion</strong></h3>
+<p>Adversarial attacks on LLMs pose significant risks to security, ethics, and trust. While defenses like adversarial training and input sanitization offer partial protection, the dynamic nature of these threats demands continuous innovation. Researchers and practitioners must prioritize robustness, transparency, and ethical considerations to ensure the safe deployment of LLMs in real-world applications.</p>
+</div>
+    </div>
+
+    
+
+
+
+
+
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tag/deep-learning/">deep learning</a>
+  
+  <a class="badge badge-light" href="/tag/llm/">llm</a>
+  
+  <a class="badge badge-light" href="/tag/adversarial-attacks/">adversarial attacks</a>
+  
+</div>
+
+
+
+<div class="share-box">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=https://leminhnguyen.github.io/post/nlp-research/adversarial-attacks/&amp;text=Adversarial%20Attacks%20on%20Large%20Language%20Models%20%28LLMs%29" target="_blank" rel="noopener" class="share-btn-twitter" aria-label="twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=https://leminhnguyen.github.io/post/nlp-research/adversarial-attacks/&amp;t=Adversarial%20Attacks%20on%20Large%20Language%20Models%20%28LLMs%29" target="_blank" rel="noopener" class="share-btn-facebook" aria-label="facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=Adversarial%20Attacks%20on%20Large%20Language%20Models%20%28LLMs%29&amp;body=https://leminhnguyen.github.io/post/nlp-research/adversarial-attacks/" target="_blank" rel="noopener" class="share-btn-email" aria-label="envelope">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=https://leminhnguyen.github.io/post/nlp-research/adversarial-attacks/&amp;title=Adversarial%20Attacks%20on%20Large%20Language%20Models%20%28LLMs%29" target="_blank" rel="noopener" class="share-btn-linkedin" aria-label="linkedin-in">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="whatsapp://send?text=Adversarial%20Attacks%20on%20Large%20Language%20Models%20%28LLMs%29%20https://leminhnguyen.github.io/post/nlp-research/adversarial-attacks/" target="_blank" rel="noopener" class="share-btn-whatsapp" aria-label="whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=https://leminhnguyen.github.io/post/nlp-research/adversarial-attacks/&amp;title=Adversarial%20Attacks%20on%20Large%20Language%20Models%20%28LLMs%29" target="_blank" rel="noopener" class="share-btn-weibo" aria-label="weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+  
+  
+    
+  
+  
+  
+  <div class="media author-card content-widget-hr">
+    
+      
+      <a href="https://leminhnguyen.github.io/"><img class="avatar mr-3 avatar-circle" src="/author/minh-nguyen-le/avatar_hue73c4865dd3562863accf819672b4d4e_72777_270x270_fill_lanczos_center_3.png" alt="Minh Nguyen Le"></a>
+    
+
+    <div class="media-body">
+      <h5 class="card-title"><a href="https://leminhnguyen.github.io/">Minh Nguyen Le</a></h5>
+      <h6 class="card-subtitle">AI Engineer</h6>
+      
+      <ul class="network-icon" aria-hidden="true">
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="/about/#contact" >
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://www.facebook.com/minhnguyen.le.180072/" target="_blank" rel="noopener">
+        <i class="fab fa-facebook"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://stackoverflow.com/users/10629841/leminhnguyen" target="_blank" rel="noopener">
+        <i class="fab fa-stack-overflow"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://www.linkedin.com/in/minh-nguyen-le-a83b0419b/" target="_blank" rel="noopener">
+        <i class="fab fa-linkedin"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://github.com/leminhnguyen" target="_blank" rel="noopener">
+        <i class="fab fa-github"></i>
+      </a>
+    </li>
+  
+</ul>
+
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="article-widget">
+  
+<div class="post-nav">
+  
+  
+  
+  <div class="post-nav-item">
+    <div class="meta-nav">Next</div>
+    <a href="/post/nlp-research/flash-attention/" rel="next">Understanding FlashAttention: Inner vs Outer Loop Optimization</a>
+  </div>
+  
+  
+  
+  <div class="post-nav-item">
+    <div class="meta-nav">Previous</div>
+    <a href="/post/speech-research/voice-conversion/voice-conversion-10-04-2024/" rel="prev">Vietnamese Voice Conversion</a>
+  </div>
+  
+</div>
+
+</div>
+
+
+
+
+
+  
+  
+  <div class="article-widget content-widget-hr">
+    <h3>Related</h3>
+    <ul>
+      
+      <li><a href="/post/nlp-research/flash-attention/">Understanding FlashAttention: Inner vs Outer Loop Optimization</a></li>
+      
+      <li><a href="/post/speech-research/lora-whisper/">LoRA-Whisper: A Scalable and Efficient Solution for Multilingual ASR</a></li>
+      
+      <li><a href="/post/speech-research/speaker-diarization/">Speaker Diarization: From Traditional Methods to the Modern Models</a></li>
+      
+    </ul>
+  </div>
+  
+
+
+
+
+
+  </div>
+</article>
+  </div>
+
+  <div class="page-footer">
+    
+    
+    <div class="container">
+      <footer class="site-footer">
+
+  
+
+
+
+  
+
+  
+
+  
+  <p class="powered-by">
+    © {2025} leminhnguyen
+  </p>
+  
+
+  
+  
+
+
+
+
+
+
+  <p class="powered-by">
+    
+    
+    
+      
+      
+      
+      
+      
+      
+      Published with <a href="https://wowchemy.com/?utm_campaign=poweredby" target="_blank" rel="noopener">Wowchemy</a> — the free, <a href="https://github.com/wowchemy/wowchemy-hugo-themes" target="_blank" rel="noopener">open source</a> website builder that empowers creators.
+    
+  </p>
+</footer>
+
+    </div>
+    
+  </div>
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+      
+
+    
+    <script src="/js/vendor-bundle.min.5a3a4e7cbc7b4e121b2d29312cf8ad59.js"></script>
+
+    
+    
+    
+      
+      
+
+      
+      
+
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/8.8.4/mermaid.min.js" integrity="sha512-as1BF4+iHZ3BVO6LLDQ7zrbvTXM+c/1iZ1qII/c3c4L8Rn5tHLpFUtpaEtBNS92f+xGsCzsD7b62XP3XYap6oA==" crossorigin="anonymous" title="mermaid"></script>
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/highlight.min.js" integrity="sha512-TDKKr+IvoqZnPzc3l35hdjpHD0m+b2EC2SrLEgKDRWpxf2rFCxemkgvJ5kfU48ip+Y+m2XVKyOCD85ybtlZDmw==" crossorigin="anonymous"></script>
+        
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/r.min.js" crossorigin="anonymous"></script>
+        
+      
+
+    
+
+    
+    
+    
+
+    
+    
+
+    
+    
+    
+      
+      <script id="search-hit-fuse-template" type="text/x-template">
+        <div class="search-hit" id="summary-{{key}}">
+          <div class="search-hit-content">
+            <div class="search-hit-name">
+              <a href="{{relpermalink}}">{{title}}</a>
+              <div class="article-metadata search-hit-type">{{type}}</div>
+              <p class="search-hit-description">{{snippet}}</p>
+            </div>
+          </div>
+        </div>
+      </script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+      
+    
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+      
+      
+      
+      
+      
+      
+      
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+    
+    
+    <script src="/en/js/wowchemy.min.44f54723226744971bcdd9c0ca685057.js"></script>
+
+    
+
+
+
+
+
+
+</body>
+</html>

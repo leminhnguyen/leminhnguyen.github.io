@@ -1,0 +1,1348 @@
+<!DOCTYPE html><html lang="en-us" >
+
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  
+  
+    <meta name="generator" content="Wowchemy 5.3.0 for Hugo" />
+  
+
+  
+  
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  
+
+  
+  
+  
+    
+      
+      <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap" media="print" onload="this.media='all'">
+    
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="Minh Nguyen Le" />
+
+  
+  
+  
+    
+  
+  <meta name="description" content="1. Background &amp; Motivation Automatic Speech Recognition (ASR) has made significant strides in recent years, particularly with the rise of large-scale multilingual models like OpenAI&rsquo;s Whisper, Google USM, and Meta&rsquo;s MMS." />
+
+  
+  <link rel="alternate" hreflang="en-us" href="https://leminhnguyen.github.io/post/speech-research/lora-whisper/" />
+
+  
+  
+  
+    <meta name="theme-color" content="#2962ff" />
+  
+
+  
+  
+    
+    <script src="/js/mathjax-config.js"></script>
+  
+
+  
+
+  <link rel="stylesheet" href="/css/vendor-bundle.min.f1ecf783c14edc00c9320c205831ad8e.css" media="print" onload="this.media='all'">
+
+  
+  
+  
+    
+    
+
+    
+    
+    
+    
+      
+      
+    
+    
+    
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/github.min.css" crossorigin="anonymous" title="hl-light" media="print" onload="this.media='all'">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" media="print" onload="this.media='all'" disabled>
+        
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" integrity="" crossorigin="anonymous" async></script>
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+  
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/wowchemy.d65872b95e794dda92dc12a85e1e04fa.css" />
+
+  
+
+
+
+  
+
+  
+
+  
+
+
+
+
+  
+  
+  
+
+  
+
+  
+    <link rel="manifest" href="/manifest.webmanifest" />
+  
+
+  <link rel="icon" type="image/png" href="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_32x32_fill_lanczos_center_3.png" />
+  <link rel="apple-touch-icon" type="image/png" href="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_180x180_fill_lanczos_center_3.png" />
+
+  <link rel="canonical" href="https://leminhnguyen.github.io/post/speech-research/lora-whisper/" />
+
+  
+  
+  
+  
+  
+  
+  
+  
+    
+  
+  
+
+  
+  
+    
+    
+  
+  <meta property="twitter:card" content="summary_large_image" />
+  
+    <meta property="twitter:site" content="@wowchemy" />
+    <meta property="twitter:creator" content="@wowchemy" />
+  
+  <meta property="og:site_name" content="leminhnguyen&#39;s blog" />
+  <meta property="og:url" content="https://leminhnguyen.github.io/post/speech-research/lora-whisper/" />
+  <meta property="og:title" content="LoRA-Whisper: A Scalable and Efficient Solution for Multilingual ASR | leminhnguyen&#39;s blog" />
+  <meta property="og:description" content="1. Background &amp; Motivation Automatic Speech Recognition (ASR) has made significant strides in recent years, particularly with the rise of large-scale multilingual models like OpenAI&rsquo;s Whisper, Google USM, and Meta&rsquo;s MMS." /><meta property="og:image" content="https://leminhnguyen.github.io/post/speech-research/lora-whisper/featured.webp" />
+    <meta property="twitter:image" content="https://leminhnguyen.github.io/post/speech-research/lora-whisper/featured.webp" /><meta property="og:locale" content="en-us" />
+  
+    
+      <meta
+        property="article:published_time"
+        content="2025-04-28T00:00:00&#43;00:00"
+      />
+    
+    <meta property="article:modified_time" content="2025-04-28T00:00:00&#43;00:00">
+  
+
+  
+
+
+    
+
+
+
+
+
+
+  
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://leminhnguyen.github.io/post/speech-research/lora-whisper/"
+  },
+  "headline": "LoRA-Whisper: A Scalable and Efficient Solution for Multilingual ASR",
+  
+  "image": [
+    "https://leminhnguyen.github.io/post/speech-research/lora-whisper/featured.webp"
+  ],
+  
+  "datePublished": "2025-04-28T00:00:00Z",
+  "dateModified": "2025-04-28T00:00:00Z",
+  
+  "author": {
+    "@type": "Person",
+    "name": "Minh Nguyen Le"
+  },
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "leminhnguyen's blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://leminhnguyen.github.io/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_192x192_fill_lanczos_center_3.png"
+    }
+  },
+  "description": "1. Background \u0026amp; Motivation Automatic Speech Recognition (ASR) has made significant strides in recent years, particularly with the rise of large-scale multilingual models like OpenAI\u0026rsquo;s Whisper, Google USM, and Meta\u0026rsquo;s MMS."
+}
+</script>
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+  <title>LoRA-Whisper: A Scalable and Efficient Solution for Multilingual ASR | leminhnguyen&#39;s blog</title>
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="cc801e7721d7b51689f724deea2559a4" >
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <script src="/js/wowchemy-init.min.6619cc29fe1a874b6ea1a0359aab5cfb.js"></script>
+
+  
+
+
+<aside class="search-modal" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#" aria-label="Close"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search" class="form-control"
+        aria-label="Search...">
+        
+      </div>
+
+      
+      
+
+      
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+
+  <div class="page-header">
+    
+
+
+
+
+
+
+
+
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+  <div class="container-xl">
+
+    
+
+    
+    <button type="button" class="navbar-toggler" data-toggle="collapse"
+            data-target="#navbar-content" aria-controls="navbar-content" aria-expanded="false" aria-label="Toggle navigation">
+    <span><i class="fas fa-bars"></i></span>
+    </button>
+    
+
+    
+
+    
+    
+    <div class="navbar-collapse main-menu-item collapse justify-content-end" id="navbar-content">
+
+      
+      <ul class="navbar-nav d-md-inline-flex">
+        
+
+        
+
+        
+        
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/"><span>Home</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/about/"><span>About</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/category/speech/"><span>Speech</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/category/nlp/"><span>NLP</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/category/python/"><span>Python</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/category/linux/"><span>Linux</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+      </ul>
+    </div>
+
+    <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+
+      
+      
+        
+      
+
+      
+      
+      <li class="nav-item">
+        <a class="nav-link js-search" href="#" aria-label="Search"><i class="fas fa-search" aria-hidden="true"></i></a>
+      </li>
+      
+
+      
+      
+      <li class="nav-item dropdown theme-dropdown">
+        <a href="#" class="nav-link" data-toggle="dropdown" aria-haspopup="true" aria-label="Display preferences">
+          <i class="fas fa-moon" aria-hidden="true"></i>
+        </a>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item js-set-theme-light">
+            <span>Light</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-dark">
+            <span>Dark</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-auto">
+            <span>Automatic</span>
+          </a>
+        </div>
+      </li>
+      
+
+      
+      
+
+    </ul>
+
+  </div>
+</nav>
+
+
+  </div>
+
+  <div class="page-body">
+    <article class="article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+<div class="article-container pt-3">
+  <h1>LoRA-Whisper: A Scalable and Efficient Solution for Multilingual ASR</h1>
+
+  
+
+  
+    
+
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    Apr 28, 2025
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    3 min read
+  </span>
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder mr-1"></i><a href="/category/speech/">Speech</a>, <a href="/category/automatic-speech-recognition/">Automatic Speech Recognition</a></span>
+  
+
+</div>
+
+    
+
+
+
+
+
+  
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
+      <div style="text-align: justify; font-size: 15px; margin-top: 20px">
+<h2 id="1-background--motivation"><strong>1. Background &amp; Motivation</strong></h2>
+<p>Automatic Speech Recognition (ASR) has made significant strides in recent years, particularly with the rise of large-scale multilingual models like OpenAI&rsquo;s Whisper, Google USM, and Meta&rsquo;s MMS. These models unlock possibilities for building speech recognition systems that support dozens — or even hundreds — of languages.<br>
+However, building such multilingual ASR systems remains challenging due to:</p>
+<div style="text-align: justify; font-size: 15px; margin-top: -15px">
+<ol>
+<li><strong>Language Interference</strong>: When multiple languages are trained in a shared model, performance may degrade due to data imbalance, dialectal accents, and language similarities.</li>
+<li><strong>Catastrophic Forgetting</strong>: Fine-tuning a model on new languages often causes the model to forget previously learned languages, severely impacting recognition performance.</li>
+</ol>
+</div>
+<h2 id="2-the-proposed-solution-lora-whisper"><strong>2. The Proposed Solution: LoRA-Whisper</strong></h2>
+<p>To tackle these two key challenges, researchers from Shanghai Jiao Tong University and Tencent AI Lab introduce <a href="https://arxiv.org/pdf/2406.06619" target="_blank" rel="noopener"><strong>LoRA-Whisper</strong></a>, a parameter-efficient and extensible multilingual ASR framework based on the Whisper model and <strong>Low-Rank Adaptation (LoRA)</strong>.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="" srcset="
+               /post/speech-research/lora-whisper/LoRA%20warm%20start%20and%20MoE_hu6fbb7d968e144fe5cedba710fb29a1f0_142765_4a9bda5537472758efffb93aa1a9bd94.png 400w,
+               /post/speech-research/lora-whisper/LoRA%20warm%20start%20and%20MoE_hu6fbb7d968e144fe5cedba710fb29a1f0_142765_ee9b2c2b586140e39f7e0fc69ebab6c6.png 760w,
+               /post/speech-research/lora-whisper/LoRA%20warm%20start%20and%20MoE_hu6fbb7d968e144fe5cedba710fb29a1f0_142765_1200x1200_fit_lanczos_3.png 1200w"
+               src="/post/speech-research/lora-whisper/LoRA%20warm%20start%20and%20MoE_hu6fbb7d968e144fe5cedba710fb29a1f0_142765_4a9bda5537472758efffb93aa1a9bd94.png"
+               width="760"
+               height="446"
+               loading="lazy" data-zoomable /></div>
+  </div></figure>
+<h4 id="what-is-lora"><strong>What is LoRA?</strong></h4>
+<p><strong>LoRA</strong> (Low-Rank Adaptation) is a lightweight fine-tuning technique that freezes the original model weights and injects small, trainable low-rank matrices into certain layers (e.g., attention and feed-forward layers). This allows models to be efficiently adapted to new tasks or domains with minimal parameter overhead.</p>
+<h4 id="how-lora-whisper-works">How LoRA-Whisper Works</h4>
+<ul>
+<li>For each language, a <strong>language-specific LoRA module</strong> is attached to the Whisper model.</li>
+<li>The <strong>Whisper model remains frozen</strong>, serving as a shared backbone.</li>
+<li>When recognizing a language, only the corresponding LoRA module is activated during inference.</li>
+<li>This design prevents language interference and ensures knowledge preservation of all previously learned languages.</li>
+</ul>
+<h4 id="adding-new-languages-language-expansion">Adding New Languages (Language Expansion)</h4>
+<p>LoRA-Whisper offers two innovative methods for expanding the model with new languages without retraining the entire model:</p>
+<div style="text-align: justify; font-size: 15px; margin-top: -15px; margin-bottom: -15px">
+<ol>
+<li><strong>LoRA Warm Start</strong>: The LoRA module for a new language is initialized using the LoRA module of the most similar existing language (based on Whisper’s language ID probabilities).</li>
+<li><strong>LoRA Mixture of Experts (MoE)</strong>: The system dynamically selects and combines LoRA modules from multiple similar languages during training and inference to aid the new language’s learning.</li>
+</ol>
+</div>
+These methods significantly improve adaptation quality while avoiding catastrophic forgetting.
+<h2 id="3-experimental-results"><strong>3. Experimental Results</strong></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="" srcset="
+               /post/speech-research/lora-whisper/lora_whisper_results_hu76a423228b00eeb3d77b99a44969647a_162684_8b58205bdaada31faf668f6735a58c0e.png 400w,
+               /post/speech-research/lora-whisper/lora_whisper_results_hu76a423228b00eeb3d77b99a44969647a_162684_e87846e488630ab835c83f67ee08ef77.png 760w,
+               /post/speech-research/lora-whisper/lora_whisper_results_hu76a423228b00eeb3d77b99a44969647a_162684_1200x1200_fit_lanczos_3.png 1200w"
+               src="/post/speech-research/lora-whisper/lora_whisper_results_hu76a423228b00eeb3d77b99a44969647a_162684_8b58205bdaada31faf668f6735a58c0e.png"
+               width="760"
+               height="424"
+               loading="lazy" data-zoomable /></div>
+  </div></figure>
+<p>Experiments were conducted using MLS and FLEURS datasets across 8 languages. Highlights include:</p>
+<div style="text-align: justify; font-size: 15px; margin-top: -15px; margin-bottom: 0px">
+<ul>
+<li><strong>Multilingual ASR</strong>: LoRA-Whisper outperformed multilingual fine-tuning and came close to monolingual fine-tuning, using only ~5% of the trainable parameters.</li>
+<li><strong>Language Expansion</strong>: Full fine-tuning with new languages caused up to 3× performance drop on existing languages. LoRA-Whisper maintained performance on existing languages while significantly improving WER (Word Error Rate) on new languages. LoRA warm start and LoRA MoE achieved 23% and 5% relative gains respectively over LoRA without similarity-based strategies.</li>
+</ul>
+</div>
+<h4 id="ablation-study-does-language-similarity-help">Ablation Study: Does Language Similarity Help?</h4>
+<p>Yes. The authors demonstrated that initializing a new language&rsquo;s LoRA from a similar language&rsquo;s LoRA consistently led to better performance. In contrast, initializing from an unrelated language could hurt performance — even worse than training from scratch.</p>
+<h4 id="limitations--future-work">Limitations &amp; Future Work</h4>
+<p>While LoRA-Whisper is scalable and efficient, one limitation is that model size increases linearly with the number of supported languages due to separate LoRA modules. Future directions include:</p>
+<div style="text-align: justify; font-size: 15px; margin-top: -15px; margin-bottom: 0px">
+<ul>
+<li>Sharing LoRA modules among similar languages.</li>
+<li>Extending the approach to low-resource and code-switching scenarios.</li>
+<li>Integrating more advanced expert routing techniques.</li>
+</ul>
+</div>
+<h2 id="4-conclusion"><strong>4. Conclusion</strong></h2>
+<p><strong>LoRA-Whisper</strong> offers a compelling solution for building scalable, customizable, and language-resilient ASR systems. By combining Whisper’s robust multilingual backbone with the adaptability of LoRA, the paper demonstrates an effective way to expand and maintain large ASR systems without catastrophic forgetting or performance trade-offs. This work marks a step forward in enabling more inclusive, efficient, and modular speech recognition systems — critical for real-world multilingual applications.</p>
+</div>
+    </div>
+
+    
+
+
+
+
+
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tag/deep-learning/">deep learning</a>
+  
+  <a class="badge badge-light" href="/tag/automatic-speech-recognition/">automatic speech recognition</a>
+  
+  <a class="badge badge-light" href="/tag/speech/">speech&#34;</a>
+  
+</div>
+
+
+
+<div class="share-box">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=https://leminhnguyen.github.io/post/speech-research/lora-whisper/&amp;text=LoRA-Whisper:%20A%20Scalable%20and%20Efficient%20Solution%20for%20Multilingual%20ASR" target="_blank" rel="noopener" class="share-btn-twitter" aria-label="twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=https://leminhnguyen.github.io/post/speech-research/lora-whisper/&amp;t=LoRA-Whisper:%20A%20Scalable%20and%20Efficient%20Solution%20for%20Multilingual%20ASR" target="_blank" rel="noopener" class="share-btn-facebook" aria-label="facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=LoRA-Whisper:%20A%20Scalable%20and%20Efficient%20Solution%20for%20Multilingual%20ASR&amp;body=https://leminhnguyen.github.io/post/speech-research/lora-whisper/" target="_blank" rel="noopener" class="share-btn-email" aria-label="envelope">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=https://leminhnguyen.github.io/post/speech-research/lora-whisper/&amp;title=LoRA-Whisper:%20A%20Scalable%20and%20Efficient%20Solution%20for%20Multilingual%20ASR" target="_blank" rel="noopener" class="share-btn-linkedin" aria-label="linkedin-in">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="whatsapp://send?text=LoRA-Whisper:%20A%20Scalable%20and%20Efficient%20Solution%20for%20Multilingual%20ASR%20https://leminhnguyen.github.io/post/speech-research/lora-whisper/" target="_blank" rel="noopener" class="share-btn-whatsapp" aria-label="whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=https://leminhnguyen.github.io/post/speech-research/lora-whisper/&amp;title=LoRA-Whisper:%20A%20Scalable%20and%20Efficient%20Solution%20for%20Multilingual%20ASR" target="_blank" rel="noopener" class="share-btn-weibo" aria-label="weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+  
+  
+    
+  
+  
+  
+  <div class="media author-card content-widget-hr">
+    
+      
+      <a href="https://leminhnguyen.github.io/"><img class="avatar mr-3 avatar-circle" src="/author/minh-nguyen-le/avatar_hue73c4865dd3562863accf819672b4d4e_72777_270x270_fill_lanczos_center_3.png" alt="Minh Nguyen Le"></a>
+    
+
+    <div class="media-body">
+      <h5 class="card-title"><a href="https://leminhnguyen.github.io/">Minh Nguyen Le</a></h5>
+      <h6 class="card-subtitle">AI Engineer</h6>
+      
+      <ul class="network-icon" aria-hidden="true">
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="/about/#contact" >
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://www.facebook.com/minhnguyen.le.180072/" target="_blank" rel="noopener">
+        <i class="fab fa-facebook"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://stackoverflow.com/users/10629841/leminhnguyen" target="_blank" rel="noopener">
+        <i class="fab fa-stack-overflow"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://www.linkedin.com/in/minh-nguyen-le-a83b0419b/" target="_blank" rel="noopener">
+        <i class="fab fa-linkedin"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://github.com/leminhnguyen" target="_blank" rel="noopener">
+        <i class="fab fa-github"></i>
+      </a>
+    </li>
+  
+</ul>
+
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="article-widget">
+  
+<div class="post-nav">
+  
+  
+  
+  <div class="post-nav-item">
+    <div class="meta-nav">Next</div>
+    <a href="/post/linux-learns/helpful-commands/" rel="next">Handy Bash Snippets and Linux Tips</a>
+  </div>
+  
+  
+  
+  <div class="post-nav-item">
+    <div class="meta-nav">Previous</div>
+    <a href="/post/speech-research/speaker-diarization/" rel="prev">Speaker Diarization: From Traditional Methods to the Modern Models</a>
+  </div>
+  
+</div>
+
+</div>
+
+
+
+
+
+  
+  
+  <div class="article-widget content-widget-hr">
+    <h3>Related</h3>
+    <ul>
+      
+      <li><a href="/post/speech-research/speaker-diarization/">Speaker Diarization: From Traditional Methods to the Modern Models</a></li>
+      
+      <li><a href="/post/nlp-research/flash-attention/">Understanding FlashAttention: Inner vs Outer Loop Optimization</a></li>
+      
+      <li><a href="/post/nlp-research/adversarial-attacks/">Adversarial Attacks on Large Language Models (LLMs)</a></li>
+      
+    </ul>
+  </div>
+  
+
+
+
+
+
+  </div>
+</article>
+  </div>
+
+  <div class="page-footer">
+    
+    
+    <div class="container">
+      <footer class="site-footer">
+
+  
+
+
+
+  
+
+  
+
+  
+  <p class="powered-by">
+    © {2025} leminhnguyen
+  </p>
+  
+
+  
+  
+
+
+
+
+
+
+  <p class="powered-by">
+    
+    
+    
+      
+      
+      
+      
+      
+      
+      Published with <a href="https://wowchemy.com/?utm_campaign=poweredby" target="_blank" rel="noopener">Wowchemy</a> — the free, <a href="https://github.com/wowchemy/wowchemy-hugo-themes" target="_blank" rel="noopener">open source</a> website builder that empowers creators.
+    
+  </p>
+</footer>
+
+    </div>
+    
+  </div>
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+      
+
+    
+    <script src="/js/vendor-bundle.min.5a3a4e7cbc7b4e121b2d29312cf8ad59.js"></script>
+
+    
+    
+    
+      
+      
+
+      
+      
+
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/8.8.4/mermaid.min.js" integrity="sha512-as1BF4+iHZ3BVO6LLDQ7zrbvTXM+c/1iZ1qII/c3c4L8Rn5tHLpFUtpaEtBNS92f+xGsCzsD7b62XP3XYap6oA==" crossorigin="anonymous" title="mermaid"></script>
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/highlight.min.js" integrity="sha512-TDKKr+IvoqZnPzc3l35hdjpHD0m+b2EC2SrLEgKDRWpxf2rFCxemkgvJ5kfU48ip+Y+m2XVKyOCD85ybtlZDmw==" crossorigin="anonymous"></script>
+        
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/r.min.js" crossorigin="anonymous"></script>
+        
+      
+
+    
+
+    
+    
+    
+
+    
+    
+
+    
+    
+    
+      
+      <script id="search-hit-fuse-template" type="text/x-template">
+        <div class="search-hit" id="summary-{{key}}">
+          <div class="search-hit-content">
+            <div class="search-hit-name">
+              <a href="{{relpermalink}}">{{title}}</a>
+              <div class="article-metadata search-hit-type">{{type}}</div>
+              <p class="search-hit-description">{{snippet}}</p>
+            </div>
+          </div>
+        </div>
+      </script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+      
+    
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+      
+      
+      
+      
+      
+      
+      
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+    
+    
+    <script src="/en/js/wowchemy.min.44f54723226744971bcdd9c0ca685057.js"></script>
+
+    
+
+
+
+
+
+
+</body>
+</html>

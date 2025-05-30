@@ -1,16 +1,125 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>speech | leminhnguyen&#39;s blog</title>
+    <title>speech&#34; | leminhnguyen&#39;s blog</title>
     <link>https://leminhnguyen.github.io/tag/speech/</link>
       <atom:link href="https://leminhnguyen.github.io/tag/speech/index.xml" rel="self" type="application/rss+xml" />
-    <description>speech</description>
+    <description>speech&#34;</description>
     <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>© {2025} leminhnguyen</copyright><lastBuildDate>Mon, 28 Apr 2025 00:00:00 +0000</lastBuildDate>
     <image>
       <url>https://leminhnguyen.github.io/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_3.png</url>
-      <title>speech</title>
+      <title>speech&#34;</title>
       <link>https://leminhnguyen.github.io/tag/speech/</link>
     </image>
+    
+    <item>
+      <title>LoRA-Whisper: A Scalable and Efficient Solution for Multilingual ASR</title>
+      <link>https://leminhnguyen.github.io/post/speech-research/lora-whisper/</link>
+      <pubDate>Mon, 28 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>https://leminhnguyen.github.io/post/speech-research/lora-whisper/</guid>
+      <description>&lt;div style=&#34;text-align: justify; font-size: 15px; margin-top: 20px&#34;&gt;
+&lt;h2 id=&#34;1-background--motivation&#34;&gt;&lt;strong&gt;1. Background &amp;amp; Motivation&lt;/strong&gt;&lt;/h2&gt;
+&lt;p&gt;Automatic Speech Recognition (ASR) has made significant strides in recent years, particularly with the rise of large-scale multilingual models like OpenAI&amp;rsquo;s Whisper, Google USM, and Meta&amp;rsquo;s MMS. These models unlock possibilities for building speech recognition systems that support dozens — or even hundreds — of languages.&lt;br&gt;
+However, building such multilingual ASR systems remains challenging due to:&lt;/p&gt;
+&lt;div style=&#34;text-align: justify; font-size: 15px; margin-top: -15px&#34;&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Language Interference&lt;/strong&gt;: When multiple languages are trained in a shared model, performance may degrade due to data imbalance, dialectal accents, and language similarities.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Catastrophic Forgetting&lt;/strong&gt;: Fine-tuning a model on new languages often causes the model to forget previously learned languages, severely impacting recognition performance.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;h2 id=&#34;2-the-proposed-solution-lora-whisper&#34;&gt;&lt;strong&gt;2. The Proposed Solution: LoRA-Whisper&lt;/strong&gt;&lt;/h2&gt;
+&lt;p&gt;To tackle these two key challenges, researchers from Shanghai Jiao Tong University and Tencent AI Lab introduce &lt;a href=&#34;https://arxiv.org/pdf/2406.06619&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;LoRA-Whisper&lt;/strong&gt;&lt;/a&gt;, a parameter-efficient and extensible multilingual ASR framework based on the Whisper model and &lt;strong&gt;Low-Rank Adaptation (LoRA)&lt;/strong&gt;.&lt;/p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;&#34; srcset=&#34;
+               /post/speech-research/lora-whisper/LoRA%20warm%20start%20and%20MoE_hu6fbb7d968e144fe5cedba710fb29a1f0_142765_4a9bda5537472758efffb93aa1a9bd94.png 400w,
+               /post/speech-research/lora-whisper/LoRA%20warm%20start%20and%20MoE_hu6fbb7d968e144fe5cedba710fb29a1f0_142765_ee9b2c2b586140e39f7e0fc69ebab6c6.png 760w,
+               /post/speech-research/lora-whisper/LoRA%20warm%20start%20and%20MoE_hu6fbb7d968e144fe5cedba710fb29a1f0_142765_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://leminhnguyen.github.io/post/speech-research/lora-whisper/LoRA%20warm%20start%20and%20MoE_hu6fbb7d968e144fe5cedba710fb29a1f0_142765_4a9bda5537472758efffb93aa1a9bd94.png&#34;
+               width=&#34;760&#34;
+               height=&#34;446&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;h4 id=&#34;what-is-lora&#34;&gt;&lt;strong&gt;What is LoRA?&lt;/strong&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;LoRA&lt;/strong&gt; (Low-Rank Adaptation) is a lightweight fine-tuning technique that freezes the original model weights and injects small, trainable low-rank matrices into certain layers (e.g., attention and feed-forward layers). This allows models to be efficiently adapted to new tasks or domains with minimal parameter overhead.&lt;/p&gt;
+&lt;h4 id=&#34;how-lora-whisper-works&#34;&gt;How LoRA-Whisper Works&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;For each language, a &lt;strong&gt;language-specific LoRA module&lt;/strong&gt; is attached to the Whisper model.&lt;/li&gt;
+&lt;li&gt;The &lt;strong&gt;Whisper model remains frozen&lt;/strong&gt;, serving as a shared backbone.&lt;/li&gt;
+&lt;li&gt;When recognizing a language, only the corresponding LoRA module is activated during inference.&lt;/li&gt;
+&lt;li&gt;This design prevents language interference and ensures knowledge preservation of all previously learned languages.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;adding-new-languages-language-expansion&#34;&gt;Adding New Languages (Language Expansion)&lt;/h4&gt;
+&lt;p&gt;LoRA-Whisper offers two innovative methods for expanding the model with new languages without retraining the entire model:&lt;/p&gt;
+&lt;div style=&#34;text-align: justify; font-size: 15px; margin-top: -15px; margin-bottom: -15px&#34;&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;LoRA Warm Start&lt;/strong&gt;: The LoRA module for a new language is initialized using the LoRA module of the most similar existing language (based on Whisper’s language ID probabilities).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;LoRA Mixture of Experts (MoE)&lt;/strong&gt;: The system dynamically selects and combines LoRA modules from multiple similar languages during training and inference to aid the new language’s learning.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+These methods significantly improve adaptation quality while avoiding catastrophic forgetting.
+&lt;h2 id=&#34;3-experimental-results&#34;&gt;&lt;strong&gt;3. Experimental Results&lt;/strong&gt;&lt;/h2&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;&#34; srcset=&#34;
+               /post/speech-research/lora-whisper/lora_whisper_results_hu76a423228b00eeb3d77b99a44969647a_162684_8b58205bdaada31faf668f6735a58c0e.png 400w,
+               /post/speech-research/lora-whisper/lora_whisper_results_hu76a423228b00eeb3d77b99a44969647a_162684_e87846e488630ab835c83f67ee08ef77.png 760w,
+               /post/speech-research/lora-whisper/lora_whisper_results_hu76a423228b00eeb3d77b99a44969647a_162684_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://leminhnguyen.github.io/post/speech-research/lora-whisper/lora_whisper_results_hu76a423228b00eeb3d77b99a44969647a_162684_8b58205bdaada31faf668f6735a58c0e.png&#34;
+               width=&#34;760&#34;
+               height=&#34;424&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;p&gt;Experiments were conducted using MLS and FLEURS datasets across 8 languages. Highlights include:&lt;/p&gt;
+&lt;div style=&#34;text-align: justify; font-size: 15px; margin-top: -15px; margin-bottom: 0px&#34;&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Multilingual ASR&lt;/strong&gt;: LoRA-Whisper outperformed multilingual fine-tuning and came close to monolingual fine-tuning, using only ~5% of the trainable parameters.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Language Expansion&lt;/strong&gt;: Full fine-tuning with new languages caused up to 3× performance drop on existing languages. LoRA-Whisper maintained performance on existing languages while significantly improving WER (Word Error Rate) on new languages. LoRA warm start and LoRA MoE achieved 23% and 5% relative gains respectively over LoRA without similarity-based strategies.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;h4 id=&#34;ablation-study-does-language-similarity-help&#34;&gt;Ablation Study: Does Language Similarity Help?&lt;/h4&gt;
+&lt;p&gt;Yes. The authors demonstrated that initializing a new language&amp;rsquo;s LoRA from a similar language&amp;rsquo;s LoRA consistently led to better performance. In contrast, initializing from an unrelated language could hurt performance — even worse than training from scratch.&lt;/p&gt;
+&lt;h4 id=&#34;limitations--future-work&#34;&gt;Limitations &amp;amp; Future Work&lt;/h4&gt;
+&lt;p&gt;While LoRA-Whisper is scalable and efficient, one limitation is that model size increases linearly with the number of supported languages due to separate LoRA modules. Future directions include:&lt;/p&gt;
+&lt;div style=&#34;text-align: justify; font-size: 15px; margin-top: -15px; margin-bottom: 0px&#34;&gt;
+&lt;ul&gt;
+&lt;li&gt;Sharing LoRA modules among similar languages.&lt;/li&gt;
+&lt;li&gt;Extending the approach to low-resource and code-switching scenarios.&lt;/li&gt;
+&lt;li&gt;Integrating more advanced expert routing techniques.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;h2 id=&#34;4-conclusion&#34;&gt;&lt;strong&gt;4. Conclusion&lt;/strong&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;LoRA-Whisper&lt;/strong&gt; offers a compelling solution for building scalable, customizable, and language-resilient ASR systems. By combining Whisper’s robust multilingual backbone with the adaptability of LoRA, the paper demonstrates an effective way to expand and maintain large ASR systems without catastrophic forgetting or performance trade-offs. This work marks a step forward in enabling more inclusive, efficient, and modular speech recognition systems — critical for real-world multilingual applications.&lt;/p&gt;
+&lt;/div&gt;</description>
+    </item>
     
     <item>
       <title>Speaker Diarization: From Traditional Methods to the Modern Models</title>

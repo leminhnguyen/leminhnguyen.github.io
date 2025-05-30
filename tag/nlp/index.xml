@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>nlp | leminhnguyen&#39;s blog</title>
+    <link>https://leminhnguyen.github.io/tag/nlp/</link>
+      <atom:link href="https://leminhnguyen.github.io/tag/nlp/index.xml" rel="self" type="application/rss+xml" />
+    <description>nlp</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>© {2025} leminhnguyen</copyright><lastBuildDate>Mon, 28 Apr 2025 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>https://leminhnguyen.github.io/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_3.png</url>
+      <title>nlp</title>
+      <link>https://leminhnguyen.github.io/tag/nlp/</link>
+    </image>
+    
+    <item>
+      <title>Understanding FlashAttention: Inner vs Outer Loop Optimization</title>
+      <link>https://leminhnguyen.github.io/post/nlp-research/flash-attention/</link>
+      <pubDate>Mon, 28 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>https://leminhnguyen.github.io/post/nlp-research/flash-attention/</guid>
+      <description>&lt;div style=&#34;text-align: justify; font-size: 15px; margin-top: 20px&#34;&gt;
+&lt;h3 id=&#34;understanding-flashattention-inner-vs-outer-loop-optimization&#34;&gt;Understanding FlashAttention: Inner vs Outer Loop Optimization&lt;/h3&gt;
+&lt;p&gt;FlashAttention is a groundbreaking optimization technique for computing attention in Transformer models. It drastically improves performance by reducing memory bottlenecks and utilizing GPU memory more efficiently.&lt;/p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  id=&#34;figure-flashattention-fast-and-memory-efficient-exact-attention-with-io-awareness&#34;&gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;FlashAttention: Fast and Memory-Efficient Exact Attention with IO-Awareness&#34; srcset=&#34;
+               /post/nlp-research/flash-attention/flashattn_banner_2_hubb76ad5ff4fdede90787cccc6e0e85a5_322273_c91538f784224d53b4c6b0409cebbc5d.jpg 400w,
+               /post/nlp-research/flash-attention/flashattn_banner_2_hubb76ad5ff4fdede90787cccc6e0e85a5_322273_9aeed5689bdd5c41159c955e6ca65d96.jpg 760w,
+               /post/nlp-research/flash-attention/flashattn_banner_2_hubb76ad5ff4fdede90787cccc6e0e85a5_322273_1200x1200_fit_q75_lanczos.jpg 1200w&#34;
+               src=&#34;https://leminhnguyen.github.io/post/nlp-research/flash-attention/flashattn_banner_2_hubb76ad5ff4fdede90787cccc6e0e85a5_322273_c91538f784224d53b4c6b0409cebbc5d.jpg&#34;
+               width=&#34;760&#34;
+               height=&#34;297&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;figcaption&gt;
+      FlashAttention: Fast and Memory-Efficient Exact Attention with IO-Awareness
+    &lt;/figcaption&gt;&lt;/figure&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;-what-problem-does-it-solve&#34;&gt;🚀 What Problem Does It Solve?&lt;/h3&gt;
+&lt;p&gt;In traditional attention mechanisms:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Attention matrices like Q, K, and V are huge.&lt;/li&gt;
+&lt;li&gt;GPU cores (CUDA cores) must fetch data from &lt;strong&gt;HBM (High Bandwidth Memory)&lt;/strong&gt; repeatedly.&lt;/li&gt;
+&lt;li&gt;Each access to HBM is slow and inefficient.&lt;/li&gt;
+&lt;li&gt;Shared memory (SRAM) exists but is &lt;strong&gt;not optimally used&lt;/strong&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This leads to frequent memory transfers, under-utilized cores, and slow inference time.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;-flashattention-to-the-rescue&#34;&gt;⚡ FlashAttention to the Rescue&lt;/h3&gt;
+&lt;p&gt;FlashAttention solves this by:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Dividing Q, K, V matrices into smaller blocks&lt;/strong&gt; (e.g., 32x32).&lt;/li&gt;
+&lt;li&gt;Copying each block from &lt;strong&gt;HBM to SRAM once&lt;/strong&gt; (not repeatedly).&lt;/li&gt;
+&lt;li&gt;Performing &lt;strong&gt;all computations inside SRAM&lt;/strong&gt;, near the GPU cores.&lt;/li&gt;
+&lt;li&gt;Writing results back to HBM only once per block.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This dramatically reduces memory access overhead and accelerates attention computations.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;-inner-loop-vs-outer-loop&#34;&gt;🔁 Inner Loop vs Outer Loop&lt;/h3&gt;
+&lt;h4 id=&#34;outer-loop&#34;&gt;Outer Loop&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Responsible for &lt;strong&gt;loading blocks of K/V&lt;/strong&gt; from HBM to SRAM.&lt;/li&gt;
+&lt;li&gt;Each iteration handles a large memory transfer.&lt;/li&gt;
+&lt;li&gt;Runs &lt;strong&gt;infrequently&lt;/strong&gt; but handles heavy data movement.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;inner-loop&#34;&gt;Inner Loop&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Executes &lt;strong&gt;on the data already in SRAM&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;Performs matrix multiplications (Q×Kᵀ), softmax, and QK×V.&lt;/li&gt;
+&lt;li&gt;Runs &lt;strong&gt;frequently&lt;/strong&gt; but operates on fast-access memory.&lt;/li&gt;
+&lt;li&gt;Fast and efficient — no further HBM access needed.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;-analogy-kitchen-example&#34;&gt;🧠 Analogy: Kitchen Example&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;HBM&lt;/strong&gt; = Warehouse far away.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;SRAM&lt;/strong&gt; = Workbench in your kitchen.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Outer loop&lt;/strong&gt; = You bring a tray of ingredients from warehouse to your kitchen.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Inner loop&lt;/strong&gt; = You cook the full meal using what&amp;rsquo;s already on your workbench.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Traditional attention = you run back to the warehouse for every spoon of spice 😅&lt;br&gt;
+FlashAttention = bring the whole spice rack once, cook in peace! 👨‍🍳&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;-summary&#34;&gt;✅ Summary&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Feature&lt;/th&gt;
+&lt;th&gt;Traditional Attention&lt;/th&gt;
+&lt;th&gt;FlashAttention&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Memory Access&lt;/td&gt;
+&lt;td&gt;Frequent HBM access&lt;/td&gt;
+&lt;td&gt;One-time block transfer&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;SRAM Usage&lt;/td&gt;
+&lt;td&gt;Under-utilized&lt;/td&gt;
+&lt;td&gt;Fully utilized per block&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Computation Location&lt;/td&gt;
+&lt;td&gt;Mix of HBM and registers&lt;/td&gt;
+&lt;td&gt;All in SRAM&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Speed&lt;/td&gt;
+&lt;td&gt;Slower, memory bottleneck&lt;/td&gt;
+&lt;td&gt;Much faster, memory-efficient&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;FlashAttention is a key breakthrough for making large models faster and more scalable — especially during inference.&lt;/p&gt;
+&lt;/figure&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
