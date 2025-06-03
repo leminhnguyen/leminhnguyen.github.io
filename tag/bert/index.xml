@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Deep Learning | leminhnguyen&#39;s blog</title>
-    <link>https://leminhnguyen.github.io/category/deep-learning/</link>
-      <atom:link href="https://leminhnguyen.github.io/category/deep-learning/index.xml" rel="self" type="application/rss+xml" />
-    <description>Deep Learning</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>© {2025} leminhnguyen</copyright><lastBuildDate>Mon, 28 Apr 2025 00:00:00 +0000</lastBuildDate>
+    <title>BERT | leminhnguyen&#39;s blog</title>
+    <link>https://leminhnguyen.github.io/tag/bert/</link>
+      <atom:link href="https://leminhnguyen.github.io/tag/bert/index.xml" rel="self" type="application/rss+xml" />
+    <description>BERT</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>© {2025} leminhnguyen</copyright><lastBuildDate>Sat, 02 Nov 2024 00:00:00 +0000</lastBuildDate>
     <image>
       <url>https://leminhnguyen.github.io/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_3.png</url>
-      <title>Deep Learning</title>
-      <link>https://leminhnguyen.github.io/category/deep-learning/</link>
+      <title>BERT</title>
+      <link>https://leminhnguyen.github.io/tag/bert/</link>
     </image>
     
     <item>

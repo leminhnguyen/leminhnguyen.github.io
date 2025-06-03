@@ -799,6 +799,189 @@ FlashAttention = bring the whole spice rack once, cook in peace! 👨‍🍳&lt;
     </item>
     
     <item>
+      <title>GLiNER: A Generalist Model for Named Entity Recognition using Bidirectional Transformers</title>
+      <link>https://leminhnguyen.github.io/post/nlp-research/gliner/</link>
+      <pubDate>Sat, 02 Nov 2024 00:00:00 +0000</pubDate>
+      <guid>https://leminhnguyen.github.io/post/nlp-research/gliner/</guid>
+      <description>&lt;div style=&#34;text-align: justify; font-size: 15px; margin-top: 20px&#34;&gt;
+&lt;h3 id=&#34;1-what-is-named-entity-recognition-ner&#34;&gt;1. What is Named Entity Recognition (NER)?&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;Named Entity Recognition (NER)&lt;/strong&gt; is a fundamental task in Natural Language Processing (NLP) that involves &lt;strong&gt;identifying and classifying spans of text&lt;/strong&gt; that refer to real-world entities such as:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Persons&lt;/strong&gt; (e.g., &amp;ldquo;Albert Einstein&amp;rdquo;),&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Organizations&lt;/strong&gt; (e.g., &amp;ldquo;United Nations&amp;rdquo;),&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Locations&lt;/strong&gt; (e.g., &amp;ldquo;Paris&amp;rdquo;),&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Dates, Products, Diseases&lt;/strong&gt;, and many more.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Traditional NER systems are trained on a &lt;strong&gt;fixed set of entity types&lt;/strong&gt;, which limits their adaptability to new domains or tasks. Recently, &lt;strong&gt;Open NER&lt;/strong&gt; has emerged as a flexible paradigm that allows recognizing arbitrary entity types based on natural language instructions — a direction GLiNER directly embraces and enhances.&lt;/p&gt;
+&lt;h3 id=&#34;2-overview&#34;&gt;2. Overview&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;GLiNER&lt;/strong&gt; is a compact and general-purpose model for &lt;strong&gt;Named Entity Recognition (NER)&lt;/strong&gt; that leverages &lt;strong&gt;Bidirectional Transformers&lt;/strong&gt; (like BERT or DeBERTa) to extract arbitrary types of entities from text — without being constrained to a fixed label set. Unlike traditional NER models or large language models (LLMs) like ChatGPT, GLiNER is &lt;strong&gt;lightweight&lt;/strong&gt;, &lt;strong&gt;efficient&lt;/strong&gt;, and designed for &lt;strong&gt;zero-shot generalization&lt;/strong&gt; across domains and languages.&lt;/p&gt;
+&lt;p&gt;Traditional NER systems are limited by a fixed ontology of entity types. While LLMs (e.g., GPT-3, ChatGPT) allow open-type NER via prompting, they are &lt;strong&gt;computationally expensive&lt;/strong&gt;, &lt;strong&gt;slow (token-by-token decoding)&lt;/strong&gt;, and often impractical in production due to API cost and latency. GLiNER aims to:&lt;/p&gt;
+&lt;div style=&#34;text-align: justify; font-size: 15px; margin-top: -15px; margin-bottom: -15px&#34;&gt;
+&lt;ul&gt;
+&lt;li&gt;Retain the &lt;strong&gt;flexibility of LLMs&lt;/strong&gt; in handling arbitrary entity types.&lt;/li&gt;
+&lt;li&gt;Achieve &lt;strong&gt;high performance&lt;/strong&gt; with &lt;strong&gt;orders of magnitude fewer parameters&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;Enable &lt;strong&gt;parallel extraction&lt;/strong&gt; of entities rather than autoregressive generation.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;h3 id=&#34;3-model-architecture&#34;&gt;3. Model Architecture&lt;/h3&gt;
+&lt;p&gt;GLiNER reframes NER as a &lt;strong&gt;semantic matching problem&lt;/strong&gt; between entity types and text spans in a &lt;strong&gt;shared latent space&lt;/strong&gt;.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;&#34; srcset=&#34;
+               /post/nlp-research/gliner/GLiNER_hu3eb41bb17ef7a5fa1483b85584c09001_149421_7285fd65ba49efb805259c48efae741d.png 400w,
+               /post/nlp-research/gliner/GLiNER_hu3eb41bb17ef7a5fa1483b85584c09001_149421_b31f86d47083376b16f5847cefd3ac4d.png 760w,
+               /post/nlp-research/gliner/GLiNER_hu3eb41bb17ef7a5fa1483b85584c09001_149421_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://leminhnguyen.github.io/post/nlp-research/gliner/GLiNER_hu3eb41bb17ef7a5fa1483b85584c09001_149421_7285fd65ba49efb805259c48efae741d.png&#34;
+               width=&#34;760&#34;
+               height=&#34;570&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Input Format&lt;/strong&gt;:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;[ENT] person [ENT] organization [ENT] location [SEP] Text...
+- `[ENT]`: special token preceding each entity type.
+- `[SEP]`: separates entity types from input text.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Bidirectional Encoder&lt;/strong&gt;: A BiLM (e.g., DeBERTa-v3) encodes both entity types and the input text.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Span Representation Module&lt;/strong&gt;: Computes span embeddings from token representations using a feedforward network:
+\[
+S_{ij} = \text{FFN}(h_i \oplus h_j)
+\]&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Entity Representation Module&lt;/strong&gt;: Processes entity type embeddings via another FFN.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Matching Layer&lt;/strong&gt;: Calculates matching score:
+\[
+\phi(i, j, t) = \sigma(S_{ij}^T q_t)
+\]
+where $\sigma$ is the sigmoid function.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Training Strategy&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Objective&lt;/strong&gt;: Binary cross-entropy loss over span/type pairs.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Data Source&lt;/strong&gt;: Trained on &lt;strong&gt;Pile-NER&lt;/strong&gt;, a dataset derived from The Pile corpus with 44.8k passages and 13k entity types. Labels were generated by &lt;strong&gt;ChatGPT&lt;/strong&gt;, acting as a &lt;em&gt;teacher model&lt;/em&gt; (data-level distillation).
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    &lt;figure  id=&#34;figure-prompting-chatgpt-for-entity-extraction-in-pile-ner-dataset&#34;&gt;
+      &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+        &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;Prompting ChatGPT for entity extraction in Pile-NER dataset&#34; srcset=&#34;
+                   /post/nlp-research/gliner/pile-NER_hu8b503a12746f28e4bf404f716c021685_36796_4bd7893016f128d68bc35b7ded00b273.png 400w,
+                   /post/nlp-research/gliner/pile-NER_hu8b503a12746f28e4bf404f716c021685_36796_78fed6eb2a2853a0c989d1c62aa41340.png 760w,
+                   /post/nlp-research/gliner/pile-NER_hu8b503a12746f28e4bf404f716c021685_36796_1200x1200_fit_lanczos_3.png 1200w&#34;
+                   src=&#34;https://leminhnguyen.github.io/post/nlp-research/gliner/pile-NER_hu8b503a12746f28e4bf404f716c021685_36796_4bd7893016f128d68bc35b7ded00b273.png&#34;
+                   width=&#34;749&#34;
+                   height=&#34;265&#34;
+                   loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+      &lt;/div&gt;&lt;figcaption&gt;
+          Prompting ChatGPT for entity extraction in Pile-NER dataset
+        &lt;/figcaption&gt;&lt;/figure&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Techniques for robustness&lt;/strong&gt;:&lt;/li&gt;
+&lt;li&gt;Negative sampling of entity types.&lt;/li&gt;
+&lt;li&gt;Random shuffling and dropping of entity prompts.&lt;/li&gt;
+&lt;li&gt;Span length cap (max 12 tokens) for efficiency.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;4-experimental-results&#34;&gt;4. Experimental Results&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;For zero-shot evaluation, on 20 diverse NER benchmarks and out-of-domain (OOD) tasks, &lt;code&gt;GLiNER-L (0.3B)&lt;/code&gt; outperforms: ChatGPT, InstructUIE (11B), UniNER (13B) and even GoLLIE (7B) in most cases.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;For multilingual performance without multilingual training: &lt;code&gt;GLiNER-Multi (mDeBERTa)&lt;/code&gt; surpasses ChatGPT on 8 out of 11 languages (e.g., Spanish, German, Russian). which shows &lt;strong&gt;strong generalization&lt;/strong&gt;, even on unseen scripts.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;With supervised fine-tuning, after fine-tuning on labeled datasets, GLiNER competes closely with or surpasses InstructUIE, performs nearly as well as UniNER (larger LLaMA-based model). Pretraining on Pile-NER improves data efficiency, especially with small datasets.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Efficiency and Scalability&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;GLiNER allows &lt;strong&gt;parallel inference&lt;/strong&gt; for multiple entity types.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Training Time&lt;/strong&gt;: ~5 hours on a single A100 GPU for GLiNER-L.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Parameter Sizes&lt;/strong&gt;: 50M (S), 90M (M), 300M (L), compared to 7B–13B in baselines.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;5-ablation-insights&#34;&gt;5. Ablation Insights&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Component&lt;/th&gt;
+&lt;th&gt;Effect&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Negative sampling (50%)&lt;/td&gt;
+&lt;td&gt;Best F1 balance&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Dropping entity types&lt;/td&gt;
+&lt;td&gt;+1.4 F1 on OOD datasets&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;deBERTa-v3 backbone&lt;/td&gt;
+&lt;td&gt;Outperforms RoBERTa, BERT, ALBERT, ELECTRA&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;ul&gt;
+&lt;li&gt;Earlier NER approaches include rule-based systems, sequence labeling (e.g., BiLSTM-CRF), and span classification.&lt;/li&gt;
+&lt;li&gt;LLM-based models (e.g., InstructUIE, UniNER) use instruction-tuning or generation.&lt;/li&gt;
+&lt;li&gt;GLiNER offers a &lt;strong&gt;middle ground&lt;/strong&gt;: lightweight yet capable of open-type NER.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;6-conclusion&#34;&gt;6. Conclusion&lt;/h3&gt;
+&lt;p&gt;GLiNER is a &lt;strong&gt;generalist, scalable, and high-performing model&lt;/strong&gt; for Named Entity Recognition that:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Bridges the gap between classic NER and large LLM-based models.&lt;/li&gt;
+&lt;li&gt;Achieves &lt;strong&gt;state-of-the-art zero-shot results&lt;/strong&gt; with minimal resources.&lt;/li&gt;
+&lt;li&gt;Demonstrates &lt;strong&gt;robust multilingual and cross-domain generalization&lt;/strong&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This makes it an excellent candidate for real-world NER applications in &lt;strong&gt;low-resource, high-efficiency environments&lt;/strong&gt;.&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;🔗 &lt;strong&gt;Code&lt;/strong&gt;: &lt;a href=&#34;https://github.com/urchade/GLiNER&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://github.com/urchade/GLiNER&lt;/a&gt;&lt;br&gt;
+📄 &lt;strong&gt;Paper&lt;/strong&gt;: Urchade Zaratiana et al., &lt;em&gt;GLiNER: Generalist Model for Named Entity Recognition using Bidirectional Transformer&lt;/em&gt;, arXiv:2311.08526&lt;/p&gt;
+&lt;/div&gt;</description>
+    </item>
+    
+    <item>
       <title>Vietnamese Voice Conversion</title>
       <link>https://leminhnguyen.github.io/post/speech-research/voice-conversion/voice-conversion-10-04-2024/</link>
       <pubDate>Sat, 09 Mar 2024 11:01:17 +0000</pubDate>
