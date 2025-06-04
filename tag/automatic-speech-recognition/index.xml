@@ -5,7 +5,7 @@
     <link>https://leminhnguyen.github.io/tag/automatic-speech-recognition/</link>
       <atom:link href="https://leminhnguyen.github.io/tag/automatic-speech-recognition/index.xml" rel="self" type="application/rss+xml" />
     <description>automatic speech recognition</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>© {2025} leminhnguyen</copyright><lastBuildDate>Mon, 28 Apr 2025 00:00:00 +0000</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>© {2025} leminhnguyen</copyright><lastBuildDate>Sat, 15 Mar 2025 00:00:00 +0000</lastBuildDate>
     <image>
       <url>https://leminhnguyen.github.io/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_3.png</url>
       <title>automatic speech recognition</title>
@@ -15,7 +15,7 @@
     <item>
       <title>LoRA-Whisper: A Scalable and Efficient Solution for Multilingual ASR</title>
       <link>https://leminhnguyen.github.io/post/speech-research/lora-whisper/</link>
-      <pubDate>Mon, 28 Apr 2025 00:00:00 +0000</pubDate>
+      <pubDate>Sat, 15 Mar 2025 00:00:00 +0000</pubDate>
       <guid>https://leminhnguyen.github.io/post/speech-research/lora-whisper/</guid>
       <description>&lt;div style=&#34;text-align: justify; font-size: 15px; margin-top: 20px&#34;&gt;
 &lt;h2 id=&#34;1-background--motivation&#34;&gt;&lt;strong&gt;1. Background &amp;amp; Motivation&lt;/strong&gt;&lt;/h2&gt;

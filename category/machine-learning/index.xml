@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Machine Learning | leminhnguyen&#39;s blog</title>
+    <link>https://leminhnguyen.github.io/category/machine-learning/</link>
+      <atom:link href="https://leminhnguyen.github.io/category/machine-learning/index.xml" rel="self" type="application/rss+xml" />
+    <description>Machine Learning</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>© {2025} leminhnguyen</copyright><lastBuildDate>Fri, 04 Apr 2025 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>https://leminhnguyen.github.io/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_3.png</url>
+      <title>Machine Learning</title>
+      <link>https://leminhnguyen.github.io/category/machine-learning/</link>
+    </image>
+    
+    <item>
+      <title>Why Entropy Matters in Machine Learning</title>
+      <link>https://leminhnguyen.github.io/post/machine-learning/entropy/</link>
+      <pubDate>Fri, 04 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>https://leminhnguyen.github.io/post/machine-learning/entropy/</guid>
+      <description>&lt;div style=&#34;text-align: justify; font-size: 15px; margin-top: 20px&#34;&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  id=&#34;figure-low-vs-high-entropy&#34;&gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;Low vs High Entropy&#34; srcset=&#34;
+               /post/machine-learning/entropy/entropy_in_data_hu774da9d84015d9efdfc2798c918ad7df_132158_6bcaeffca1501bd96ec2cbe2bdf01b35.png 400w,
+               /post/machine-learning/entropy/entropy_in_data_hu774da9d84015d9efdfc2798c918ad7df_132158_a693682445ad969ba8be8a82e9a88e93.png 760w,
+               /post/machine-learning/entropy/entropy_in_data_hu774da9d84015d9efdfc2798c918ad7df_132158_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://leminhnguyen.github.io/post/machine-learning/entropy/entropy_in_data_hu774da9d84015d9efdfc2798c918ad7df_132158_6bcaeffca1501bd96ec2cbe2bdf01b35.png&#34;
+               width=&#34;700&#34;
+               height=&#34;256&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;figcaption&gt;
+      Low vs High Entropy
+    &lt;/figcaption&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;strong&gt;Entropy&lt;/strong&gt; is a powerful and fundamental concept that quietly drives some of the most effective algorithms in machine learning. From decision trees to deep neural networks, entropy plays a central role in helping models navigate uncertainty and make better predictions.&lt;/p&gt;
+&lt;h3 id=&#34;what-is-entropy&#34;&gt;What Is Entropy?&lt;/h3&gt;
+&lt;p&gt;Originally a concept from thermodynamics, entropy measures the level of &lt;strong&gt;disorder&lt;/strong&gt; or &lt;strong&gt;uncertainty&lt;/strong&gt; in a system. In machine learning, it&amp;rsquo;s used to quantify how much unpredictability exists in a set of outcomes.&lt;/p&gt;
+&lt;p&gt;Take a coin flip, for example:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;If you flip a fair coin and get &lt;code&gt;[heads, tails, tails, heads]&lt;/code&gt;, there&amp;rsquo;s high entropy — the outcomes are unpredictable.&lt;/li&gt;
+&lt;li&gt;But if you flip a weighted coin and get &lt;code&gt;[tails, tails, tails, tails]&lt;/code&gt;, entropy is low — the system is more predictable.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;In general:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;High entropy&lt;/strong&gt; = low information gain (we learn less from each new example).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Low entropy&lt;/strong&gt; = high information gain (we learn more from each new example).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;entropy-in-decision-trees&#34;&gt;Entropy in Decision Trees&lt;/h3&gt;
+&lt;p&gt;Decision trees use entropy to decide which features to split on. At each step:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The algorithm calculates the entropy of each potential split.&lt;/li&gt;
+&lt;li&gt;It chooses the split with the &lt;strong&gt;lowest entropy&lt;/strong&gt;, which maximizes &lt;strong&gt;information gain&lt;/strong&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This process ensures that the tree separates the data efficiently, focusing on features that bring the most &amp;ldquo;clarity&amp;rdquo; early on.&lt;/p&gt;
+&lt;h3 id=&#34;cross-entropy-in-neural-networks&#34;&gt;Cross-Entropy in Neural Networks&lt;/h3&gt;
+&lt;p&gt;Neural networks commonly use &lt;strong&gt;cross-entropy&lt;/strong&gt; as a loss function, especially in classification tasks. This function compares two distributions:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The &lt;strong&gt;true distribution&lt;/strong&gt; (the actual labels).&lt;/li&gt;
+&lt;li&gt;The &lt;strong&gt;predicted distribution&lt;/strong&gt; (the model&amp;rsquo;s output probabilities).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Cross-entropy measures how many bits are needed to encode the true labels using the predicted distribution. The lower the value, the better the model&amp;rsquo;s predictions match the truth.&lt;/p&gt;
+&lt;p&gt;This approach is:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;More dynamic than accuracy/error-based metrics.&lt;/li&gt;
+&lt;li&gt;Better at handling confidence and probability.&lt;/li&gt;
+&lt;li&gt;Less sensitive to data order or noise.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;related-concept-kl-divergence&#34;&gt;Related Concept: KL Divergence&lt;/h3&gt;
+&lt;p&gt;Another key metric is &lt;strong&gt;Kullback–Leibler (KL) divergence&lt;/strong&gt;, also called &lt;strong&gt;relative entropy&lt;/strong&gt;. While cross-entropy measures total entropy between two distributions, KL divergence measures how much extra &amp;ldquo;cost&amp;rdquo; (in bits) we pay by using one distribution to represent another.&lt;/p&gt;
+&lt;p&gt;It&amp;rsquo;s often used in training &lt;strong&gt;Generative Adversarial Networks (GANs)&lt;/strong&gt; and other probabilistic models.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;alt text&#34; srcset=&#34;
+               /post/machine-learning/entropy/KL_huf221c4c03880c66097e85ad3bf7df6f9_52023_fe99a68586fcefd1732d76fb2c078899.png 400w,
+               /post/machine-learning/entropy/KL_huf221c4c03880c66097e85ad3bf7df6f9_52023_d0f636f329a3297908d6bc22f42ca50b.png 760w,
+               /post/machine-learning/entropy/KL_huf221c4c03880c66097e85ad3bf7df6f9_52023_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://leminhnguyen.github.io/post/machine-learning/entropy/KL_huf221c4c03880c66097e85ad3bf7df6f9_52023_fe99a68586fcefd1732d76fb2c078899.png&#34;
+               width=&#34;700&#34;
+               height=&#34;239&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;h3 id=&#34;why-entropy-matters&#34;&gt;Why Entropy Matters&lt;/h3&gt;
+&lt;p&gt;Unlike rigid metrics like accuracy, entropy-based measures capture the uncertainty and depth of the problem space. They allow models to:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Learn better under uncertainty.&lt;/li&gt;
+&lt;li&gt;Make probabilistic predictions.&lt;/li&gt;
+&lt;li&gt;Avoid problems like vanishing gradients (especially when used with softmax or sigmoid activations).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Whether you&amp;rsquo;re building a decision tree, training a neural network, or experimenting with probabilistic models, &lt;strong&gt;entropy is the invisible force guiding better decisions&lt;/strong&gt;.&lt;/p&gt;
+&lt;h3 id=&#34;final-thoughts&#34;&gt;Final Thoughts&lt;/h3&gt;
+&lt;p&gt;Entropy might seem abstract at first, but it captures a truth at the heart of machine learning: we are always trying to reduce uncertainty. By optimizing for entropy-based metrics like information gain, cross-entropy, or KL divergence, we empower our models to learn faster, perform better, and make smarter predictions.&lt;/p&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

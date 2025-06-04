@@ -5,7 +5,7 @@
     <link>https://leminhnguyen.github.io/category/flashattention/</link>
       <atom:link href="https://leminhnguyen.github.io/category/flashattention/index.xml" rel="self" type="application/rss+xml" />
     <description>FlashAttention</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>© {2025} leminhnguyen</copyright><lastBuildDate>Mon, 28 Apr 2025 00:00:00 +0000</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>© {2025} leminhnguyen</copyright><lastBuildDate>Sat, 01 Feb 2025 00:00:00 +0000</lastBuildDate>
     <image>
       <url>https://leminhnguyen.github.io/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_3.png</url>
       <title>FlashAttention</title>
@@ -15,7 +15,7 @@
     <item>
       <title>Understanding FlashAttention: Inner vs Outer Loop Optimization</title>
       <link>https://leminhnguyen.github.io/post/nlp-research/flash-attention/</link>
-      <pubDate>Mon, 28 Apr 2025 00:00:00 +0000</pubDate>
+      <pubDate>Sat, 01 Feb 2025 00:00:00 +0000</pubDate>
       <guid>https://leminhnguyen.github.io/post/nlp-research/flash-attention/</guid>
       <description>&lt;div style=&#34;text-align: justify; font-size: 15px; margin-top: 20px&#34;&gt;
 &lt;h3 id=&#34;understanding-flashattention-inner-vs-outer-loop-optimization&#34;&gt;Understanding FlashAttention: Inner vs Outer Loop Optimization&lt;/h3&gt;

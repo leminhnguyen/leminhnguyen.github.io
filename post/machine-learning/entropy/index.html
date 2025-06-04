@@ -1,0 +1,1339 @@
+<!DOCTYPE html><html lang="en-us" >
+
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  
+  
+    <meta name="generator" content="Wowchemy 5.3.0 for Hugo" />
+  
+
+  
+  
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  
+
+  
+  
+  
+    
+      
+      <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap" media="print" onload="this.media='all'">
+    
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="Minh Nguyen Le" />
+
+  
+  
+  
+    
+  
+  <meta name="description" content="Low vs High Entropy Entropy is a powerful and fundamental concept that quietly drives some of the most effective algorithms in machine learning. From decision trees to deep neural networks, entropy plays a central role in helping models navigate uncertainty and make better predictions." />
+
+  
+  <link rel="alternate" hreflang="en-us" href="https://leminhnguyen.github.io/post/machine-learning/entropy/" />
+
+  
+  
+  
+    <meta name="theme-color" content="#2962ff" />
+  
+
+  
+  
+    
+    <script src="/js/mathjax-config.js"></script>
+  
+
+  
+
+  <link rel="stylesheet" href="/css/vendor-bundle.min.f1ecf783c14edc00c9320c205831ad8e.css" media="print" onload="this.media='all'">
+
+  
+  
+  
+    
+    
+
+    
+    
+    
+    
+      
+      
+    
+    
+    
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/github.min.css" crossorigin="anonymous" title="hl-light" media="print" onload="this.media='all'">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" media="print" onload="this.media='all'" disabled>
+        
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" integrity="" crossorigin="anonymous" async></script>
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+  
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/wowchemy.d65872b95e794dda92dc12a85e1e04fa.css" />
+
+  
+
+
+
+  
+
+  
+
+  
+
+
+
+
+  
+  
+  
+
+  
+
+  
+    <link rel="manifest" href="/manifest.webmanifest" />
+  
+
+  <link rel="icon" type="image/png" href="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_32x32_fill_lanczos_center_3.png" />
+  <link rel="apple-touch-icon" type="image/png" href="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_180x180_fill_lanczos_center_3.png" />
+
+  <link rel="canonical" href="https://leminhnguyen.github.io/post/machine-learning/entropy/" />
+
+  
+  
+  
+  
+  
+  
+  
+  
+    
+  
+  
+
+  
+  
+    
+    
+  
+  <meta property="twitter:card" content="summary_large_image" />
+  
+    <meta property="twitter:site" content="@wowchemy" />
+    <meta property="twitter:creator" content="@wowchemy" />
+  
+  <meta property="og:site_name" content="leminhnguyen&#39;s blog" />
+  <meta property="og:url" content="https://leminhnguyen.github.io/post/machine-learning/entropy/" />
+  <meta property="og:title" content="Why Entropy Matters in Machine Learning | leminhnguyen&#39;s blog" />
+  <meta property="og:description" content="Low vs High Entropy Entropy is a powerful and fundamental concept that quietly drives some of the most effective algorithms in machine learning. From decision trees to deep neural networks, entropy plays a central role in helping models navigate uncertainty and make better predictions." /><meta property="og:image" content="https://leminhnguyen.github.io/post/machine-learning/entropy/featured.webp" />
+    <meta property="twitter:image" content="https://leminhnguyen.github.io/post/machine-learning/entropy/featured.webp" /><meta property="og:locale" content="en-us" />
+  
+    
+      <meta
+        property="article:published_time"
+        content="2025-04-04T00:00:00&#43;00:00"
+      />
+    
+    <meta property="article:modified_time" content="2025-04-04T00:00:00&#43;00:00">
+  
+
+  
+
+
+    
+
+
+
+
+
+
+  
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://leminhnguyen.github.io/post/machine-learning/entropy/"
+  },
+  "headline": "Why Entropy Matters in Machine Learning",
+  
+  "image": [
+    "https://leminhnguyen.github.io/post/machine-learning/entropy/featured.webp"
+  ],
+  
+  "datePublished": "2025-04-04T00:00:00Z",
+  "dateModified": "2025-04-04T00:00:00Z",
+  
+  "author": {
+    "@type": "Person",
+    "name": "Minh Nguyen Le"
+  },
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "leminhnguyen's blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://leminhnguyen.github.io/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_192x192_fill_lanczos_center_3.png"
+    }
+  },
+  "description": "Low vs High Entropy Entropy is a powerful and fundamental concept that quietly drives some of the most effective algorithms in machine learning. From decision trees to deep neural networks, entropy plays a central role in helping models navigate uncertainty and make better predictions."
+}
+</script>
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+  <title>Why Entropy Matters in Machine Learning | leminhnguyen&#39;s blog</title>
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="f6191cb7c10d649e7c76bbe51ca65979" >
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <script src="/js/wowchemy-init.min.6619cc29fe1a874b6ea1a0359aab5cfb.js"></script>
+
+  
+
+
+<aside class="search-modal" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#" aria-label="Close"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search" class="form-control"
+        aria-label="Search...">
+        
+      </div>
+
+      
+      
+
+      
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+
+  <div class="page-header">
+    
+
+
+
+
+
+
+
+
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+  <div class="container-xl">
+
+    
+
+    
+    <button type="button" class="navbar-toggler" data-toggle="collapse"
+            data-target="#navbar-content" aria-controls="navbar-content" aria-expanded="false" aria-label="Toggle navigation">
+    <span><i class="fas fa-bars"></i></span>
+    </button>
+    
+
+    
+
+    
+    
+    <div class="navbar-collapse main-menu-item collapse justify-content-end" id="navbar-content">
+
+      
+      <ul class="navbar-nav d-md-inline-flex">
+        
+
+        
+
+        
+        
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/"><span>Home</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/about/"><span>About</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/category/speech/"><span>Speech</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/category/nlp/"><span>NLP</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/category/python/"><span>Python</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/category/linux/"><span>Linux</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+      </ul>
+    </div>
+
+    <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+
+      
+      
+        
+      
+
+      
+      
+      <li class="nav-item">
+        <a class="nav-link js-search" href="#" aria-label="Search"><i class="fas fa-search" aria-hidden="true"></i></a>
+      </li>
+      
+
+      
+      
+      <li class="nav-item dropdown theme-dropdown">
+        <a href="#" class="nav-link" data-toggle="dropdown" aria-haspopup="true" aria-label="Display preferences">
+          <i class="fas fa-moon" aria-hidden="true"></i>
+        </a>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item js-set-theme-light">
+            <span>Light</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-dark">
+            <span>Dark</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-auto">
+            <span>Automatic</span>
+          </a>
+        </div>
+      </li>
+      
+
+      
+      
+
+    </ul>
+
+  </div>
+</nav>
+
+
+  </div>
+
+  <div class="page-body">
+    <article class="article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+<div class="article-container pt-3">
+  <h1>Why Entropy Matters in Machine Learning</h1>
+
+  
+
+  
+    
+
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    Apr 4, 2025
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    3 min read
+  </span>
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder mr-1"></i><a href="/category/nlp/">NLP</a>, <a href="/category/speech/">Speech</a>, <a href="/category/machine-learning/">Machine Learning</a></span>
+  
+
+</div>
+
+    
+
+
+
+
+
+  
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
+      <div style="text-align: justify; font-size: 15px; margin-top: 20px">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  id="figure-low-vs-high-entropy">
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="Low vs High Entropy" srcset="
+               /post/machine-learning/entropy/entropy_in_data_hu774da9d84015d9efdfc2798c918ad7df_132158_6bcaeffca1501bd96ec2cbe2bdf01b35.png 400w,
+               /post/machine-learning/entropy/entropy_in_data_hu774da9d84015d9efdfc2798c918ad7df_132158_a693682445ad969ba8be8a82e9a88e93.png 760w,
+               /post/machine-learning/entropy/entropy_in_data_hu774da9d84015d9efdfc2798c918ad7df_132158_1200x1200_fit_lanczos_3.png 1200w"
+               src="/post/machine-learning/entropy/entropy_in_data_hu774da9d84015d9efdfc2798c918ad7df_132158_6bcaeffca1501bd96ec2cbe2bdf01b35.png"
+               width="700"
+               height="256"
+               loading="lazy" data-zoomable /></div>
+  </div><figcaption>
+      Low vs High Entropy
+    </figcaption></figure>
+<p><strong>Entropy</strong> is a powerful and fundamental concept that quietly drives some of the most effective algorithms in machine learning. From decision trees to deep neural networks, entropy plays a central role in helping models navigate uncertainty and make better predictions.</p>
+<h3 id="what-is-entropy">What Is Entropy?</h3>
+<p>Originally a concept from thermodynamics, entropy measures the level of <strong>disorder</strong> or <strong>uncertainty</strong> in a system. In machine learning, it&rsquo;s used to quantify how much unpredictability exists in a set of outcomes.</p>
+<p>Take a coin flip, for example:</p>
+<ul>
+<li>If you flip a fair coin and get <code>[heads, tails, tails, heads]</code>, there&rsquo;s high entropy — the outcomes are unpredictable.</li>
+<li>But if you flip a weighted coin and get <code>[tails, tails, tails, tails]</code>, entropy is low — the system is more predictable.</li>
+</ul>
+<p>In general:</p>
+<ul>
+<li><strong>High entropy</strong> = low information gain (we learn less from each new example).</li>
+<li><strong>Low entropy</strong> = high information gain (we learn more from each new example).</li>
+</ul>
+<h3 id="entropy-in-decision-trees">Entropy in Decision Trees</h3>
+<p>Decision trees use entropy to decide which features to split on. At each step:</p>
+<ul>
+<li>The algorithm calculates the entropy of each potential split.</li>
+<li>It chooses the split with the <strong>lowest entropy</strong>, which maximizes <strong>information gain</strong>.</li>
+</ul>
+<p>This process ensures that the tree separates the data efficiently, focusing on features that bring the most &ldquo;clarity&rdquo; early on.</p>
+<h3 id="cross-entropy-in-neural-networks">Cross-Entropy in Neural Networks</h3>
+<p>Neural networks commonly use <strong>cross-entropy</strong> as a loss function, especially in classification tasks. This function compares two distributions:</p>
+<ul>
+<li>The <strong>true distribution</strong> (the actual labels).</li>
+<li>The <strong>predicted distribution</strong> (the model&rsquo;s output probabilities).</li>
+</ul>
+<p>Cross-entropy measures how many bits are needed to encode the true labels using the predicted distribution. The lower the value, the better the model&rsquo;s predictions match the truth.</p>
+<p>This approach is:</p>
+<ul>
+<li>More dynamic than accuracy/error-based metrics.</li>
+<li>Better at handling confidence and probability.</li>
+<li>Less sensitive to data order or noise.</li>
+</ul>
+<h3 id="related-concept-kl-divergence">Related Concept: KL Divergence</h3>
+<p>Another key metric is <strong>Kullback–Leibler (KL) divergence</strong>, also called <strong>relative entropy</strong>. While cross-entropy measures total entropy between two distributions, KL divergence measures how much extra &ldquo;cost&rdquo; (in bits) we pay by using one distribution to represent another.</p>
+<p>It&rsquo;s often used in training <strong>Generative Adversarial Networks (GANs)</strong> and other probabilistic models.</p>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="alt text" srcset="
+               /post/machine-learning/entropy/KL_huf221c4c03880c66097e85ad3bf7df6f9_52023_fe99a68586fcefd1732d76fb2c078899.png 400w,
+               /post/machine-learning/entropy/KL_huf221c4c03880c66097e85ad3bf7df6f9_52023_d0f636f329a3297908d6bc22f42ca50b.png 760w,
+               /post/machine-learning/entropy/KL_huf221c4c03880c66097e85ad3bf7df6f9_52023_1200x1200_fit_lanczos_3.png 1200w"
+               src="/post/machine-learning/entropy/KL_huf221c4c03880c66097e85ad3bf7df6f9_52023_fe99a68586fcefd1732d76fb2c078899.png"
+               width="700"
+               height="239"
+               loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
+<h3 id="why-entropy-matters">Why Entropy Matters</h3>
+<p>Unlike rigid metrics like accuracy, entropy-based measures capture the uncertainty and depth of the problem space. They allow models to:</p>
+<ul>
+<li>Learn better under uncertainty.</li>
+<li>Make probabilistic predictions.</li>
+<li>Avoid problems like vanishing gradients (especially when used with softmax or sigmoid activations).</li>
+</ul>
+<p>Whether you&rsquo;re building a decision tree, training a neural network, or experimenting with probabilistic models, <strong>entropy is the invisible force guiding better decisions</strong>.</p>
+<h3 id="final-thoughts">Final Thoughts</h3>
+<p>Entropy might seem abstract at first, but it captures a truth at the heart of machine learning: we are always trying to reduce uncertainty. By optimizing for entropy-based metrics like information gain, cross-entropy, or KL divergence, we empower our models to learn faster, perform better, and make smarter predictions.</p>
+</div>
+
+    </div>
+
+    
+
+
+
+
+
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tag/machine-learning/">machine learning</a>
+  
+  <a class="badge badge-light" href="/tag/entropy/">entropy</a>
+  
+  <a class="badge badge-light" href="/tag/information-theory/">information theory</a>
+  
+  <a class="badge badge-light" href="/tag/decision-trees/">decision trees</a>
+  
+  <a class="badge badge-light" href="/tag/neural-networks/">neural networks</a>
+  
+</div>
+
+
+
+<div class="share-box">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=https://leminhnguyen.github.io/post/machine-learning/entropy/&amp;text=Why%20Entropy%20Matters%20in%20Machine%20Learning" target="_blank" rel="noopener" class="share-btn-twitter" aria-label="twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=https://leminhnguyen.github.io/post/machine-learning/entropy/&amp;t=Why%20Entropy%20Matters%20in%20Machine%20Learning" target="_blank" rel="noopener" class="share-btn-facebook" aria-label="facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=Why%20Entropy%20Matters%20in%20Machine%20Learning&amp;body=https://leminhnguyen.github.io/post/machine-learning/entropy/" target="_blank" rel="noopener" class="share-btn-email" aria-label="envelope">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=https://leminhnguyen.github.io/post/machine-learning/entropy/&amp;title=Why%20Entropy%20Matters%20in%20Machine%20Learning" target="_blank" rel="noopener" class="share-btn-linkedin" aria-label="linkedin-in">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="whatsapp://send?text=Why%20Entropy%20Matters%20in%20Machine%20Learning%20https://leminhnguyen.github.io/post/machine-learning/entropy/" target="_blank" rel="noopener" class="share-btn-whatsapp" aria-label="whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=https://leminhnguyen.github.io/post/machine-learning/entropy/&amp;title=Why%20Entropy%20Matters%20in%20Machine%20Learning" target="_blank" rel="noopener" class="share-btn-weibo" aria-label="weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+  
+  
+    
+  
+  
+  
+  <div class="media author-card content-widget-hr">
+    
+      
+      <a href="https://leminhnguyen.github.io/"><img class="avatar mr-3 avatar-circle" src="/author/minh-nguyen-le/avatar_hue73c4865dd3562863accf819672b4d4e_72777_270x270_fill_lanczos_center_3.png" alt="Minh Nguyen Le"></a>
+    
+
+    <div class="media-body">
+      <h5 class="card-title"><a href="https://leminhnguyen.github.io/">Minh Nguyen Le</a></h5>
+      <h6 class="card-subtitle">AI Engineer</h6>
+      
+      <ul class="network-icon" aria-hidden="true">
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="/about/#contact" >
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://www.facebook.com/minhnguyen.le.180072/" target="_blank" rel="noopener">
+        <i class="fab fa-facebook"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://stackoverflow.com/users/10629841/leminhnguyen" target="_blank" rel="noopener">
+        <i class="fab fa-stack-overflow"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://www.linkedin.com/in/minh-nguyen-le-a83b0419b/" target="_blank" rel="noopener">
+        <i class="fab fa-linkedin"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://github.com/leminhnguyen" target="_blank" rel="noopener">
+        <i class="fab fa-github"></i>
+      </a>
+    </li>
+  
+</ul>
+
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="article-widget">
+  
+<div class="post-nav">
+  
+  
+  
+  <div class="post-nav-item">
+    <div class="meta-nav">Next</div>
+    <a href="/post/speech-research/speaker-diarization/" rel="next">Speaker Diarization: From Traditional Methods to the Modern Models</a>
+  </div>
+  
+  
+  
+  <div class="post-nav-item">
+    <div class="meta-nav">Previous</div>
+    <a href="/post/speech-research/lora-whisper/" rel="prev">LoRA-Whisper: A Scalable and Efficient Solution for Multilingual ASR</a>
+  </div>
+  
+</div>
+
+</div>
+
+
+
+
+
+  
+  
+
+
+
+
+
+  </div>
+</article>
+  </div>
+
+  <div class="page-footer">
+    
+    
+    <div class="container">
+      <footer class="site-footer">
+
+  
+
+
+
+  
+
+  
+
+  
+  <p class="powered-by">
+    © {2025} leminhnguyen
+  </p>
+  
+
+  
+  
+
+
+
+
+
+
+  <p class="powered-by">
+    
+    
+    
+      
+      
+      
+      
+      
+      
+      Published with <a href="https://wowchemy.com/?utm_campaign=poweredby" target="_blank" rel="noopener">Wowchemy</a> — the free, <a href="https://github.com/wowchemy/wowchemy-hugo-themes" target="_blank" rel="noopener">open source</a> website builder that empowers creators.
+    
+  </p>
+</footer>
+
+    </div>
+    
+  </div>
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+      
+
+    
+    <script src="/js/vendor-bundle.min.5a3a4e7cbc7b4e121b2d29312cf8ad59.js"></script>
+
+    
+    
+    
+      
+      
+
+      
+      
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/highlight.min.js" integrity="sha512-TDKKr+IvoqZnPzc3l35hdjpHD0m+b2EC2SrLEgKDRWpxf2rFCxemkgvJ5kfU48ip+Y+m2XVKyOCD85ybtlZDmw==" crossorigin="anonymous"></script>
+        
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/r.min.js" crossorigin="anonymous"></script>
+        
+      
+
+    
+
+    
+    
+    
+
+    
+    
+
+    
+    
+    
+      
+      <script id="search-hit-fuse-template" type="text/x-template">
+        <div class="search-hit" id="summary-{{key}}">
+          <div class="search-hit-content">
+            <div class="search-hit-name">
+              <a href="{{relpermalink}}">{{title}}</a>
+              <div class="article-metadata search-hit-type">{{type}}</div>
+              <p class="search-hit-description">{{snippet}}</p>
+            </div>
+          </div>
+        </div>
+      </script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+      
+    
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+      
+      
+      
+      
+      
+      
+      
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+    
+    
+    <script src="/en/js/wowchemy.min.44f54723226744971bcdd9c0ca685057.js"></script>
+
+    
+
+
+
+
+
+
+</body>
+</html>
