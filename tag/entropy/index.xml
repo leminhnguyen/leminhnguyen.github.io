@@ -17,7 +17,7 @@
       <link>https://leminhnguyen.github.io/post/machine-learning/entropy/</link>
       <pubDate>Fri, 04 Apr 2025 00:00:00 +0000</pubDate>
       <guid>https://leminhnguyen.github.io/post/machine-learning/entropy/</guid>
-      <description>&lt;div style=&#34;text-align: justify; font-size: 15px; margin-top: 20px&#34;&gt;
+      <description>&lt;div style=&#34;text-align: justify; font-size: 15px; margin-top: 20px margin-bottom: 10px&#34;&gt;
 
 
 
@@ -59,28 +59,65 @@
 &lt;li&gt;&lt;strong&gt;Low entropy&lt;/strong&gt; = high information gain (we learn more from each new example).&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id=&#34;entropy-in-decision-trees&#34;&gt;Entropy in Decision Trees&lt;/h3&gt;
-&lt;p&gt;Decision trees use entropy to decide which features to split on. At each step:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;The algorithm calculates the entropy of each potential split.&lt;/li&gt;
-&lt;li&gt;It chooses the split with the &lt;strong&gt;lowest entropy&lt;/strong&gt;, which maximizes &lt;strong&gt;information gain&lt;/strong&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;This process ensures that the tree separates the data efficiently, focusing on features that bring the most &amp;ldquo;clarity&amp;rdquo; early on.&lt;/p&gt;
+&lt;p&gt;Entropy is the secret sauce behind decision trees. When a decision tree decides where to split the data, it doesn&amp;rsquo;t just guess—it asks:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;“Which feature split gives me the most certainty about what’s going on?”&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;It measures the entropy of each feature. The split that &lt;strong&gt;reduces entropy the most&lt;/strong&gt; (i.e., gives the most information gain) gets picked. It’s like asking:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;“Which question brings me closer to the truth?”&lt;/p&gt;
+&lt;/blockquote&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  id=&#34;figure-decision-tree-example-source-andre-ye&#34;&gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;Decision Tree Example (source: Andre Ye)&#34; srcset=&#34;
+               /post/machine-learning/entropy/decision_tree_hu2fc7734e24d263dd4c849451e1112706_65155_d8e79941847cb4700b891eda18c2fdd0.png 400w,
+               /post/machine-learning/entropy/decision_tree_hu2fc7734e24d263dd4c849451e1112706_65155_a3f99da1f104f0db8ae4fb4e95b76141.png 760w,
+               /post/machine-learning/entropy/decision_tree_hu2fc7734e24d263dd4c849451e1112706_65155_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://leminhnguyen.github.io/post/machine-learning/entropy/decision_tree_hu2fc7734e24d263dd4c849451e1112706_65155_d8e79941847cb4700b891eda18c2fdd0.png&#34;
+               width=&#34;700&#34;
+               height=&#34;335&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;figcaption&gt;
+      Decision Tree Example (source: Andre Ye)
+    &lt;/figcaption&gt;&lt;/figure&gt;
+&lt;p&gt;For instance, if you&amp;rsquo;re building a tree to classify colors into red or blue, and one feature creates two groups that are nearly all red and all blue—that’s &lt;strong&gt;low entropy&lt;/strong&gt;, and that feature becomes a &lt;strong&gt;high-value decision&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;This is why trees often start with the most informative feature at the top: to guide the rest of the tree with clarity and purpose.&lt;/p&gt;
 &lt;h3 id=&#34;cross-entropy-in-neural-networks&#34;&gt;Cross-Entropy in Neural Networks&lt;/h3&gt;
-&lt;p&gt;Neural networks commonly use &lt;strong&gt;cross-entropy&lt;/strong&gt; as a loss function, especially in classification tasks. This function compares two distributions:&lt;/p&gt;
+&lt;p&gt;In deep learning, entropy shows up again—this time in disguise, as &lt;strong&gt;cross-entropy&lt;/strong&gt;, a favorite loss function of neural networks. Imagine you&amp;rsquo;re training a model to classify images of cats and dogs. Cross-entropy doesn&amp;rsquo;t just care &lt;em&gt;which&lt;/em&gt; label the model picked—it cares &lt;em&gt;how confident&lt;/em&gt; the model was.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;The &lt;strong&gt;true distribution&lt;/strong&gt; (the actual labels).&lt;/li&gt;
-&lt;li&gt;The &lt;strong&gt;predicted distribution&lt;/strong&gt; (the model&amp;rsquo;s output probabilities).&lt;/li&gt;
+&lt;li&gt;If your model says “I’m 99% sure this is a cat” and it’s correct: great.&lt;/li&gt;
+&lt;li&gt;If it says “50-50, could be cat or dog” — not so great.&lt;/li&gt;
+&lt;li&gt;If it’s confidently wrong — disaster.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;Cross-entropy measures how many bits are needed to encode the true labels using the predicted distribution. The lower the value, the better the model&amp;rsquo;s predictions match the truth.&lt;/p&gt;
-&lt;p&gt;This approach is:&lt;/p&gt;
+&lt;p&gt;Cross-entropy punishes bad guesses and rewards confident, correct predictions. It pushes the model to not just be right, but to be sure of why it&amp;rsquo;s right. Cross-entropy measures how many bits are needed to encode the true labels using the predicted distribution. The lower the value, the better the model&amp;rsquo;s predictions match the truth.&lt;/p&gt;
+&lt;p&gt;This works beautifully with &lt;strong&gt;Softmax&lt;/strong&gt; and &lt;strong&gt;Sigmoid&lt;/strong&gt; activations, helping reduce issues like the vanishing gradient problem and giving models a smoother learning curve. This approach is:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;More dynamic than accuracy/error-based metrics.&lt;/li&gt;
 &lt;li&gt;Better at handling confidence and probability.&lt;/li&gt;
 &lt;li&gt;Less sensitive to data order or noise.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id=&#34;related-concept-kl-divergence&#34;&gt;Related Concept: KL Divergence&lt;/h3&gt;
-&lt;p&gt;Another key metric is &lt;strong&gt;Kullback–Leibler (KL) divergence&lt;/strong&gt;, also called &lt;strong&gt;relative entropy&lt;/strong&gt;. While cross-entropy measures total entropy between two distributions, KL divergence measures how much extra &amp;ldquo;cost&amp;rdquo; (in bits) we pay by using one distribution to represent another.&lt;/p&gt;
-&lt;p&gt;It&amp;rsquo;s often used in training &lt;strong&gt;Generative Adversarial Networks (GANs)&lt;/strong&gt; and other probabilistic models.&lt;/p&gt;
+&lt;p&gt;Another flavor of entropy is &lt;strong&gt;Kullback–Leibler divergence (KL divergence)&lt;/strong&gt;. Think of it as a way to measure the &amp;ldquo;distance&amp;rdquo; between two probability worlds:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;One world is what &lt;em&gt;actually&lt;/em&gt; happens (distribution &lt;strong&gt;p&lt;/strong&gt;).&lt;/li&gt;
+&lt;li&gt;The other is what your model &lt;em&gt;thinks&lt;/em&gt; will happen (distribution &lt;strong&gt;q&lt;/strong&gt;).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;KL divergence tells you how far off your model is—and how much it needs to learn. It’s like a map for loss, guiding your model back toward reality.&lt;/p&gt;
+&lt;p&gt;GANs (Generative Adversarial Networks) use this idea to help the generator produce images that look increasingly real. The better it gets at mimicking the real distribution, the smaller the divergence.&lt;/p&gt;
 &lt;p&gt;
 
 
@@ -119,6 +156,12 @@
 &lt;p&gt;Whether you&amp;rsquo;re building a decision tree, training a neural network, or experimenting with probabilistic models, &lt;strong&gt;entropy is the invisible force guiding better decisions&lt;/strong&gt;.&lt;/p&gt;
 &lt;h3 id=&#34;final-thoughts&#34;&gt;Final Thoughts&lt;/h3&gt;
 &lt;p&gt;Entropy might seem abstract at first, but it captures a truth at the heart of machine learning: we are always trying to reduce uncertainty. By optimizing for entropy-based metrics like information gain, cross-entropy, or KL divergence, we empower our models to learn faster, perform better, and make smarter predictions.&lt;/p&gt;
+&lt;p&gt;Entropy is not just a formula. It’s a mindset. A way of accepting that knowledge is never perfect, but it &lt;em&gt;can&lt;/em&gt; be improved. When we train models with entropy in mind, we embrace the chaos—and turn it into clarity.&lt;/p&gt;
+&lt;h3 id=&#34;references&#34;&gt;References&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;🔗 &lt;a href=&#34;https://medium.com/data-science/understanding-entropy-the-golden-measurement-of-machine-learning-4ea97c663dc3&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://medium.com/data-science/understanding-entropy-the-golden-measurement-of-machine-learning-4ea97c663dc3&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;🔗 &lt;a href=&#34;https://huggingface.co/blog/hexgrad/g2p&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://huggingface.co/blog/hexgrad/g2p&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
 &lt;/div&gt;
 </description>
     </item>
