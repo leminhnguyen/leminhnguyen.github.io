@@ -4,15 +4,27 @@
   
   
   <url>
-    <loc>https://leminhnguyen.github.io/categories/</loc><lastmod>2025-04-28T00:00:00+00:00</lastmod></url>
+    <loc>https://leminhnguyen.github.io/categories/</loc><lastmod>2025-09-07T00:00:00+00:00</lastmod></url>
+  <url>
+    <loc>https://leminhnguyen.github.io/tag/deep-learning/</loc><lastmod>2025-09-07T00:00:00+00:00</lastmod></url>
+  <url>
+    <loc>https://leminhnguyen.github.io/tag/hallucination/</loc><lastmod>2025-09-07T00:00:00+00:00</lastmod></url>
+  <url>
+    <loc>https://leminhnguyen.github.io/category/large-language-models/</loc><lastmod>2025-09-07T00:00:00+00:00</lastmod></url>
+  <url>
+    <loc>https://leminhnguyen.github.io/</loc><lastmod>2025-09-07T00:00:00+00:00</lastmod></url>
+  <url>
+    <loc>https://leminhnguyen.github.io/tag/llm/</loc><lastmod>2025-09-07T00:00:00+00:00</lastmod></url>
+  <url>
+    <loc>https://leminhnguyen.github.io/category/nlp/</loc><lastmod>2025-09-07T00:00:00+00:00</lastmod></url>
+  <url>
+    <loc>https://leminhnguyen.github.io/tags/</loc><lastmod>2025-09-07T00:00:00+00:00</lastmod></url>
+  <url>
+    <loc>https://leminhnguyen.github.io/post/nlp-research/why-llm-hallucinates/</loc><lastmod>2025-09-07T00:00:00+00:00</lastmod></url>
   <url>
     <loc>https://leminhnguyen.github.io/tag/cross-entropy/</loc><lastmod>2025-04-28T00:00:00+00:00</lastmod></url>
   <url>
-    <loc>https://leminhnguyen.github.io/tag/deep-learning/</loc><lastmod>2025-04-28T00:00:00+00:00</lastmod></url>
-  <url>
     <loc>https://leminhnguyen.github.io/category/deep-learning/</loc><lastmod>2025-04-28T00:00:00+00:00</lastmod></url>
-  <url>
-    <loc>https://leminhnguyen.github.io/</loc><lastmod>2025-04-28T00:00:00+00:00</lastmod></url>
   <url>
     <loc>https://leminhnguyen.github.io/tag/multi-label-classification/</loc><lastmod>2025-04-28T00:00:00+00:00</lastmod></url>
   <url>
@@ -27,8 +39,6 @@
     <loc>https://leminhnguyen.github.io/category/speech/</loc><lastmod>2025-04-28T00:00:00+00:00</lastmod></url>
   <url>
     <loc>https://leminhnguyen.github.io/tag/speech/</loc><lastmod>2025-04-28T00:00:00+00:00</lastmod></url>
-  <url>
-    <loc>https://leminhnguyen.github.io/tags/</loc><lastmod>2025-04-28T00:00:00+00:00</lastmod></url>
   <url>
     <loc>https://leminhnguyen.github.io/category/tutorials/</loc><lastmod>2025-04-28T00:00:00+00:00</lastmod></url>
   <url>
@@ -45,8 +55,6 @@
     <loc>https://leminhnguyen.github.io/category/machine-learning/</loc><lastmod>2025-04-04T00:00:00+00:00</lastmod></url>
   <url>
     <loc>https://leminhnguyen.github.io/tag/neural-networks/</loc><lastmod>2025-04-04T00:00:00+00:00</lastmod></url>
-  <url>
-    <loc>https://leminhnguyen.github.io/category/nlp/</loc><lastmod>2025-04-04T00:00:00+00:00</lastmod></url>
   <url>
     <loc>https://leminhnguyen.github.io/post/machine-learning/entropy/</loc><lastmod>2025-04-04T00:00:00+00:00</lastmod></url>
   <url>
@@ -67,10 +75,6 @@
     <loc>https://leminhnguyen.github.io/tag/adversarial-attacks/</loc><lastmod>2025-01-11T00:00:00+00:00</lastmod></url>
   <url>
     <loc>https://leminhnguyen.github.io/post/nlp-research/adversarial-attacks/</loc><lastmod>2025-01-11T00:00:00+00:00</lastmod></url>
-  <url>
-    <loc>https://leminhnguyen.github.io/category/large-language-models/</loc><lastmod>2025-01-11T00:00:00+00:00</lastmod></url>
-  <url>
-    <loc>https://leminhnguyen.github.io/tag/llm/</loc><lastmod>2025-01-11T00:00:00+00:00</lastmod></url>
   <url>
     <loc>https://leminhnguyen.github.io/tag/bert/</loc><lastmod>2024-11-02T00:00:00+00:00</lastmod></url>
   <url>

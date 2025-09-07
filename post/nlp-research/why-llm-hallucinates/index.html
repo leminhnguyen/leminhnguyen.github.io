@@ -60,10 +60,11 @@
   
     
   
-  <meta name="description" content="Understanding FlashAttention: Inner vs Outer Loop Optimization FlashAttention is a groundbreaking optimization technique for computing attention in Transformer models. It drastically improves performance by reducing memory bottlenecks and utilizing GPU memory more efficiently." />
+  <meta name="description" content="Overview Recently, OpenAI has just released the paper &ldquo;Why Language Models Hallucinate&rdquo; by Adam Tauman Kalai, Ofir Nachum, Santosh Vempala, and Edwin Zhang (2025).
+Abstraction: Like students facing hard exam questions, large language models sometimes guess when uncertain, producing plausible yet incorrect statements instead of admitting uncertainty." />
 
   
-  <link rel="alternate" hreflang="en-us" href="https://leminhnguyen.github.io/post/nlp-research/flash-attention/" />
+  <link rel="alternate" hreflang="en-us" href="https://leminhnguyen.github.io/post/nlp-research/why-llm-hallucinates/" />
 
   
   
@@ -277,7 +278,7 @@
   <link rel="icon" type="image/png" href="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_32x32_fill_lanczos_center_3.png" />
   <link rel="apple-touch-icon" type="image/png" href="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_180x180_fill_lanczos_center_3.png" />
 
-  <link rel="canonical" href="https://leminhnguyen.github.io/post/nlp-research/flash-attention/" />
+  <link rel="canonical" href="https://leminhnguyen.github.io/post/nlp-research/why-llm-hallucinates/" />
 
   
   
@@ -302,18 +303,19 @@
     <meta property="twitter:creator" content="@wowchemy" />
   
   <meta property="og:site_name" content="leminhnguyen&#39;s blog" />
-  <meta property="og:url" content="https://leminhnguyen.github.io/post/nlp-research/flash-attention/" />
-  <meta property="og:title" content="Understanding FlashAttention: Inner vs Outer Loop Optimization | leminhnguyen&#39;s blog" />
-  <meta property="og:description" content="Understanding FlashAttention: Inner vs Outer Loop Optimization FlashAttention is a groundbreaking optimization technique for computing attention in Transformer models. It drastically improves performance by reducing memory bottlenecks and utilizing GPU memory more efficiently." /><meta property="og:image" content="https://leminhnguyen.github.io/post/nlp-research/flash-attention/featured.webp" />
-    <meta property="twitter:image" content="https://leminhnguyen.github.io/post/nlp-research/flash-attention/featured.webp" /><meta property="og:locale" content="en-us" />
+  <meta property="og:url" content="https://leminhnguyen.github.io/post/nlp-research/why-llm-hallucinates/" />
+  <meta property="og:title" content="Why Do Language Models Hallucinate? | leminhnguyen&#39;s blog" />
+  <meta property="og:description" content="Overview Recently, OpenAI has just released the paper &ldquo;Why Language Models Hallucinate&rdquo; by Adam Tauman Kalai, Ofir Nachum, Santosh Vempala, and Edwin Zhang (2025).
+Abstraction: Like students facing hard exam questions, large language models sometimes guess when uncertain, producing plausible yet incorrect statements instead of admitting uncertainty." /><meta property="og:image" content="https://leminhnguyen.github.io/post/nlp-research/why-llm-hallucinates/featured.png" />
+    <meta property="twitter:image" content="https://leminhnguyen.github.io/post/nlp-research/why-llm-hallucinates/featured.png" /><meta property="og:locale" content="en-us" />
   
     
       <meta
         property="article:published_time"
-        content="2025-02-01T00:00:00&#43;00:00"
+        content="2025-09-07T00:00:00&#43;00:00"
       />
     
-    <meta property="article:modified_time" content="2025-02-01T00:00:00&#43;00:00">
+    <meta property="article:modified_time" content="2025-09-07T00:00:00&#43;00:00">
   
 
   
@@ -337,16 +339,16 @@
   "@type": "BlogPosting",
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://leminhnguyen.github.io/post/nlp-research/flash-attention/"
+    "@id": "https://leminhnguyen.github.io/post/nlp-research/why-llm-hallucinates/"
   },
-  "headline": "Understanding FlashAttention: Inner vs Outer Loop Optimization",
+  "headline": "Why Do Language Models Hallucinate?",
   
   "image": [
-    "https://leminhnguyen.github.io/post/nlp-research/flash-attention/featured.webp"
+    "https://leminhnguyen.github.io/post/nlp-research/why-llm-hallucinates/featured.png"
   ],
   
-  "datePublished": "2025-02-01T00:00:00Z",
-  "dateModified": "2025-02-01T00:00:00Z",
+  "datePublished": "2025-09-07T00:00:00Z",
+  "dateModified": "2025-09-07T00:00:00Z",
   
   "author": {
     "@type": "Person",
@@ -361,7 +363,7 @@
       "url": "https://leminhnguyen.github.io/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_192x192_fill_lanczos_center_3.png"
     }
   },
-  "description": "Understanding FlashAttention: Inner vs Outer Loop Optimization FlashAttention is a groundbreaking optimization technique for computing attention in Transformer models. It drastically improves performance by reducing memory bottlenecks and utilizing GPU memory more efficiently."
+  "description": "Overview Recently, OpenAI has just released the paper \u0026ldquo;Why Language Models Hallucinate\u0026rdquo; by Adam Tauman Kalai, Ofir Nachum, Santosh Vempala, and Edwin Zhang (2025).\nAbstraction: Like students facing hard exam questions, large language models sometimes guess when uncertain, producing plausible yet incorrect statements instead of admitting uncertainty."
 }
 </script>
 
@@ -377,11 +379,11 @@
 
 
 
-  <title>Understanding FlashAttention: Inner vs Outer Loop Optimization | leminhnguyen&#39;s blog</title>
+  <title>Why Do Language Models Hallucinate? | leminhnguyen&#39;s blog</title>
 </head>
 
 
-<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="1b77e2e3f028b434bbe70d5d6a47d7ae" >
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="90b415ce91b5d880d050628be1200dbc" >
 
   
   
@@ -720,7 +722,7 @@
   
   
 <div class="article-container pt-3">
-  <h1>Understanding FlashAttention: Inner vs Outer Loop Optimization</h1>
+  <h1>Why Do Language Models Hallucinate?</h1>
 
   
 
@@ -739,7 +741,7 @@
     
       
     
-    Feb 1, 2025
+    Sep 7, 2025
   </span>
   
 
@@ -748,7 +750,7 @@
   
   <span class="middot-divider"></span>
   <span class="article-reading-time">
-    2 min read
+    5 min read
   </span>
   
 
@@ -763,7 +765,7 @@
   
   <span class="middot-divider"></span>
   <span class="article-categories">
-    <i class="fas fa-folder mr-1"></i><a href="/category/nlp/">NLP</a>, <a href="/category/flashattention/">FlashAttention</a></span>
+    <i class="fas fa-folder mr-1"></i><a href="/category/nlp/">NLP</a>, <a href="/category/large-language-models/">Large Language Models</a></span>
   
 
 </div>
@@ -783,8 +785,22 @@
 
     <div class="article-style">
       <div style="text-align: justify; font-size: 15px; margin-top: 20px">
-<h3 id="understanding-flashattention-inner-vs-outer-loop-optimization">Understanding FlashAttention: Inner vs Outer Loop Optimization</h3>
-<p>FlashAttention is a groundbreaking optimization technique for computing attention in Transformer models. It drastically improves performance by reducing memory bottlenecks and utilizing GPU memory more efficiently.</p>
+<h2 id="overview">Overview</h2>
+<p>Recently, OpenAI has just released the paper <em>&ldquo;Why Language Models Hallucinate&rdquo;</em> by Adam Tauman Kalai, Ofir Nachum, Santosh Vempala, and Edwin Zhang (2025).</p>
+<blockquote>
+<p><strong>Abstraction:</strong> Like students facing hard exam questions, large language models sometimes guess when uncertain, producing plausible yet incorrect statements instead of admitting uncertainty. Such
+“hallucinations” persist even in state-of-the-art systems and undermine trust. We argue that language models hallucinate because the training and evaluation procedures reward guessing over acknowledging uncertainty, and we analyze the statistical causes of hallucinations in the modern training pipeline. Hallucinations need not be mysterious—they originate simply as errors in binary classification. If incorrect statements cannot be distinguished from facts, then hallucinations in pretrained language models will arise through natural statistical pressures. We then argue that hallucinations persist due to the way most evaluations are graded—language models are optimized to be good test-takers, and guessing when uncertain improves test performance. This “epidemic” of penalizing uncertain responses can only be addressed through a socio-technical
+mitigation: modifying the scoring of existing benchmarks that are misaligned but dominate leaderboards, rather than introducing additional hallucination evaluations. This change may steer the field toward more trustworthy AI systems.</p>
+</blockquote>
+<p>The paper takes a deep dive into one of the most persistent problems in large language models (LLMs): <strong>hallucinations</strong>, where models generate confident but false statements. Unlike many studies that only describe symptoms or propose patchwork fixes, this work goes further to explain:</p>
+<ul>
+<li><strong>Why hallucinations naturally arise</strong> during pretraining, even with perfectly clean data.</li>
+<li><strong>Why they persist</strong> after alignment and fine-tuning, largely due to how benchmarks reward “guessing” over honest uncertainty.</li>
+<li><strong>How we can mitigate them</strong> by reforming evaluation methods, introducing confidence thresholds, and encouraging models to output <em>“I don’t know”</em> when appropriate.</li>
+</ul>
+<p>In short, the authors argue that hallucinations are not mysterious flaws, but predictable statistical errors reinforced by current evaluation practices — and that solving them requires changing <strong>how we test and reward AI models</strong>, not just tweaking training pipelines.</p>
+<h2 id="1-what-is-hallucination">1. What is hallucination?</h2>
+<p>Hallucinations are plausible but false statements generated by language models. They can show up in surprising ways, even for seemingly straightforward questions. For example, when we asked a widely used chatbot for the title of the PhD dissertation by Adam Tauman Kalai (an author of the mentioned paper), it confidently produced three different answers—none of them correct. When we asked for his birthday, it gave three different dates, likewise all wrong.</p>
 
 
 
@@ -799,99 +815,130 @@
 
 
 
-<figure  id="figure-flashattention-fast-and-memory-efficient-exact-attention-with-io-awareness">
+<figure  >
   <div class="d-flex justify-content-center">
-    <div class="w-100" ><img alt="FlashAttention: Fast and Memory-Efficient Exact Attention with IO-Awareness" srcset="
-               /post/nlp-research/flash-attention/flashattn_banner_2_hubb76ad5ff4fdede90787cccc6e0e85a5_322273_c91538f784224d53b4c6b0409cebbc5d.jpg 400w,
-               /post/nlp-research/flash-attention/flashattn_banner_2_hubb76ad5ff4fdede90787cccc6e0e85a5_322273_9aeed5689bdd5c41159c955e6ca65d96.jpg 760w,
-               /post/nlp-research/flash-attention/flashattn_banner_2_hubb76ad5ff4fdede90787cccc6e0e85a5_322273_1200x1200_fit_q75_lanczos.jpg 1200w"
-               src="/post/nlp-research/flash-attention/flashattn_banner_2_hubb76ad5ff4fdede90787cccc6e0e85a5_322273_c91538f784224d53b4c6b0409cebbc5d.jpg"
+    <div class="w-100" ><img alt="" srcset="
+               /post/nlp-research/why-llm-hallucinates/featured_hu0eb9eabc467679d57cd4aff4d1bfa367_2798381_b534ed861ec46db82fe3045598049fa8.png 400w,
+               /post/nlp-research/why-llm-hallucinates/featured_hu0eb9eabc467679d57cd4aff4d1bfa367_2798381_fa278adf30fcc1cb058598869146f37b.png 760w,
+               /post/nlp-research/why-llm-hallucinates/featured_hu0eb9eabc467679d57cd4aff4d1bfa367_2798381_1200x1200_fit_lanczos_3.png 1200w"
+               src="/post/nlp-research/why-llm-hallucinates/featured_hu0eb9eabc467679d57cd4aff4d1bfa367_2798381_b534ed861ec46db82fe3045598049fa8.png"
                width="760"
-               height="297"
+               height="507"
                loading="lazy" data-zoomable /></div>
-  </div><figcaption>
-      FlashAttention: Fast and Memory-Efficient Exact Attention with IO-Awareness
-    </figcaption></figure>
+  </div></figure>
 <hr>
-<h3 id="-what-problem-does-it-solve">🚀 What Problem Does It Solve?</h3>
-<p>In traditional attention mechanisms:</p>
+<h2 id="2-findings">2. Findings</h2>
+<p>Think about it like a multiple-choice test. If you do not know the answer but take a wild guess, you might get lucky and be right. Leaving it blank guarantees a zero. In the same way, when models are graded only on accuracy, the percentage of questions they get exactly right, they are encouraged to guess rather than say “I don’t know.”</p>
+<p>As another example, suppose a language model is asked for someone’s birthday but doesn’t know. If it guesses “September 10,” it has a 1-in-365 chance of being right. Saying “I don’t know” guarantees zero points. Over thousands of test questions, the guessing model ends up looking better on scoreboards than a careful model that admits uncertainty.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="" srcset="
+               /post/nlp-research/why-llm-hallucinates/valid_invalid_huc1f5495ef27f8d1bcbf026607e0e9a9f_204948_98995976e1767bfa81a8d5381386826a.png 400w,
+               /post/nlp-research/why-llm-hallucinates/valid_invalid_huc1f5495ef27f8d1bcbf026607e0e9a9f_204948_757c11071686734cf61f74173a51c61d.png 760w,
+               /post/nlp-research/why-llm-hallucinates/valid_invalid_huc1f5495ef27f8d1bcbf026607e0e9a9f_204948_1200x1200_fit_lanczos_3.png 1200w"
+               src="/post/nlp-research/why-llm-hallucinates/valid_invalid_huc1f5495ef27f8d1bcbf026607e0e9a9f_204948_98995976e1767bfa81a8d5381386826a.png"
+               width="760"
+               height="283"
+               loading="lazy" data-zoomable /></div>
+  </div></figure>
+<h3 id="21-pretraining-inevitably-introduces-errors">2.1. Pretraining inevitably introduces errors</h3>
+<p>Pretraining is essentially a <strong>density estimation problem</strong>: the model tries to approximate the probability distribution of language. The authors show that this is closely related to a <strong>binary classification problem</strong>: deciding whether a given output is valid or invalid. From statistical learning theory, <strong>classification always has a non-zero error rate</strong> → meaning LLMs cannot avoid mistakes. Even with <strong>perfect, error-free data</strong>, hallucinations emerge because:</p>
 <ul>
-<li>Attention matrices like Q, K, and V are huge.</li>
-<li>GPU cores (CUDA cores) must fetch data from <strong>HBM (High Bandwidth Memory)</strong> repeatedly.</li>
-<li>Each access to HBM is slow and inefficient.</li>
-<li>Shared memory (SRAM) exists but is <strong>not optimally used</strong>.</li>
+<li>Some facts are <strong>rare or unique</strong> (e.g., a birthday mentioned only once).</li>
+<li>When no pattern exists in data, the model faces <strong>epistemic uncertainty</strong> (knowledge that is simply missing).</li>
+<li>This explains why LLMs do fine on common facts (like “Einstein’s birthday”) but hallucinate rare ones.</li>
 </ul>
-<p>This leads to frequent memory transfers, under-utilized cores, and slow inference time.</p>
+<p><strong>Key concept:</strong> <em>Singleton rate</em></p>
+<ul>
+<li>The fraction of facts that appear only once in training data.</li>
+<li>The higher the singleton rate, the higher the expected hallucination rate.</li>
+</ul>
 <hr>
-<h3 id="-flashattention-to-the-rescue">⚡ FlashAttention to the Rescue</h3>
-<p>FlashAttention solves this by:</p>
+<h3 id="22-post-training-reinforces-hallucinations">2.2. Post-training reinforces hallucinations</h3>
+<p>After pretraining, models are fine-tuned (RLHF, RLAIF, DPO, etc.) to align with human preferences. Intuitively, one might expect this to reduce hallucinations. However, hallucinations persist because of how <strong>evaluation benchmarks are designed</strong>:</p>
 <ul>
-<li><strong>Dividing Q, K, V matrices into smaller blocks</strong> (e.g., 32x32).</li>
-<li>Copying each block from <strong>HBM to SRAM once</strong> (not repeatedly).</li>
-<li>Performing <strong>all computations inside SRAM</strong>, near the GPU cores.</li>
-<li>Writing results back to HBM only once per block.</li>
+<li>Most benchmarks use <strong>binary grading</strong> (correct = 1, wrong = 0).</li>
+<li><em>“I don’t know”</em> (IDK) or abstentions are treated as <strong>wrong (0 points)</strong>.</li>
+<li>This setup <strong>rewards guessing</strong>:
+<ul>
+<li>A model that always guesses when unsure scores higher than a model that truthfully admits uncertainty.</li>
 </ul>
-<p>This dramatically reduces memory access overhead and accelerates attention computations.</p>
-<hr>
-<h3 id="-inner-loop-vs-outer-loop">🔁 Inner Loop vs Outer Loop</h3>
-<h4 id="outer-loop">Outer Loop</h4>
+</li>
+<li>Analogy:
 <ul>
-<li>Responsible for <strong>loading blocks of K/V</strong> from HBM to SRAM.</li>
-<li>Each iteration handles a large memory transfer.</li>
-<li>Runs <strong>infrequently</strong> but handles heavy data movement.</li>
+<li>Like students on multiple-choice exams — guessing improves test scores, even if it produces confident wrong answers.</li>
 </ul>
-<h4 id="inner-loop">Inner Loop</h4>
-<ul>
-<li>Executes <strong>on the data already in SRAM</strong>.</li>
-<li>Performs matrix multiplications (Q×Kᵀ), softmax, and QK×V.</li>
-<li>Runs <strong>frequently</strong> but operates on fast-access memory.</li>
-<li>Fast and efficient — no further HBM access needed.</li>
+</li>
+<li>As a result, LLMs are trained and evaluated in a permanent <strong>“test-taking mode”</strong>, where bluffing is optimal.</li>
 </ul>
 <hr>
-<h3 id="-analogy-kitchen-example">🧠 Analogy: Kitchen Example</h3>
+<h3 id="23-why-hallucinations-are-not-mysterious">2.3. Why hallucinations are not mysterious</h3>
 <ul>
-<li><strong>HBM</strong> = Warehouse far away.</li>
-<li><strong>SRAM</strong> = Workbench in your kitchen.</li>
-<li><strong>Outer loop</strong> = You bring a tray of ingredients from warehouse to your kitchen.</li>
-<li><strong>Inner loop</strong> = You cook the full meal using what&rsquo;s already on your workbench.</li>
+<li>Hallucinations are <strong>not unique AI quirks</strong>, but simply <strong>statistical classification errors under uncertainty</strong>.</li>
+<li>They persist because current benchmarks <strong>misalign incentives</strong>:
+<ul>
+<li>A hallucination can improve benchmark performance.</li>
+<li>An honest abstention reduces performance.</li>
 </ul>
-<p>Traditional attention = you run back to the warehouse for every spoon of spice 😅<br>
-FlashAttention = bring the whole spice rack once, cook in peace! 👨‍🍳</p>
+</li>
+<li>Thus, even advanced post-training cannot solve hallucinations if the evaluation system keeps rewarding them.</li>
+</ul>
 <hr>
-<h3 id="-summary">✅ Summary</h3>
-<table>
-<thead>
-<tr>
-<th>Feature</th>
-<th>Traditional Attention</th>
-<th>FlashAttention</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Memory Access</td>
-<td>Frequent HBM access</td>
-<td>One-time block transfer</td>
-</tr>
-<tr>
-<td>SRAM Usage</td>
-<td>Under-utilized</td>
-<td>Fully utilized per block</td>
-</tr>
-<tr>
-<td>Computation Location</td>
-<td>Mix of HBM and registers</td>
-<td>All in SRAM</td>
-</tr>
-<tr>
-<td>Speed</td>
-<td>Slower, memory bottleneck</td>
-<td>Much faster, memory-efficient</td>
-</tr>
-</tbody>
-</table>
-<p>FlashAttention is a key breakthrough for making large models faster and more scalable — especially during inference.</p>
-</figure>
+<h2 id="3-proposed-solution">3. Proposed Solution</h2>
+<h3 id="redesign-evaluations-to-reward-honesty">Redesign evaluations to reward honesty</h3>
+<p>The main recommendation: <strong>adjust scoring in existing benchmarks</strong> rather than invent new hallucination-specific tests. Benchmarks should stop penalizing abstentions and instead <strong>give credit to uncertainty</strong> when appropriate.</p>
+<h3 id="explicit-confidence-targets">Explicit confidence targets</h3>
+<p>Inspired by real-world exams (e.g., SAT, GRE, Indian JEE), introduce <strong>penalties for incorrect guesses</strong> and <strong>neutral credit for IDK</strong>. Example instruction added to each benchmark task: “Answer only if you are &gt;75% confident.  <code>Correct answer: +1 point</code>, <code>Wrong guess: –2 points</code>, <code>IDK: 0 points</code>. This ensures models learn when it’s <strong>better to abstain</strong> rather than guess.</p>
+<h3 id="behavioral-calibration">Behavioral Calibration</h3>
+<p>Instead of only reporting probabilities, models should <strong>act in accordance with their confidence level</strong>. For example:</p>
+<ul>
+<li>If the model is &lt;50% confident, it should output IDK.</li>
+<li>If highly confident, it should answer directly.</li>
+<li>This approach helps align model behavior with <strong>trustworthy communication</strong>, reducing overconfident hallucinations.</li>
+</ul>
+<hr>
+<h2 id="4-bonus">4. Bonus</h2>
+<p>OpenAI claimed that ChatGPT also hallucinates. GPT‑5 has significantly fewer hallucinations especially when reasoning⁠, but they still occur. In terms of accuracy, the older OpenAI o4-mini model performs slightly better. However, its error rate (i.e., rate of hallucination) is significantly higher. Strategically guessing when uncertain improves accuracy but increases errors and hallucinations.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="" srcset="
+               /post/nlp-research/why-llm-hallucinates/compare_gpt5_vs_gpt4_huf6586f449bf7da7d25f101f091dd9987_72745_b41c75f73f0984e4236251db5d8d6796.png 400w,
+               /post/nlp-research/why-llm-hallucinates/compare_gpt5_vs_gpt4_huf6586f449bf7da7d25f101f091dd9987_72745_891a630ebc216a5d8504156e95e5a165.png 760w,
+               /post/nlp-research/why-llm-hallucinates/compare_gpt5_vs_gpt4_huf6586f449bf7da7d25f101f091dd9987_72745_1200x1200_fit_lanczos_3.png 1200w"
+               src="/post/nlp-research/why-llm-hallucinates/compare_gpt5_vs_gpt4_huf6586f449bf7da7d25f101f091dd9987_72745_b41c75f73f0984e4236251db5d8d6796.png"
+               width="760"
+               height="400"
+               loading="lazy" data-zoomable /></div>
+  </div></figure>
+</div>
     </div>
 
     
@@ -905,9 +952,9 @@ FlashAttention = bring the whole spice rack once, cook in peace! 👨‍🍳</p>
   
   <a class="badge badge-light" href="/tag/deep-learning/">deep learning</a>
   
-  <a class="badge badge-light" href="/tag/nlp/">nlp</a>
+  <a class="badge badge-light" href="/tag/llm/">llm</a>
   
-  <a class="badge badge-light" href="/tag/flash-attention/">flash attention</a>
+  <a class="badge badge-light" href="/tag/hallucination/">hallucination</a>
   
 </div>
 
@@ -924,7 +971,7 @@ FlashAttention = bring the whole spice rack once, cook in peace! 👨‍🍳</p>
       
       
       <li>
-        <a href="https://twitter.com/intent/tweet?url=https://leminhnguyen.github.io/post/nlp-research/flash-attention/&amp;text=Understanding%20FlashAttention:%20Inner%20vs%20Outer%20Loop%20Optimization" target="_blank" rel="noopener" class="share-btn-twitter" aria-label="twitter">
+        <a href="https://twitter.com/intent/tweet?url=https://leminhnguyen.github.io/post/nlp-research/why-llm-hallucinates/&amp;text=Why%20Do%20Language%20Models%20Hallucinate?" target="_blank" rel="noopener" class="share-btn-twitter" aria-label="twitter">
           <i class="fab fa-twitter"></i>
         </a>
       </li>
@@ -937,7 +984,7 @@ FlashAttention = bring the whole spice rack once, cook in peace! 👨‍🍳</p>
       
       
       <li>
-        <a href="https://www.facebook.com/sharer.php?u=https://leminhnguyen.github.io/post/nlp-research/flash-attention/&amp;t=Understanding%20FlashAttention:%20Inner%20vs%20Outer%20Loop%20Optimization" target="_blank" rel="noopener" class="share-btn-facebook" aria-label="facebook">
+        <a href="https://www.facebook.com/sharer.php?u=https://leminhnguyen.github.io/post/nlp-research/why-llm-hallucinates/&amp;t=Why%20Do%20Language%20Models%20Hallucinate?" target="_blank" rel="noopener" class="share-btn-facebook" aria-label="facebook">
           <i class="fab fa-facebook"></i>
         </a>
       </li>
@@ -950,7 +997,7 @@ FlashAttention = bring the whole spice rack once, cook in peace! 👨‍🍳</p>
       
       
       <li>
-        <a href="mailto:?subject=Understanding%20FlashAttention:%20Inner%20vs%20Outer%20Loop%20Optimization&amp;body=https://leminhnguyen.github.io/post/nlp-research/flash-attention/" target="_blank" rel="noopener" class="share-btn-email" aria-label="envelope">
+        <a href="mailto:?subject=Why%20Do%20Language%20Models%20Hallucinate?&amp;body=https://leminhnguyen.github.io/post/nlp-research/why-llm-hallucinates/" target="_blank" rel="noopener" class="share-btn-email" aria-label="envelope">
           <i class="fas fa-envelope"></i>
         </a>
       </li>
@@ -963,7 +1010,7 @@ FlashAttention = bring the whole spice rack once, cook in peace! 👨‍🍳</p>
       
       
       <li>
-        <a href="https://www.linkedin.com/shareArticle?url=https://leminhnguyen.github.io/post/nlp-research/flash-attention/&amp;title=Understanding%20FlashAttention:%20Inner%20vs%20Outer%20Loop%20Optimization" target="_blank" rel="noopener" class="share-btn-linkedin" aria-label="linkedin-in">
+        <a href="https://www.linkedin.com/shareArticle?url=https://leminhnguyen.github.io/post/nlp-research/why-llm-hallucinates/&amp;title=Why%20Do%20Language%20Models%20Hallucinate?" target="_blank" rel="noopener" class="share-btn-linkedin" aria-label="linkedin-in">
           <i class="fab fa-linkedin-in"></i>
         </a>
       </li>
@@ -976,7 +1023,7 @@ FlashAttention = bring the whole spice rack once, cook in peace! 👨‍🍳</p>
       
       
       <li>
-        <a href="whatsapp://send?text=Understanding%20FlashAttention:%20Inner%20vs%20Outer%20Loop%20Optimization%20https://leminhnguyen.github.io/post/nlp-research/flash-attention/" target="_blank" rel="noopener" class="share-btn-whatsapp" aria-label="whatsapp">
+        <a href="whatsapp://send?text=Why%20Do%20Language%20Models%20Hallucinate?%20https://leminhnguyen.github.io/post/nlp-research/why-llm-hallucinates/" target="_blank" rel="noopener" class="share-btn-whatsapp" aria-label="whatsapp">
           <i class="fab fa-whatsapp"></i>
         </a>
       </li>
@@ -989,7 +1036,7 @@ FlashAttention = bring the whole spice rack once, cook in peace! 👨‍🍳</p>
       
       
       <li>
-        <a href="https://service.weibo.com/share/share.php?url=https://leminhnguyen.github.io/post/nlp-research/flash-attention/&amp;title=Understanding%20FlashAttention:%20Inner%20vs%20Outer%20Loop%20Optimization" target="_blank" rel="noopener" class="share-btn-weibo" aria-label="weibo">
+        <a href="https://service.weibo.com/share/share.php?url=https://leminhnguyen.github.io/post/nlp-research/why-llm-hallucinates/&amp;title=Why%20Do%20Language%20Models%20Hallucinate?" target="_blank" rel="noopener" class="share-btn-weibo" aria-label="weibo">
           <i class="fab fa-weibo"></i>
         </a>
       </li>
@@ -1139,15 +1186,8 @@ FlashAttention = bring the whole spice rack once, cook in peace! 👨‍🍳</p>
   
   
   <div class="post-nav-item">
-    <div class="meta-nav">Next</div>
-    <a href="/post/speech-research/lora-whisper/" rel="next">LoRA-Whisper: A Scalable and Efficient Solution for Multilingual ASR</a>
-  </div>
-  
-  
-  
-  <div class="post-nav-item">
     <div class="meta-nav">Previous</div>
-    <a href="/post/nlp-research/adversarial-attacks/" rel="prev">Adversarial Attacks on Large Language Models (LLMs)</a>
+    <a href="/post/speech-research/speaker-diarization/" rel="prev">Speaker Diarization: From Traditional Methods to the Modern Models</a>
   </div>
   
 </div>
@@ -1164,9 +1204,11 @@ FlashAttention = bring the whole spice rack once, cook in peace! 👨‍🍳</p>
     <h3>Related</h3>
     <ul>
       
-      <li><a href="/post/nlp-research/why-llm-hallucinates/">Why Do Language Models Hallucinate?</a></li>
-      
       <li><a href="/post/nlp-research/adversarial-attacks/">Adversarial Attacks on Large Language Models (LLMs)</a></li>
+      
+      <li><a href="/post/nlp-research/flash-attention/">Understanding FlashAttention: Inner vs Outer Loop Optimization</a></li>
+      
+      <li><a href="/post/nlp-research/gliner/">GLiNER: A Generalist Model for Named Entity Recognition using Bidirectional Transformers</a></li>
       
       <li><a href="/post/speech-research/speaker-diarization/">Speaker Diarization: From Traditional Methods to the Modern Models</a></li>
       
@@ -1271,8 +1313,6 @@ FlashAttention = bring the whole spice rack once, cook in peace! 👨‍🍳</p>
       
       
 
-      
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/8.8.4/mermaid.min.js" integrity="sha512-as1BF4+iHZ3BVO6LLDQ7zrbvTXM+c/1iZ1qII/c3c4L8Rn5tHLpFUtpaEtBNS92f+xGsCzsD7b62XP3XYap6oA==" crossorigin="anonymous" title="mermaid"></script>
       
 
       

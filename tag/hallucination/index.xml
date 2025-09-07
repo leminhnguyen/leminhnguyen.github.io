@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Large Language Models | leminhnguyen&#39;s blog</title>
-    <link>https://leminhnguyen.github.io/category/large-language-models/</link>
-      <atom:link href="https://leminhnguyen.github.io/category/large-language-models/index.xml" rel="self" type="application/rss+xml" />
-    <description>Large Language Models</description>
+    <title>hallucination | leminhnguyen&#39;s blog</title>
+    <link>https://leminhnguyen.github.io/tag/hallucination/</link>
+      <atom:link href="https://leminhnguyen.github.io/tag/hallucination/index.xml" rel="self" type="application/rss+xml" />
+    <description>hallucination</description>
     <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>© {2025} leminhnguyen</copyright><lastBuildDate>Sun, 07 Sep 2025 00:00:00 +0000</lastBuildDate>
     <image>
       <url>https://leminhnguyen.github.io/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_3.png</url>
-      <title>Large Language Models</title>
-      <link>https://leminhnguyen.github.io/category/large-language-models/</link>
+      <title>hallucination</title>
+      <link>https://leminhnguyen.github.io/tag/hallucination/</link>
     </image>
     
     <item>
@@ -171,145 +171,6 @@ mitigation: modifying the scoring of existing benchmarks that are misaligned but
                height=&#34;400&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
   &lt;/div&gt;&lt;/figure&gt;
-&lt;/div&gt;</description>
-    </item>
-    
-    <item>
-      <title>Adversarial Attacks on Large Language Models (LLMs)</title>
-      <link>https://leminhnguyen.github.io/post/nlp-research/adversarial-attacks/</link>
-      <pubDate>Sat, 11 Jan 2025 00:00:00 +0000</pubDate>
-      <guid>https://leminhnguyen.github.io/post/nlp-research/adversarial-attacks/</guid>
-      <description>&lt;div style=&#34;text-align: justify; font-size: 15px; margin-top: 20px&#34;&gt;
-&lt;p&gt;&lt;strong&gt;Adversarial Attacks on Large Language Models (LLMs)&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Adversarial attacks on large language models (LLMs) involve manipulating inputs to deceive the model into generating harmful, biased, or incorrect outputs. These attacks exploit the vulnerabilities of LLMs, which rely on patterns in training data to generate responses. Below is an overview of key concepts, types of attacks, implications, and defense strategies.&lt;/p&gt;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-&lt;figure  id=&#34;figure-an-overview-of-threats-to-llm-based-applications-source-lillog-blog&#34;&gt;
-  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
-    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;An overview of threats to LLM-based applications (source: Lil&amp;#39;Log Blog)&#34; srcset=&#34;
-               /post/nlp-research/adversarial-attacks/threats-overview_hu5cc59e8e6448994ce2a12d24e267d6f5_401678_213025f04731a3fd00a3d61c5d51a00f.png 400w,
-               /post/nlp-research/adversarial-attacks/threats-overview_hu5cc59e8e6448994ce2a12d24e267d6f5_401678_39113d4dab022780f9de83ba4af61166.png 760w,
-               /post/nlp-research/adversarial-attacks/threats-overview_hu5cc59e8e6448994ce2a12d24e267d6f5_401678_1200x1200_fit_lanczos_3.png 1200w&#34;
-               src=&#34;https://leminhnguyen.github.io/post/nlp-research/adversarial-attacks/threats-overview_hu5cc59e8e6448994ce2a12d24e267d6f5_401678_213025f04731a3fd00a3d61c5d51a00f.png&#34;
-               width=&#34;760&#34;
-               height=&#34;333&#34;
-               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
-  &lt;/div&gt;&lt;figcaption&gt;
-      An overview of threats to LLM-based applications (source: Lil&amp;rsquo;Log Blog)
-    &lt;/figcaption&gt;&lt;/figure&gt;
-&lt;hr&gt;
-&lt;h3 id=&#34;1-types-of-adversarial-attacks-on-llms&#34;&gt;&lt;strong&gt;1. Types of Adversarial Attacks on LLMs&lt;/strong&gt;&lt;/h3&gt;
-&lt;h4 id=&#34;a-evasion-attacks&#34;&gt;a. Evasion Attacks&lt;/h4&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Description&lt;/strong&gt;: Attackers modify input text (e.g., by altering words, punctuation, or structure) to trick the model into producing unintended outputs.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Example&lt;/strong&gt;: Adding a few words like &amp;ldquo;I am a helpful assistant&amp;rdquo; to a prompt to manipulate the model&amp;rsquo;s response.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Impact&lt;/strong&gt;: Can lead to misinformation, phishing, or generation of harmful content.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h4 id=&#34;b-poisoning-attacks&#34;&gt;&lt;strong&gt;b. Poisoning Attacks&lt;/strong&gt;&lt;/h4&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Description&lt;/strong&gt;: Corrupting training data to influence the model&amp;rsquo;s behavior. Attackers inject malicious examples during training.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Example&lt;/strong&gt;: Including biased or harmful data in the training set to make the model generate toxic responses.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Impact&lt;/strong&gt;: Long-term degradation of model reliability and trustworthiness.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h4 id=&#34;c-injection-attacks&#34;&gt;&lt;strong&gt;c. Injection Attacks&lt;/strong&gt;&lt;/h4&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Description&lt;/strong&gt;: Inserting malicious code or prompts into the input to alter the model&amp;rsquo;s execution flow.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Example&lt;/strong&gt;: Using adversarial prompts like &amp;ldquo;Generate a phishing email&amp;rdquo; to exploit the model&amp;rsquo;s tendency to follow instructions.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Impact&lt;/strong&gt;: Enables exploitation of model capabilities for malicious purposes.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h4 id=&#34;d-data-poisoning&#34;&gt;&lt;strong&gt;d. Data Poisoning&lt;/strong&gt;&lt;/h4&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Description&lt;/strong&gt;: Similar to poisoning attacks but focuses on corrupting the training dataset to bias the model&amp;rsquo;s outputs.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Example&lt;/strong&gt;: Adding fake user interactions that encourage the model to generate harmful content.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Impact&lt;/strong&gt;: Systemic bias and ethical risks in model behavior.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h4 id=&#34;e-model-inversion-attacks&#34;&gt;&lt;strong&gt;e. Model Inversion Attacks&lt;/strong&gt;&lt;/h4&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Description&lt;/strong&gt;: Inferring sensitive information about the model&amp;rsquo;s training data by analyzing outputs.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Example&lt;/strong&gt;: Reverse-engineering the model to reveal private data or patterns in the training set.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Impact&lt;/strong&gt;: Privacy breaches and exposure of proprietary information.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;hr&gt;
-&lt;h3 id=&#34;2-implications-of-adversarial-attacks&#34;&gt;&lt;strong&gt;2. Implications of Adversarial Attacks&lt;/strong&gt;&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Security Risks&lt;/strong&gt;: Phishing, misinformation, and malware generation via manipulated prompts.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Ethical Concerns&lt;/strong&gt;: Reinforcement of biases, hate speech, or harmful content.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Trust Erosion&lt;/strong&gt;: Users may lose confidence in LLMs for critical tasks like healthcare, finance, or legal advice.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Operational Disruption&lt;/strong&gt;: Attackers could disrupt services by causing models to fail or produce incorrect outputs.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;hr&gt;
-&lt;h3 id=&#34;3-defense-mechanisms&#34;&gt;&lt;strong&gt;3. Defense Mechanisms&lt;/strong&gt;&lt;/h3&gt;
-&lt;h4 id=&#34;a-adversarial-training&#34;&gt;&lt;strong&gt;a. Adversarial Training&lt;/strong&gt;&lt;/h4&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Approach&lt;/strong&gt;: Train models on adversarial examples to improve robustness.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Example&lt;/strong&gt;: Introduce perturbed inputs during training to make the model resistant to attacks.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Limitation&lt;/strong&gt;: Requires access to adversarial examples, which may be difficult to generate for LLMs.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h4 id=&#34;b-input-sanitization&#34;&gt;&lt;strong&gt;b. Input Sanitization&lt;/strong&gt;&lt;/h4&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Approach&lt;/strong&gt;: Detect and filter malicious patterns in inputs (e.g., using regex or keyword matching).&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Example&lt;/strong&gt;: Blocking suspicious prompts like &amp;ldquo;Generate a phishing email&amp;rdquo; or &amp;ldquo;I am a helpful assistant.&amp;rdquo;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Limitation&lt;/strong&gt;: May fail against sophisticated, subtle attacks.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h4 id=&#34;c-model-ensembles&#34;&gt;&lt;strong&gt;c. Model Ensembles&lt;/strong&gt;&lt;/h4&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Approach&lt;/strong&gt;: Use multiple models to cross-validate outputs and detect inconsistencies.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Example&lt;/strong&gt;: If one model generates a harmful response, others may flag it as anomalous.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Limitation&lt;/strong&gt;: Increases computational overhead and complexity.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h4 id=&#34;d-uncertainty-estimation&#34;&gt;&lt;strong&gt;d. Uncertainty Estimation&lt;/strong&gt;&lt;/h4&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Approach&lt;/strong&gt;: Train models to estimate confidence in their outputs, flagging uncertain responses.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Example&lt;/strong&gt;: If the model is unsure about a prompt, it may refuse to generate a response.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Limitation&lt;/strong&gt;: Requires careful calibration and may reduce usability.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h4 id=&#34;e-prompt-engineering-defenses&#34;&gt;&lt;strong&gt;e. Prompt Engineering Defenses&lt;/strong&gt;&lt;/h4&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Approach&lt;/strong&gt;: Design prompts to resist adversarial manipulation (e.g., using multi-step reasoning or safety checks).&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Example&lt;/strong&gt;: Incorporating safety constraints like &amp;ldquo;Avoid harmful content&amp;rdquo; into the prompt.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Limitation&lt;/strong&gt;: May not fully prevent attacks, especially if the adversary tailors prompts.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;hr&gt;
-&lt;h3 id=&#34;4-research-and-tools&#34;&gt;&lt;strong&gt;4. Research and Tools&lt;/strong&gt;&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Key Papers&lt;/strong&gt;:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;&amp;ldquo;Adversarial Examples for Neural Network Language Models&amp;rdquo;&lt;/strong&gt; (Emti et al.) – Explores adversarial examples in NLP.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;&amp;ldquo;Prompt Injection Attacks on Language Models&amp;rdquo;&lt;/strong&gt; (Zhang et al.) – Demonstrates how prompts can be weaponized.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;&amp;ldquo;Defending Against Prompt Injection Attacks&amp;rdquo;&lt;/strong&gt; (Li et al.) – Proposes defenses against adversarial prompts.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Tools&lt;/strong&gt;:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Adversarial Text Generation Tools&lt;/strong&gt;: Generate adversarial examples for testing.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Model Auditing Frameworks&lt;/strong&gt;: Analyze model behavior for biases or vulnerabilities.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;hr&gt;
-&lt;h3 id=&#34;5-challenges-and-future-directions&#34;&gt;&lt;strong&gt;5. Challenges and Future Directions&lt;/strong&gt;&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Dynamic Nature of Attacks&lt;/strong&gt;: Adversaries continuously evolve techniques, requiring ongoing research.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Balancing Safety and Usability&lt;/strong&gt;: Defenses must avoid overly restrictive measures that hinder model functionality.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Cross-Domain Collaboration&lt;/strong&gt;: Combining insights from cybersecurity, NLP, and ethics to address risks holistically.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;hr&gt;
-&lt;h3 id=&#34;conclusion&#34;&gt;&lt;strong&gt;Conclusion&lt;/strong&gt;&lt;/h3&gt;
-&lt;p&gt;Adversarial attacks on LLMs pose significant risks to security, ethics, and trust. While defenses like adversarial training and input sanitization offer partial protection, the dynamic nature of these threats demands continuous innovation. Researchers and practitioners must prioritize robustness, transparency, and ethical considerations to ensure the safe deployment of LLMs in real-world applications.&lt;/p&gt;
 &lt;/div&gt;</description>
     </item>
     
